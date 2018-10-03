@@ -42,8 +42,8 @@ public abstract class MovingUnit : MonoBehaviour {
         //이동 실패할 경우
     } //움직일 수 있느냐 없느냐를 확인하여 움직일 수 있는 경우 smoothmovement 호출하여
 
-    protected virtual void AttempMove<T>(int xDir, int yDir)
-        where T : Component{
+    protected virtual void AttemptMove(int xDir, int yDir)
+    {
         RaycastHit2D hit;
 
         bool canMove = Move(xDir, yDir, out hit);
