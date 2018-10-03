@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MovingUnit {
-    public float restartLevelDelay = 1f;
+  
     public int dir; // 0: front, 1: right, 2: back, 3: left
-
-
+    public float  movingSpeed = 0.01f;
     private Animator animator;
    
     private enum Direction {FRONT,RIGHT,BACK,LEFT};
@@ -40,20 +39,23 @@ public class Player : MovingUnit {
         horizontal = (int)Input.GetAxisRaw("Horizontal"); 
         vertical = (int)Input.GetAxisRaw("Vertical");
 
-        if(horizontal != 0){
+        if (horizontal != 0){
             vertical = 0;
         }
+ 
         if(horizontal!=0 || vertical!=0){
-            dir= CalcDirection(horizontal, vertical);
+            dir = CalcDirection(horizontal, vertical);
             GetComponent<Animator>().SetInteger("dir", dir);
-            AttemptMove(horizontal, vertical);
+            AttemptMove(horizontal*movingSpeed, vertical*movingSpeed);
+        
         }
 
 
-	}
+
+    }
 
 
-    protected override void AttemptMove(int xDir, int yDir){
+    protected override void AttemptMove(float xDir, float yDir){ 
         base.AttemptMove(xDir, yDir);
     }
 }
