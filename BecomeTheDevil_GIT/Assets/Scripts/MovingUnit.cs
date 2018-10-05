@@ -5,12 +5,9 @@ using UnityEngine;
 public abstract class MovingUnit : MonoBehaviour {
     public float moveTime = 0.1f; // 오브젝트를 움직이게 할 시간 단위
     public LayerMask blockingLayer; // (적 벽 플레이어 유닛 모두 이 레이어)
-
-
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
-    private float inverseMoveTime; // 움직임을 효율적으로
-
+  
 
 
 
@@ -18,7 +15,8 @@ public abstract class MovingUnit : MonoBehaviour {
 	protected virtual void Start () {
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
-        inverseMoveTime = 1 / moveTime;
+        blockingLayer = 1 << 10;
+      
 	}
 
     protected bool Move(float xDir, float yDir, out RaycastHit2D hit){
@@ -32,9 +30,8 @@ public abstract class MovingUnit : MonoBehaviour {
         //시작점과 가야하는 점에 blocking layer가 있나를 검사 null일 경우 움직일 수 있음
         boxCollider.enabled = true;
         //다시 boxCollider 사용 
-
+     
         if(hit.transform == null){
-            //StartCoroutine(SmoothMovement(end));
             transform.position = end;
             return true;
         }//갈 수 있는 경우
