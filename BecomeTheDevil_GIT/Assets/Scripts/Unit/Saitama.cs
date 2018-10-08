@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Saitama : MonoBehaviour
 {
-
     public float speed = -1.0f;
+    private Animator animator;
 
     // Use this for initialization
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

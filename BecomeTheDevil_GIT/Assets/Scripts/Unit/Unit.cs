@@ -11,21 +11,27 @@ public enum UnitState
     dead
 }
 
-public class Unit : MonoBehaviour {
+public class Unit : Singleton<Unit> {
 
     public string unitName;
     public LayerMask enemyLayerMask;        // 타워가 적을 찾기 위한 mask
+    [HideInInspector]
     public float speed;
     // LineCast에 사용될 위치.
+    [HideInInspector]
     public Transform frontPosition;
-    protected RaycastHit2D isObstacle;
+    protected RaycastHit2D isRightUpObstacle;
+    protected RaycastHit2D isRightDownObstacle;
+    protected RaycastHit2D isLeftObstacle;
+    protected RaycastHit2D isUpObstacle;
+    protected RaycastHit2D isDownObstacle;
     // 유닛 상태.
     public UnitState currentState = UnitState.none;
     // 공격 가능여부 저장.
     protected bool enableAttack = true;
 
     private Vector3 vector;
-    private Animator animator;
+    public Animator animator;
     private Transform target;   // Enemy의 위치를 저장 유닛이 어느 방향으로 공격할지 알려줌.
 
 
@@ -46,6 +52,11 @@ public class Unit : MonoBehaviour {
     }
 
     void FixedUpdate()
+    {
+
+    }
+
+    public void AttackDir()
     {
         switch (currentState)
         {
@@ -81,18 +92,23 @@ public class Unit : MonoBehaviour {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
                 // 장애물이 있는지 Linecast로 검출.
-                isObstacle = Physics2D.Linecast(
+                isRightUpObstacle = Physics2D.Linecast(
                     transform.position, frontPosition.position,
                     1 << LayerMask.NameToLayer("Enemy"));
 
-                if (isObstacle)
+                isRightDownObstacle = Physics2D.Linecast(
+                    transform.position, frontPosition.position,
+                    1 << LayerMask.NameToLayer("Enemy"));
+
+                if (isRightUpObstacle || isRightDownObstacle)
                 {
                     // 장애물을 만나면 공격 애니메이션으로 전환.
                     if (enableAttack)
                     {
                         currentState = UnitState.attack;
                         // Animator에 등록한 attack Trigger를 작동.
-                        animator.SetTrigger("attack");
+                        animator.SetFloat("AttackX", 1.0f);
+                        animator.SetFloat("AttackY", 0.0f);
                     }
                 }
                 break;
@@ -104,5 +120,5 @@ public class Unit : MonoBehaviour {
                 break;
         }
     }
-
+    
 }
