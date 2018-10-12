@@ -57,6 +57,26 @@ public class RoomSpawner : MonoBehaviour
             spawned = true;
             RoomTemplates.roomCount++;
         }
+        if (RoomTemplates.roomCount == 16)
+        {
+            if (openingDirection == 1)
+            {
+                Instantiate(templates.closedRoom, transform.position, templates.bottomRooms[rand].transform.rotation);
+            }
+            else if (openingDirection == 2)
+            {
+                Instantiate(templates.closedRoom, transform.position, templates.topRooms[rand].transform.rotation);
+            }
+            else if (openingDirection == 3)
+            {
+                Instantiate(templates.closedRoom, transform.position, templates.leftRooms[rand].transform.rotation);
+            }
+            else if (openingDirection == 4)
+            {
+                Instantiate(templates.closedRoom, transform.position, templates.rightRooms[rand].transform.rotation);
+            }
+            spawned = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
