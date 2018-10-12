@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Map
   - MapPoint
+  - Rooms
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -48,4 +50,7 @@ TagManager:
     locked: 0
   - name: floor
     uniqueID: 1929398437
+    locked: 0
+  - name: wall
+    uniqueID: 3780788827
     locked: 0
