@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour{
-    public int bulletDamage = 20;
-    public const float bulletSpeed = 0.45f;
+
     // Use this for initialization
     void Start () {
-
+        GetComponent<Rigidbody2D>().velocity = new Vector2(BattleManager.instance.humanPlayerBulletDirX, BattleManager.instance.humanPlayerBulletDirY);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        float moveY = bulletSpeed * Time.deltaTime;
-        //이동할 거리를 지정해 줍시다.
-        transform.Translate(0, moveY, 0);
-        //이동을 반영해줍시다.
+     
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag.Equals("Enemy"))
+        { //부딪힌 객체가 적인지 검사합니다.
+            //Destroy(other.gameObject); //부딪힌 적을 지웁니다.
+            Destroy(this.gameObject); //자기 자신을 지웁니다.
+
+        }
+    }
+
 }

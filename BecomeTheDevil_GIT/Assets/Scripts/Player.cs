@@ -6,12 +6,14 @@ public class Player : MovingUnit {
   
 
     public float movingSpeed = 0.01f;
-    public GameObject bullet;
 
 
-    private int dir; // 0: front, 1: right, 2: back, 3: left
-    private bool isChop;
+    
+    private bool isChop=false,isIdle=true,isHuman=true,isMoving=false,isChange=false;
+    private int cur_hor=0, cur_ver=1; // 총쏠 방향 결정하기 위함
     private enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
+   
+
 	// Use this for initialization
 
 
@@ -19,26 +21,16 @@ public class Player : MovingUnit {
 
 
 	protected override  void Start () {
-        //animator = GetComponent<Animator>;
-        dir = 0;
-        GetComponent<Animator>().SetInteger("dir", dir);
-        GetComponent<Animator>().SetBool("isIdle", true);
+        GetComponent<Animator>().SetFloat("DirX", cur_hor);
+        GetComponent<Animator>().SetFloat("DirY", cur_ver);
+        GetComponent<Animator>().SetBool("isIdle", isIdle);
+        GetComponent<Animator>().SetBool("isHuman", isHuman);
+        GetComponent<Animator>().SetBool("isMoving", isMoving);
+        GetComponent<Animator>().SetBool("isChange", isChange);
         base.Start();
 
 		
 	}
-
-    private int CalcDirection(int horizontal, int vertical){
-        if (vertical > 0 && horizontal > 0) return (int)Direction.FRONTRIGHT;
-        if (vertical > 0 && horizontal < 0) return (int)Direction.FRONTLEFT;
-        if (vertical < 0 && horizontal > 0) return (int)Direction.BACKRIGHT;
-        if (vertical < 0 && horizontal < 0) return (int)Direction.BACKLEFT;
-        if (vertical > 0) return (int)Direction.FRONT;
-        if (vertical < 0) return (int)Direction.BACK;
-        if (horizontal > 0) return (int)Direction.RIGHT;
-        if (horizontal < 0) return (int)Direction.LEFT;
-        return -1; // 잘못된 경우 안됌
-    }
 
 	
 	// Update is called once per frame
@@ -46,8 +38,14 @@ public class Player : MovingUnit {
         int horizontal = 0;
         int vertical = 0;
         isChop = false;
+        isIdle = true;
+        isMoving = false;
+        isChange = false;
         GetComponent<Animator>().SetBool("isChop", isChop);
-        GetComponent<Animator>().SetBool("isIdle", true);
+        GetComponent<Animator>().SetBool("isIdle", isIdle);
+        GetComponent<Animator>().SetBool("isMoving", isMoving);
+        GetComponent<Animator>().SetBool("isChange", isChange);
+
 
         horizontal = (int)Input.GetAxisRaw("Horizontal"); 
         vertical = (int)Input.GetAxisRaw("Vertical");
@@ -55,27 +53,37 @@ public class Player : MovingUnit {
     
         if (horizontal != 0 || vertical != 0)
         {
-
-            dir = CalcDirection(horizontal, vertical);
-            GetComponent<Animator>().SetInteger("dir", dir);
-            GetComponent<Animator>().SetBool("isIdle", false);
+            cur_hor = horizontal;
+            cur_ver = vertical;
+            isIdle = false;
+            isMoving = true;
+            GetComponent<Animator>().SetFloat("DirX", cur_hor);
+            GetComponent<Animator>().SetFloat("DirY", cur_ver);
+            GetComponent<Animator>().SetBool("isIdle", isIdle);
+            GetComponent<Animator>().SetBool("isMoving", isMoving);
             AttemptMove(horizontal * movingSpeed, vertical * movingSpeed);
 
         }
         if (Input.GetMouseButton(0))
         {
             isChop = true;
-            GetComponent<Animator>().SetBool("isIdle", false);
+            isIdle = false;
+            GetComponent<Animator>().SetBool("isIdle", isIdle);
             GetComponent<Animator>().SetBool("isChop", isChop);
-            Fire();
+            if(isHuman) BattleManager.instance.HumanPlayerChop(cur_ver, cur_hor); //current direction의 반대 방향이여야 함
+        }
+        if(Input.GetKeyDown("space"))
+        {
+
+            isHuman = !isHuman;
+            isChange = true;
+            GetComponent<Animator>().SetBool("isHuman", isHuman);
+            GetComponent<Animator>().SetBool("isChange", isChange);
+           
         }
     }
    
-    void Fire()
-    {
-        Instantiate(bullet, transform.position, Quaternion.identity);
-    }
-
+ 
 
     protected override void AttemptMove(float xDir, float yDir){ 
         base.AttemptMove(xDir, yDir);
