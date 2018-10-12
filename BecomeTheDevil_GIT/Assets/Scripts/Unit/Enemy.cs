@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Saitama : MonoBehaviour
+public class Enemy : Unit
 {
     public float speed = -1.0f;
     private Animator animator;
+    [SerializeField]
+    private float monsterHealth = 10f;
 
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public bool Alive
+    {
+        get
+        {
+            return monsterHealth > 0;
+        }
     }
 
     // Update is called once per frame

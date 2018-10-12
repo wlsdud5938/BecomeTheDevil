@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4461912432009502}
   - component: {fileID: 95005170076416968}
-  - component: {fileID: 50039721828271514}
-  - component: {fileID: 61539084430115802}
   - component: {fileID: 212983150027317656}
-  - component: {fileID: 114957144261539788}
+  - component: {fileID: 50947401089192310}
+  - component: {fileID: 61135034436742074}
+  - component: {fileID: 114752726244672630}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -67,14 +67,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572080230807074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 0}
+  m_LocalPosition: {x: 3.82, y: -0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4226798769560694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50039721828271514
+--- !u!50 &50947401089192310
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -93,8 +93,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &61539084430115802
+  m_Constraints: 4
+--- !u!61 &61135034436742074
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,21 +103,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 9}
+    newSize: {x: 6, y: 9}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &95005170076416968
 Animator:
@@ -137,7 +137,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114957144261539788
+--- !u!114 &114752726244672630
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,10 +145,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1572080230807074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a47c63b6a1d1c439ff51de2f9c69b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4820775dfcfd6f24bbce8f751ba3464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  frontPosition: {fileID: 0}
+  currentState: 0
+  animator: {fileID: 0}
   speed: -1
+  monsterHealth: 10
 --- !u!212 &212375941514928522
 SpriteRenderer:
   m_ObjectHideFlags: 1
