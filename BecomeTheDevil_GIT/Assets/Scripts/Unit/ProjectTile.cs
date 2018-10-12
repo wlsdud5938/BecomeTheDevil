@@ -34,10 +34,10 @@ public class ProjectTile : MonoBehaviour {
             //Sets the rotation based on the angle
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-        else if (!target.IsActive) //If the target is inactive then we don't need the projectile anymore
+        /*else if (!target.IsActive) //If the target is inactive then we don't need the projectile anymore
         {
             GameManager.Instance.Pool.ReleaseObject(gameObject);
-        }
+        }*/
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +46,7 @@ public class ProjectTile : MonoBehaviour {
         if (other.tag == "Saitama")
         {
             //Creates a reference to the Saitama script
-            Saitama target = other.GetComponent<Saitama>();
+            Enemy target = other.GetComponent<Enemy>();
 
             //Makes the Saitama take damage based on the tower stats
             //target.TakeDamage(tower.Damage, tower.ElementType);
