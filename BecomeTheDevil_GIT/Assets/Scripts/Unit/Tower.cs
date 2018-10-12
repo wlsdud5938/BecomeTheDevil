@@ -129,6 +129,7 @@ public abstract class Tower : MonoBehaviour {
         if(other.tag == "Enemy")
         {
             target = null;      // range 밖으로 나가면 target 해제
+            Debug.Log("OUT!!!!!!!!!!!");
         }
         //Unit.Instance.StopAttack();
         //Unit.Instance.animator.SetBool("Attack", false);
