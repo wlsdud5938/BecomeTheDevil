@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Rooms
+  - SpawnPoint
   - Map
   - MapPoint
-  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - floor
-  - unit
-  - blockingLayer
-  - door
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,9 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: unit
-    uniqueID: 794307833
+  - name: Wall
+    uniqueID: 1751787389
     locked: 0
-  - name: floor
-    uniqueID: 1929398437
+  - name: Core
+    uniqueID: 90835829
     locked: 0

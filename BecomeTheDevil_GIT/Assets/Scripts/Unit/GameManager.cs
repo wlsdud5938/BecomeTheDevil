@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public enum Element { MeleeSlime, RangeSlime, NONE }
 
-	// Use this for initialization
-	void Start () {
+public class GameManager : Singleton<GameManager> {
+    
+
+    public ObjectPool Pool { get; private set; }
+    
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

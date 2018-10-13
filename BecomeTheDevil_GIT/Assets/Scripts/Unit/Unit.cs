@@ -11,12 +11,12 @@ public enum UnitState
     dead
 }
 
-public class Unit : Singleton<Unit> {
+abstract public class Unit : MonoBehaviour {
 
     public string unitName;
     public LayerMask enemyLayerMask;        // 타워가 적을 찾기 위한 mask
-    [HideInInspector]
-    public float speed;
+    //[HideInInspector]
+    //public float speed;
     // LineCast에 사용될 위치.
     [HideInInspector]
     public Transform frontPosition;
@@ -33,6 +33,8 @@ public class Unit : Singleton<Unit> {
     private Vector3 vector;
     public Animator animator;
     private Transform target;   // Enemy의 위치를 저장 유닛이 어느 방향으로 공격할지 알려줌.
+
+    public bool IsActive { get; set; }
 
 
     // Use this for initialization
