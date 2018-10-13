@@ -10,7 +10,6 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
-    public static int roomCount;
     public GameObject closedRoom;
     public GameObject items;
     public GameObject keyItems;
@@ -19,13 +18,14 @@ public class RoomTemplates : MonoBehaviour
     public List<GameObject> rooms;
 
     public float waitTime;
-    private bool spawnedBoss;
+    public bool spawnedBoss;
     public bool spawnedKeyItem;
     public bool spawnedItem;
     public GameObject boss;
+    public GameObject player;
+    private Vector3 playerPosition;
     void Awake()
     {
-        roomCount = 0;
     }
     void Update()
     {
@@ -41,6 +41,8 @@ public class RoomTemplates : MonoBehaviour
                     else
                     {
                         Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
+                        playerPosition.Set(rooms[i].transform.position.x + 2, rooms[i].transform.position.y, rooms[i].transform.position.z);
+                        Instantiate(player, playerPosition, Quaternion.identity);
                         spawnedBoss = true;
                     }
                 }

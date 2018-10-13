@@ -7,13 +7,13 @@ public class ItemDestroyer : MonoBehaviour {
     private RoomTemplates templates;
     // Use this for initialization
     void Start () {
-		
-	}
+
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         if (timer >= 15.0f && gameObject.tag == "Item")
         {
             Destroy(gameObject);

@@ -28,7 +28,7 @@ public class RoomSpawner : MonoBehaviour
 
     void Spawn()
     {
-        if (spawned == false && RoomTemplates.roomCount <= 15)
+        if (spawned == false && templates.rooms.Count <= 14)
         {
             if (openingDirection == 1)
             {
@@ -55,25 +55,28 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             spawned = true;
-            RoomTemplates.roomCount++;
         }
-        if (RoomTemplates.roomCount == 16)
+        if (templates.rooms.Count >= 15)
         {
             if (openingDirection == 1)
             {
-                Instantiate(templates.closedRoom, transform.position, templates.bottomRooms[rand].transform.rotation);
+                if(!spawned)
+                    Instantiate(templates.closedRoom, transform.position, templates.bottomRooms[rand].transform.rotation);
             }
             else if (openingDirection == 2)
             {
-                Instantiate(templates.closedRoom, transform.position, templates.topRooms[rand].transform.rotation);
+                if (!spawned)
+                    Instantiate(templates.closedRoom, transform.position, templates.topRooms[rand].transform.rotation);
             }
             else if (openingDirection == 3)
             {
-                Instantiate(templates.closedRoom, transform.position, templates.leftRooms[rand].transform.rotation);
+                if (!spawned)
+                    Instantiate(templates.closedRoom, transform.position, templates.leftRooms[rand].transform.rotation);
             }
             else if (openingDirection == 4)
             {
-                Instantiate(templates.closedRoom, transform.position, templates.rightRooms[rand].transform.rotation);
+                if (!spawned)
+                    Instantiate(templates.closedRoom, transform.position, templates.rightRooms[rand].transform.rotation);
             }
             spawned = true;
         }
