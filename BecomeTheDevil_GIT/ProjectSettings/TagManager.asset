@@ -8,6 +8,8 @@ TagManager:
   - SpawnPoint
   - Map
   - MapPoint
+  - Item
+  - KeyItem
   layers:
   - Default
   - TransparentFX
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Core
     uniqueID: 90835829
+    locked: 0
+  - name: Item
+    uniqueID: 1016809139
     locked: 0

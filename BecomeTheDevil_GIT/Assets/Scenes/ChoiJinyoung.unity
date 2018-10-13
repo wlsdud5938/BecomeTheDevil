@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f96d823d3abbe648b54f8d5bb3f9e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerPoints: []
   bottomRooms:
   - {fileID: 1580641739954116, guid: 2105902a5b9497f4f8e6debf227ac138, type: 2}
   - {fileID: 1236362237348314, guid: 96cbb82819b10f14eb4a551f8048e96c, type: 2}
@@ -309,6 +310,8 @@ MonoBehaviour:
   - {fileID: 1379100180507486, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
   - {fileID: 1384571339730304, guid: f19b4cd5436954c41adbd492ce5a8785, type: 2}
   closedRoom: {fileID: 1881217223790244, guid: 71addd1db0904154d960002486bf6a2b, type: 2}
+  items: {fileID: 1739568188009332, guid: 3c41b617e07d8484684d3273fbed58f5, type: 2}
+  keyItems: {fileID: 1230722215633714, guid: b47c3cec960a12c4fa7e3ee9f68a5878, type: 2}
   rooms: []
   waitTime: 2
   boss: {fileID: 1898445321837384, guid: 09e14c596e782a742829f1166838514d, type: 2}
