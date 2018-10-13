@@ -210,6 +210,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   movingSpeed: 0.08
+  haveKey: 0
+  countItem: 0
 --- !u!124 &124851570604214576
 Behaviour:
   m_ObjectHideFlags: 1

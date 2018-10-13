@@ -7,7 +7,8 @@ public class Player : MovingUnit {
 
     public float movingSpeed = 0.01f;
 
-
+    public bool haveKey = false;
+    public int countItem = 0;
     
     private bool isChop=false,isIdle=true,isHuman=true,isMoving=false,isChange=false;
     private int cur_hor=0, cur_ver=1; // 총쏠 방향 결정하기 위함

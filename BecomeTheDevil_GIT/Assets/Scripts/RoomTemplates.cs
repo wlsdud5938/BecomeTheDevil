@@ -23,7 +23,10 @@ public class RoomTemplates : MonoBehaviour
     public bool spawnedItem;
     public GameObject boss;
     public GameObject player;
+    public GameObject potal;
+    public float keyTime = 180.0f;
     private Vector3 playerPosition;
+    private int potalPosition;
     void Awake()
     {
     }
@@ -43,6 +46,10 @@ public class RoomTemplates : MonoBehaviour
                         Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
                         playerPosition.Set(rooms[i].transform.position.x + 2, rooms[i].transform.position.y, rooms[i].transform.position.z);
                         Instantiate(player, playerPosition, Quaternion.identity);
+
+                        int targetIndex = Random.Range(1, rooms.Count - 2);
+                        Instantiate(potal, rooms[targetIndex].transform.position, Quaternion.identity);
+                        potalPosition = targetIndex;
                         spawnedBoss = true;
                     }
                 }
@@ -54,16 +61,27 @@ public class RoomTemplates : MonoBehaviour
         }
         if(spawnedBoss == true && spawnedItem==false)
         {
-            int targetIndex = Random.Range(1, rooms.Count-2);
+            int targetIndex = 0;
+            while(true)
+            {
+                targetIndex = Random.Range(1, rooms.Count - 2);
+                if (targetIndex != potalPosition)
+                    break;
+            }
             Instantiate(items, rooms[targetIndex].transform.position, Quaternion.identity);
 
             spawnedItem = true;
         }
-        if (spawnedBoss == true && spawnedKeyItem == false && timer > 180.0f)
+        if (spawnedBoss == true && spawnedKeyItem == false && timer > keyTime)
         {
-            int targetIndex = Random.Range(1, rooms.Count - 2);
+            int targetIndex = 0;
+            while (true)
+            {
+                targetIndex = Random.Range(1, rooms.Count - 2);
+                if (targetIndex != potalPosition)
+                    break;
+            }
             Instantiate(keyItems, rooms[targetIndex].transform.position, Quaternion.identity);
-
             spawnedKeyItem = true;
         }
     }

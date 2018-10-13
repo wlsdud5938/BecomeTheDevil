@@ -5,9 +5,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     public Camera camera1;
     public Camera camera2;
+
     // Use this for initialization
     void Start () {
-		
+        camera2.gameObject.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -16,7 +17,7 @@ public class CameraController : MonoBehaviour {
         {
             //don't forget to set one as active either in the Start() method 
             //or deactivate 1 camera in the Editor before playing 
-            if (camera1.gameObject.active == true)
+            if (camera1.gameObject.activeSelf == true)
             {
                 camera1.gameObject.SetActive(false);
                 camera2.gameObject.SetActive(true);

@@ -5,9 +5,11 @@ using UnityEngine;
 public class ItemDestroyer : MonoBehaviour {
     public float timer = 0;
     private RoomTemplates templates;
+    private Player player;
+
     // Use this for initialization
     void Start () {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
     }
 	
@@ -25,10 +27,16 @@ public class ItemDestroyer : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             if (gameObject.tag == "Item")
+            {
                 templates.spawnedItem = false;
+                player.countItem++;
+            }
             if (gameObject.tag == "KeyItem")
-                templates.spawnedKeyItem = false;
+            {
+                player.haveKey = true;
+            }
+
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
