@@ -8,17 +8,19 @@ public class HUD : MonoBehaviour {
     public float maxHealth;
     public float playerHealth;
     public Slider healthSlider;
+    private RoomTemplates templates;
 
     float hp;
     float timer = 0;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         UpdateTimer();
         UpdatePlayerHealth();
 	}
@@ -32,7 +34,10 @@ public class HUD : MonoBehaviour {
 
     void UpdateTimer()
     {
-        timer += Time.deltaTime;
-        timerText.text = "TIMER : " + timer.ToString("0.0");
+        if (templates.spawnedBoss == true)
+        {
+            timer += Time.deltaTime;
+            timerText.text = "TIMER : " + timer.ToString("0.0");
+        }
     }
 }
