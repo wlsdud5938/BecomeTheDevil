@@ -5,15 +5,16 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour {
     public GameObject bullet;
     public GameObject player;
+    public GameObject sword;
     public static BattleManager instance = null;
 
  
-    public const float humanPlayerChopSpeed = 1f;    //플레이어 공격 속도
+
     public int humanPlayerBulletDirX = 0;              // 플레이어 공격 방향
     public int humanPlayerBulletDirY = 1;
     
 
-    private float timer;
+
     
 
 
@@ -25,26 +26,25 @@ public class BattleManager : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-        timer += 0.0f;
+       
 
 		
 	}
    
     void Update () {
-        timer += Time.deltaTime;
+
 
 	}
-    public bool HumanPlayerChop(int ver, int hor)
+    public void HumanPlayerChop(int ver, int hor)
     {
-        if (timer > humanPlayerChopSpeed) { 
-            humanPlayerBulletDirY = ver;
-            humanPlayerBulletDirX = hor;
-            timer = 0; //player 공격 막기위함
-            Instantiate(bullet, player.transform.position, Quaternion.identity);
-            return true;
-        }
-        return false;
- 
+        humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
+        Instantiate(bullet, player.transform.position, Quaternion.identity);
+
+    }
+    public void SlimePlayerChop(int ver, int hor)
+    {
+        humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
+        Instantiate(sword, player.transform.position, Quaternion.identity);
     }
 
 

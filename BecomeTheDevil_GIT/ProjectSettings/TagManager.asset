@@ -10,6 +10,7 @@ TagManager:
   - MapPoint
   - Item
   - KeyItem
+  - Enemy
   layers:
   - Default
   - TransparentFX

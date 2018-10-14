@@ -6,46 +6,41 @@ public class Player : MovingUnit {
   
 
     public float movingSpeed = 0.01f;
+    public float chopSpeed = 1f;    //플레이어 공격 속도
     public float hp = 100f;
     public int countItem = 0;
     public bool haveKey = false;
     
-    private bool isChop=false,isIdle=true,isHuman=true,isMoving=false,isChange=false;
+    private bool isHuman=true;
     private int cur_hor=0, cur_ver=1; // 총쏠 방향 결정하기 위함
     private enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
-   
+    private float timer;
+    private Animator animator;
 
-	// Use this for initialization
-
-
-
+    // Use this for initialization
 
 
-	protected override  void Start () {
-        GetComponent<Animator>().SetFloat("DirX", cur_hor);
-        GetComponent<Animator>().SetFloat("DirY", cur_ver);
-        GetComponent<Animator>().SetBool("isIdle", isIdle);
-        GetComponent<Animator>().SetBool("isHuman", isHuman);
-        GetComponent<Animator>().SetBool("isMoving", isMoving);
-        GetComponent<Animator>().SetBool("isChange", isChange);
+
+
+
+    protected override  void Start () {
+        animator = GetComponent<Animator>();
+        animator.SetFloat("DirX", cur_hor);
+        animator.SetFloat("DirY", cur_ver);
+        animator.SetBool("isHuman", isHuman);
+
         base.Start();
-
-		
-	}
+        timer += 0.0f;
+    }
 
 	
 	// Update is called once per frame
 	void Update () {
         int horizontal = 0;
         int vertical = 0;
-        isChop = false;
-        isIdle = true;
-        isMoving = false;
-        isChange = false;
-        GetComponent<Animator>().SetBool("isChop", isChop);
-        GetComponent<Animator>().SetBool("isIdle", isIdle);
-        GetComponent<Animator>().SetBool("isMoving", isMoving);
-        GetComponent<Animator>().SetBool("isChange", isChange);
+        timer += Time.deltaTime;
+        animator.SetBool("isIdle", true);
+        animator.SetBool("isMoving", false);
 
 
         horizontal = (int)Input.GetAxisRaw("Horizontal"); 
@@ -53,46 +48,48 @@ public class Player : MovingUnit {
 
 
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&timer>chopSpeed)
         {
-            bool isSuccess = false;
+            timer = 0;
+            animator.SetTrigger("Chop");
+            animator.SetBool("isIdle", false);
             if (isHuman)
             {
                 if (cur_hor != 0)
-                    isSuccess = BattleManager.instance.HumanPlayerChop(0, cur_hor);
+                    BattleManager.instance.HumanPlayerChop(0, cur_hor);
 
                 else
-                    isSuccess = BattleManager.instance.HumanPlayerChop(cur_ver, 0);
+                    BattleManager.instance.HumanPlayerChop(cur_ver, 0);
 
             }
-            if (isSuccess)
+
+            else
             {
-                isChop = true;
-                isIdle = false;
-                GetComponent<Animator>().SetBool("isIdle", isIdle);
-                GetComponent<Animator>().SetBool("isChop", isChop);
+                BattleManager.instance.SlimePlayerChop( cur_ver, cur_hor);
             }
+            
 
         }
         if (Input.GetKeyDown("space"))
         {
 
             isHuman = !isHuman;
-            isChange = true;
+            animator.SetTrigger("Change");
+            animator.SetBool("isIdle", false);
             GetComponent<Animator>().SetBool("isHuman", isHuman);
-            GetComponent<Animator>().SetBool("isChange", isChange);
+
 
         }
         if (horizontal != 0 || vertical != 0)
         {
             cur_hor = horizontal;
             cur_ver = vertical;
-            isIdle = false;
-            isMoving = true;
+
             GetComponent<Animator>().SetFloat("DirX", cur_hor);
             GetComponent<Animator>().SetFloat("DirY", cur_ver);
-            GetComponent<Animator>().SetBool("isIdle", isIdle);
-            GetComponent<Animator>().SetBool("isMoving", isMoving);
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isIdle", false);
+
             AttemptMove(horizontal * movingSpeed, vertical * movingSpeed);
 
         }

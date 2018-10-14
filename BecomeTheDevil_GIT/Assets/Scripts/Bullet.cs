@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour{
     public float bulletRange = 3f;
 
     // Use this for initialization
-    void Start () {
+    protected void Start () {
         GetComponent<Rigidbody2D>().velocity = new Vector2(BattleManager.instance.humanPlayerBulletDirX*bulletSpeed, BattleManager.instance.humanPlayerBulletDirY*bulletSpeed);
        
         Destroy(this.gameObject, bulletRange / bulletSpeed);
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour{
      
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag.Equals("Enemy")|| other.tag.Equals("Unit"))
         { //부딪힌 객체가 적인지 검사합니다.
