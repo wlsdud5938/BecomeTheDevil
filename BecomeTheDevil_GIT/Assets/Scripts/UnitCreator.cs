@@ -7,7 +7,6 @@ public class UnitCreator : MonoBehaviour {
     private float timer = 10.0f;
     public Vector3 playerPosition;
     public GameObject unit;
-    public bool a = true;
     // Use this for initialization
     void Start () {
     }
@@ -21,6 +20,7 @@ public class UnitCreator : MonoBehaviour {
             playerPosition = player.gameObject.transform.position;
             timer += Time.deltaTime;
         }
+        Debug.Log("a");
     }
 
     public void OnClick()
@@ -30,5 +30,4 @@ public class UnitCreator : MonoBehaviour {
             Instantiate(unit, player.transform.position, Quaternion.identity);
         }
     }
-
 }
