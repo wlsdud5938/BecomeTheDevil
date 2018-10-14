@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 1.0f; // 이동속도
     public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.
     public float distanceOfTile = 1.0f; // 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
-
+    public float hp = 100f;
     private Transform target; // 쫓아갈 대상
     private Animator animation; // Animator 선언
 
@@ -23,8 +23,7 @@ public class Enemy : MonoBehaviour
     private string animators; // animator의 motion 값입니다. 아래에 상술
     //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
 
-
-
+     
     // Use this for initialization
     void Start()
     {
@@ -144,6 +143,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        hp -= Damage;
     }
 
 

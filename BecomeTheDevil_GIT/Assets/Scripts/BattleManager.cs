@@ -7,9 +7,8 @@ public class BattleManager : MonoBehaviour {
     public GameObject player;
     public static BattleManager instance = null;
 
-    public int humanPlayerBulletDamage = 20;      // 플레이어 공격력
-    public const float humanPlayerBulletSpeed = 0.45f;  // 플레이어 총알 속도
-    public const float humanPlayerChopSpeed = 0.5f;    //플레이어 공격 속도
+ 
+    public const float humanPlayerChopSpeed = 1f;    //플레이어 공격 속도
     public int humanPlayerBulletDirX = 0;              // 플레이어 공격 방향
     public int humanPlayerBulletDirY = 1;
     
@@ -31,19 +30,20 @@ public class BattleManager : MonoBehaviour {
 		
 	}
    
-    // Update is called once per frame
     void Update () {
         timer += Time.deltaTime;
 
 	}
-    public void HumanPlayerChop(int ver, int hor)
+    public bool HumanPlayerChop(int ver, int hor)
     {
         if (timer > humanPlayerChopSpeed) { 
             humanPlayerBulletDirY = ver;
             humanPlayerBulletDirX = hor;
             timer = 0; //player 공격 막기위함
             Instantiate(bullet, player.transform.position, Quaternion.identity);
+            return true;
         }
+        return false;
  
     }
 

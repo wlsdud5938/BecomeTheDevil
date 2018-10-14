@@ -6,9 +6,9 @@ public class Player : MovingUnit {
   
 
     public float movingSpeed = 0.01f;
-
-    public bool haveKey = false;
+    public float hp = 100f;
     public int countItem = 0;
+    public bool haveKey = false;
     
     private bool isChop=false,isIdle=true,isHuman=true,isMoving=false,isChange=false;
     private int cur_hor=0, cur_ver=1; // 총쏠 방향 결정하기 위함
@@ -51,7 +51,38 @@ public class Player : MovingUnit {
         horizontal = (int)Input.GetAxisRaw("Horizontal"); 
         vertical = (int)Input.GetAxisRaw("Vertical");
 
-    
+
+
+        if (Input.GetMouseButton(0))
+        {
+            bool isSuccess = false;
+            if (isHuman)
+            {
+                if (cur_hor != 0)
+                    isSuccess = BattleManager.instance.HumanPlayerChop(0, cur_hor);
+
+                else
+                    isSuccess = BattleManager.instance.HumanPlayerChop(cur_ver, 0);
+
+            }
+            if (isSuccess)
+            {
+                isChop = true;
+                isIdle = false;
+                GetComponent<Animator>().SetBool("isIdle", isIdle);
+                GetComponent<Animator>().SetBool("isChop", isChop);
+            }
+
+        }
+        if (Input.GetKeyDown("space"))
+        {
+
+            isHuman = !isHuman;
+            isChange = true;
+            GetComponent<Animator>().SetBool("isHuman", isHuman);
+            GetComponent<Animator>().SetBool("isChange", isChange);
+
+        }
         if (horizontal != 0 || vertical != 0)
         {
             cur_hor = horizontal;
@@ -65,26 +96,13 @@ public class Player : MovingUnit {
             AttemptMove(horizontal * movingSpeed, vertical * movingSpeed);
 
         }
-        if (Input.GetMouseButton(0))
-        {
-            isChop = true;
-            isIdle = false;
-            GetComponent<Animator>().SetBool("isIdle", isIdle);
-            GetComponent<Animator>().SetBool("isChop", isChop);
-            if(isHuman) BattleManager.instance.HumanPlayerChop(cur_ver, cur_hor); //current direction의 반대 방향이여야 함
-        }
-        if(Input.GetKeyDown("space"))
-        {
 
-            isHuman = !isHuman;
-            isChange = true;
-            GetComponent<Animator>().SetBool("isHuman", isHuman);
-            GetComponent<Animator>().SetBool("isChange", isChange);
-           
-        }
+       
     }
    
- 
+    public void TakeDamage(float Damage){
+        hp -= Damage;
+    }
 
     protected override void AttemptMove(float xDir, float yDir){ 
         base.AttemptMove(xDir, yDir);
