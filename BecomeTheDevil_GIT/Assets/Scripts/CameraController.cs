@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     public Camera camera1;
     public Camera camera2;
-
     // Use this for initialization
     void Start () {
         camera2.gameObject.SetActive(true);
@@ -13,7 +12,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Tab))
         {
             //don't forget to set one as active either in the Start() method 
             //or deactivate 1 camera in the Editor before playing 
@@ -28,6 +27,7 @@ public class CameraController : MonoBehaviour {
                 camera1.gameObject.SetActive(true);
                 camera2.gameObject.SetActive(false);
             }
+
         }
     }
 }

@@ -40,7 +40,7 @@ public class RoomTemplates : MonoBehaviour
                 if (i == rooms.Count - 1)
                 {
                     if (rooms.Count <= 8)
-                        SceneManager.LoadScene("ChoiJinyoung");
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     else
                     {
                         Instantiate(boss, rooms[i].transform.position, Quaternion.identity);

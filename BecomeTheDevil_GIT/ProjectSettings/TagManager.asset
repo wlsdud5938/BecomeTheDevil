@@ -11,6 +11,10 @@ TagManager:
   - Item
   - KeyItem
   - Enemy
+<<<<<<< HEAD
+=======
+  - CenterPoint
+>>>>>>> 46f64dc326afa5ca096b7cb413fb5171aab2270c
   layers:
   - Default
   - TransparentFX
@@ -51,9 +55,12 @@ TagManager:
   - name: Wall
     uniqueID: 1751787389
     locked: 0
-  - name: Core
-    uniqueID: 90835829
-    locked: 0
   - name: Item
     uniqueID: 1016809139
+    locked: 0
+  - name: Player
+    uniqueID: 4248900103
+    locked: 0
+  - name: Core
+    uniqueID: 90835829
     locked: 0

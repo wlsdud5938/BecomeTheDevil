@@ -23,13 +23,30 @@ public class Enemy : MonoBehaviour
     private string animators; // animator의 motion 값입니다. 아래에 상술
     //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
 
-     
+    // 김윤성이 추가했어요.
+    [SerializeField]
+    private float monsterHealth = 10f;
+    [SerializeField]
+    private Stat health;
+    private bool isActive = true;
+    public bool IsActive { get; set; }
+    // 여기까지
+
+
     // Use this for initialization
+    // 18.10.14 Start() -> Awake(), 김윤성 Awake로 바꾸니까 에러뜨네요. 다시 Start로 수정했습니다.
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //boxCollider.GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
+
+        // 김윤성이 추가했습니다.
+        IsActive = true;
+        this.health.MaxVal = 10;
+        this.health.CurrentValue = this.health.MaxVal;
+        health.Initialize();
+        // 여기까지.
     }
 
 
@@ -167,4 +184,13 @@ public class Enemy : MonoBehaviour
         rigidbodys.position = Vector2.MoveTowards(ypos, xpos, speed * Time.deltaTime);
     }
 
+
+    // 김윤성이 추가
+    public void TakeDamage(int damage)
+    {
+        if (IsActive)
+        {
+            health.CurrentValue -= damage;
+        }
+    }
 }

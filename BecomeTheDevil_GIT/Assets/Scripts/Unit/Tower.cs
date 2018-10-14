@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class Tower : MonoBehaviour {
+public abstract class Tower : MonoBehaviour
+{
     [SerializeField]        // 유니티 에디터에서 보임.
     private string projectileType;     // 유닛에 따라 공격을 다르게.
 
     [SerializeField]
-    private ProjectTile projectilePrefab;           // 발사체 프리팹
+    private Projectile projectilePrefab;           // 발사체 프리팹
 
     [SerializeField]
     private float projectileSpeed;              // 발사체 속도.
@@ -55,17 +56,19 @@ public abstract class Tower : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {     // 이거 Start로 하니까 안때림 무엇???
         myAnimator = transform.parent.GetComponent<Animator>();
 
         mySpriteRenderer = transform.GetComponent<SpriteRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         Targetting();
-        Debug.Log(target);
-	}
+        //Debug.Log(target);
+    }
 
     public void Select()
     {
@@ -90,17 +93,17 @@ public abstract class Tower : MonoBehaviour {
             target = enemy.Dequeue();      // enemy Queue에 있는 걸 빼면서 아직 원 안에 있는 Saitama를 타겟으로 지정.
         }
 
-        if (target != null)     // 타겟이 원 안에 살아 있다면
+        if (target != null && target.IsActive)     // 타겟이 원 안에 살아 있다면
         {
             if (canAttack)
             {
-                //Attack();
+                Attack();
                 myAnimator.SetTrigger("Attack");
                 canAttack = false;
             }
         }
     }
-    
+
     private void Attack()
     {
         /*
@@ -113,12 +116,17 @@ public abstract class Tower : MonoBehaviour {
         //Initializes the projectile
         projectile.Initialize(this);        // projectile에 target 을 알려줌.
         */
-        ProjectTile projetile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<ProjectTile>();
+        Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
+
+        projectile.transform.position = transform.position;
+
+        projectile.Initialize(this);
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
             enemy.Enqueue(other.GetComponent<Enemy>());
         }
@@ -126,14 +134,9 @@ public abstract class Tower : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
             target = null;      // range 밖으로 나가면 target 해제
-            Debug.Log("OUT!!!!!!!!!!!");
         }
-        //Unit.Instance.StopAttack();
-        //Unit.Instance.animator.SetBool("Attack", false);
     }
-
-
 }
