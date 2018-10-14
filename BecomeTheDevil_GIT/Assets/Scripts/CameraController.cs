@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     public Camera camera1;
     public Camera camera2;
-    public bool camera11;
-    public bool camera22;
     // Use this for initialization
     void Start () {
         camera2.gameObject.SetActive(true);
@@ -29,8 +27,6 @@ public class CameraController : MonoBehaviour {
                 camera1.gameObject.SetActive(true);
                 camera2.gameObject.SetActive(false);
             }
-            camera11 = camera1.gameObject.activeSelf;
-            camera22 = camera2.gameObject.activeSelf;
 
         }
     }
