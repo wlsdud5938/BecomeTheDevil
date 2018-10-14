@@ -56,7 +56,6 @@ public class Projectile : MonoBehaviour
             }
             Enemy hitInfo = other.GetComponent<Enemy>();
             //Debug.Log("Hit Enemy");
-
         }
     }
 
