@@ -202,25 +202,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerPoints: []
   bottomRooms:
-  - {fileID: 1500078760921632, guid: 2105902a5b9497f4f8e6debf227ac138, type: 2}
-  - {fileID: 1011901122640866, guid: 96cbb82819b10f14eb4a551f8048e96c, type: 2}
-  - {fileID: 1657011135506312, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
-  - {fileID: 1540724123722966, guid: 0c31457eebf9a2d4a972d7ccf023a560, type: 2}
+  - {fileID: 1514123677083944, guid: 2105902a5b9497f4f8e6debf227ac138, type: 2}
+  - {fileID: 1457809072144328, guid: 96cbb82819b10f14eb4a551f8048e96c, type: 2}
+  - {fileID: 1466559354772944, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
+  - {fileID: 1071845063881966, guid: 0c31457eebf9a2d4a972d7ccf023a560, type: 2}
   topRooms:
-  - {fileID: 1952544903676734, guid: 293f979cfffb72b4bbaeefcb3f7fe72d, type: 2}
-  - {fileID: 1540724123722966, guid: 0c31457eebf9a2d4a972d7ccf023a560, type: 2}
-  - {fileID: 1464610887930582, guid: 8d3b3801dbf17644ea3541d229fa3c26, type: 2}
-  - {fileID: 1378221360676498, guid: f19b4cd5436954c41adbd492ce5a8785, type: 2}
+  - {fileID: 1641041528126360, guid: 293f979cfffb72b4bbaeefcb3f7fe72d, type: 2}
+  - {fileID: 1071845063881966, guid: 0c31457eebf9a2d4a972d7ccf023a560, type: 2}
+  - {fileID: 1616980751987408, guid: 8d3b3801dbf17644ea3541d229fa3c26, type: 2}
+  - {fileID: 1251991376549506, guid: f19b4cd5436954c41adbd492ce5a8785, type: 2}
   leftRooms:
-  - {fileID: 1273376255524868, guid: 8a1fe1e76eaa4da42ab7a95609601343, type: 2}
-  - {fileID: 1197697761656610, guid: c9518fddab9921444b82e86f3d8a9eec, type: 2}
-  - {fileID: 1011901122640866, guid: 96cbb82819b10f14eb4a551f8048e96c, type: 2}
-  - {fileID: 1464610887930582, guid: 8d3b3801dbf17644ea3541d229fa3c26, type: 2}
+  - {fileID: 1321300834908960, guid: c9518fddab9921444b82e86f3d8a9eec, type: 2}
+  - {fileID: 1616980751987408, guid: 8d3b3801dbf17644ea3541d229fa3c26, type: 2}
+  - {fileID: 1815142249918550, guid: 8a1fe1e76eaa4da42ab7a95609601343, type: 2}
+  - {fileID: 1457809072144328, guid: 96cbb82819b10f14eb4a551f8048e96c, type: 2}
   rightRooms:
-  - {fileID: 1197697761656610, guid: c9518fddab9921444b82e86f3d8a9eec, type: 2}
-  - {fileID: 1822043803452202, guid: 5bfb28fdf883df24f9ccc648eb33f0bc, type: 2}
-  - {fileID: 1657011135506312, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
-  - {fileID: 1378221360676498, guid: f19b4cd5436954c41adbd492ce5a8785, type: 2}
+  - {fileID: 1321300834908960, guid: c9518fddab9921444b82e86f3d8a9eec, type: 2}
+  - {fileID: 1419140777218898, guid: 5bfb28fdf883df24f9ccc648eb33f0bc, type: 2}
+  - {fileID: 1466559354772944, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
+  - {fileID: 1251991376549506, guid: f19b4cd5436954c41adbd492ce5a8785, type: 2}
   closedRoom: {fileID: 1881217223790244, guid: 71addd1db0904154d960002486bf6a2b, type: 2}
   items: {fileID: 1739568188009332, guid: 3c41b617e07d8484684d3273fbed58f5, type: 2}
   keyItems: {fileID: 1230722215633714, guid: b47c3cec960a12c4fa7e3ee9f68a5878, type: 2}
@@ -275,3 +275,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera1: {fileID: 63630513}
   camera2: {fileID: 20315488362271780, guid: 24f2bb717981fe2499aec2952393d9f3, type: 2}
+  camera11: 0
+  camera22: 0
