@@ -11,10 +11,9 @@ TagManager:
   - Item
   - KeyItem
   - Enemy
-<<<<<<< HEAD
-=======
   - CenterPoint
->>>>>>> 46f64dc326afa5ca096b7cb413fb5171aab2270c
+  - Wall
+  - Unit
   layers:
   - Default
   - TransparentFX
@@ -63,4 +62,7 @@ TagManager:
     locked: 0
   - name: Core
     uniqueID: 90835829
+    locked: 0
+  - name: Unit
+    uniqueID: 2991200229
     locked: 0
