@@ -123,7 +123,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602054973030844}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -294,8 +294,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   attackRange: 0.4
+  obstacleRange: 1
+  AiRange: 10
+  AiTime: 1
   distanceOfTile: 1
   hp: 100
+  dist: 0
   monsterHealth: 10
   health:
     bar: {fileID: 114846955989210606}
@@ -378,8 +382,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 794307833
-  m_SortingLayer: 0
+  m_SortingLayerID: -1303767067
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: af8f1e225475b9a4eaf52ebf6527b3d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
