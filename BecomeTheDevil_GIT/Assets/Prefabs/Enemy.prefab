@@ -111,7 +111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602054973030844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.47, y: -2.18, z: 0}
+  m_LocalPosition: {x: 3.29, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224711108918940310}
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &61058792419618430
 BoxCollider2D:
@@ -161,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24767733, y: 0.5649339}
+  m_Size: {x: 0.5, y: 0.5649339}
   m_EdgeRadius: 0
 --- !u!95 &95201947793116192
 Animator:
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3720e9b10d0e2284f8e2e9b8760603c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   attackRange: 0.4
   obstacleRange: 1
   AiRange: 10
@@ -346,7 +346,7 @@ MonoBehaviour:
   dist: 0
   monsterHealth: 10
   health:
-    bar: {fileID: 114846955989210606}
+    bar: {fileID: 114958870865272030, guid: 9d95a29446f1a374d901e84c9fed0011, type: 2}
     maxVal: 0
     currentVal: 0
 --- !u!114 &114526971591459278
