@@ -15,6 +15,7 @@ public class TestEnemy : MonoBehaviour {
     private Vector3 testTarget; // 2d baked target test
     public float dist; // AI관련 거리변수
     public float AiRange = 1.0f; // AI의 Player, Tower를 찾는 거리입니다. 이 안에선 Player와 Tower를 우선 공격합니다. 그 외에선 core를 찾습니다.
+    public float AiTime = 1.0f; // Ai가 반복적으로 path를 찾는 시간입니다.
 
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigidbodys; // test
@@ -39,8 +40,8 @@ public class TestEnemy : MonoBehaviour {
     {
         rigidbodys = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        InvokeRepeating("getClosestEnemy", 0, 1);
-        InvokeRepeating("GotoPlayer", 0, 1);
+        InvokeRepeating("getClosestEnemy", 0, AiTime);
+        InvokeRepeating("GotoPlayer", 0, AiTime);
 	}
 
     // Update is called once per frame

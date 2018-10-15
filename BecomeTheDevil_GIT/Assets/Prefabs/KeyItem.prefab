@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212491030920396802}
   - component: {fileID: 61115099765515642}
   - component: {fileID: 114606519039352076}
+  - component: {fileID: 114484968654569790}
   m_Layer: 0
   m_Name: KeyItem
   m_TagString: KeyItem
@@ -67,6 +68,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &114484968654569790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230722215633714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.18, y: 0.18}
+  carve: 1
 --- !u!114 &114606519039352076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,7 +128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1016809139
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: db6edf4cc895b7e4090d43f27e0bc5cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

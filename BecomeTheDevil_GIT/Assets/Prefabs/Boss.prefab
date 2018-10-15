@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4740692003269406}
   - component: {fileID: 212425817950729992}
   - component: {fileID: 61120671443961216}
+  - component: {fileID: 114571614903103792}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -53,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0020643622, y: 0.0144507885}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -64,8 +65,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.96}
+  m_Size: {x: 0.43768874, y: 0.86503756}
   m_EdgeRadius: 0
+--- !u!114 &114571614903103792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898445321837384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: -0.002064362, y: 0.01445079}
+  size: {x: 0.4376887, y: 0.8650376}
+  carve: 1
 --- !u!212 &212425817950729992
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,7 +115,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 90835829
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d636bc4340bc61a44ad408722eb5552d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

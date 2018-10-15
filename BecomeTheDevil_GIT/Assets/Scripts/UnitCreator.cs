@@ -20,7 +20,7 @@ public class UnitCreator : MonoBehaviour {
             playerPosition = player.gameObject.transform.position;
             timer += Time.deltaTime;
         }
-        Debug.Log("a");
+    
     }
 
     public void OnClick()
