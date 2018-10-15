@@ -14,6 +14,7 @@ TagManager:
   - CenterPoint
   - Wall
   - Unit
+  - Room
   layers:
   - Default
   - TransparentFX

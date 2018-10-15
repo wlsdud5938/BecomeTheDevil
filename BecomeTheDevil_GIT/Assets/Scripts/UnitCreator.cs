@@ -28,6 +28,7 @@ public class UnitCreator : MonoBehaviour {
         if(timer >= 10.0f)
         {
             Instantiate(unit, player.transform.position, Quaternion.identity);
+            timer = 0.0f;
         }
     }
 }

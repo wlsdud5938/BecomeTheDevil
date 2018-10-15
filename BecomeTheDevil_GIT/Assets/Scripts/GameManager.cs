@@ -11,8 +11,10 @@ public class GameManager : Singleton<GameManager>
     public ObjectPool Pool { get; private set; }
 
     private int health = 15;
-
-
+    public GameObject[] enemys;
+    public GameObject enemy;
+    private float timer = 0.0f;
+    public GameObject entryRoom;
     // Use this for initialization
     void Awake()
     {
@@ -22,6 +24,12 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if(timer >= 5.0f)
+        {
+            timer = 0.0f;
+            Instantiate(enemy, entryRoom.transform.GetChild(0).transform.position, Quaternion.identity);
 
+        }
     }
 }

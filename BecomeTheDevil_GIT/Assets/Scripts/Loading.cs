@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyUI : MonoBehaviour {
-
+public class Loading : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +10,7 @@ public class EnemyUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (GameObject.FindGameObjectWithTag("Player"))
+            gameObject.SetActive(false);
 	}
 }
