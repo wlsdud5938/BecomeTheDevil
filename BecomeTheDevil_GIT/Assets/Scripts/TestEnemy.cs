@@ -35,6 +35,8 @@ public class TestEnemy : MonoBehaviour {
     public bool IsActive { get; set; }
     // 여기까지
 
+   
+
     // Use this for initialization
     void Start ()
     {
@@ -42,7 +44,14 @@ public class TestEnemy : MonoBehaviour {
         boxCollider = GetComponent<BoxCollider2D>();
         InvokeRepeating("getClosestEnemy", 0, AiTime);
         InvokeRepeating("GotoPlayer", 0, AiTime);
-	}
+
+        // 김윤성이 추가했습니다.
+        IsActive = true;
+        this.health.MaxVal = 10;
+        this.health.CurrentValue = this.health.MaxVal;
+        health.Initialize();
+        // 여기까지.
+    }
 
     // Update is called once per frame
     void Update()
@@ -201,6 +210,13 @@ public class TestEnemy : MonoBehaviour {
         //dir => Int // 0 = Front / 1 = Back / 2 = Left / 3 = Right 
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
 
+    }
+    public void TakeDamage(int damage)
+    {
+        if (IsActive)
+        {
+            health.CurrentValue -= damage;
+        }
     }
 }
         

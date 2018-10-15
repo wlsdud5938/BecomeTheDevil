@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 61058792419618430}
   - component: {fileID: 212835136462938034}
   - component: {fileID: 114505276963902074}
-  - component: {fileID: 114328645197790424}
   - component: {fileID: 114085477608410110}
   m_Layer: 10
   m_Name: Enemy
@@ -303,7 +302,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114328645197790424
+--- !u!114 &114505276963902074
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,40 +310,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1602054973030844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fdcace726438ec42b9adfebe102eba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  attackRange: 1
-  distanceOfTile: 1
-  hp: 100
-  dist: 0
-  AiRange: 5000
-  AiTime: 1
-  monsterHealth: 10
-  health:
-    bar: {fileID: 0}
-    maxVal: 0
-    currentVal: 0
---- !u!114 &114505276963902074
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602054973030844}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3720e9b10d0e2284f8e2e9b8760603c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
   attackRange: 0.4
-  obstacleRange: 1
-  AiRange: 10
-  AiTime: 0.1
   distanceOfTile: 1
   hp: 100
   dist: 0
+  AiRange: 5000
+  AiTime: 0.1
+  DebugButton: 0
   monsterHealth: 10
   health:
     bar: {fileID: 114958870865272030, guid: 9d95a29446f1a374d901e84c9fed0011, type: 2}
