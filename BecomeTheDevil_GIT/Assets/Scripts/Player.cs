@@ -48,7 +48,7 @@ public class Player : MovingUnit {
 
 
 
-        if (Input.GetMouseButton(0)&&timer>chopSpeed)
+        if (Input.GetKeyDown(KeyCode.F)&&timer>chopSpeed)
         {
             timer = 0;
             animator.SetTrigger("Chop");
