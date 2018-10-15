@@ -55,12 +55,7 @@ public class Player : MovingUnit {
             animator.SetBool("isIdle", false);
             if (isHuman)
             {
-                if (cur_hor != 0)
-                    BattleManager.instance.HumanPlayerChop(0, cur_hor);
-
-                else
-                    BattleManager.instance.HumanPlayerChop(cur_ver, 0);
-
+                BattleManager.instance.HumanPlayerChop(cur_ver, cur_hor);
             }
 
             else

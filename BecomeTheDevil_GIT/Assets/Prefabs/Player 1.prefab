@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1405481976529364
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 1024
-  movingSpeed: 0.08
+  movingSpeed: 0.03
   chopSpeed: 1
   hp: 100
   countItem: 0

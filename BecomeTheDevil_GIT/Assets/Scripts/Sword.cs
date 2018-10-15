@@ -5,14 +5,14 @@ using UnityEngine;
 public class Sword : MonoBehaviour {
 
     public float swordDamage = 30f;      // 플레이어 공격력
-    public float swordSpeed = 3f;  // 플레이어 총알 속도
-    public float swordRange = 1.5f;
+    public float swordSpeed = 2f;  // 플레이어 총알 속도
+    public float swordRange = 0.5f;
 
     // Use this for initialization
     protected void Start()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(BattleManager.instance.humanPlayerBulletDirX, BattleManager.instance.humanPlayerBulletDirY);
-        Destroy(this.gameObject, 0.5f);
+        Destroy(this.gameObject, swordRange/swordSpeed);
     }
 
     // Update is called once per frame
