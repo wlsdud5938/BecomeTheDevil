@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
     public GameObject bullet;
-    public GameObject player;
+   
     public GameObject sword;
     public static BattleManager instance = null;
 
@@ -12,10 +12,11 @@ public class BattleManager : MonoBehaviour {
 
     public int humanPlayerBulletDirX = 0;              // 플레이어 공격 방향
     public int humanPlayerBulletDirY = 1;
-    
+   
+    private GameObject player;
 
 
-    
+
 
 
     private void Awake()
@@ -26,8 +27,8 @@ public class BattleManager : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-       
 
+       
 		
 	}
    
@@ -37,12 +38,14 @@ public class BattleManager : MonoBehaviour {
 	}
     public void HumanPlayerChop(int ver, int hor)
     {
+        player = GameObject.FindWithTag("Player");
         humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
         Instantiate(bullet, player.transform.position, Quaternion.identity);
 
     }
     public void SlimePlayerChop(int ver, int hor)
     {
+        player = GameObject.FindWithTag("Player");
         humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
         Instantiate(sword, player.transform.position, Quaternion.identity);
     }
