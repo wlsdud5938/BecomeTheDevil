@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour{
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag.Equals("Enemy")|| other.tag.Equals("Unit"))
+        if (other.tag.Equals("Enemy") || other.tag.Equals("Unit"))
         { //부딪힌 객체가 적인지 검사합니다.
             if(other.tag.Equals("Enemy"))
             {

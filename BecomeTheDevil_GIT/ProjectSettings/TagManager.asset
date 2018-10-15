@@ -15,6 +15,7 @@ TagManager:
   - Wall
   - Unit
   - Room
+  - Bullet
   layers:
   - Default
   - TransparentFX

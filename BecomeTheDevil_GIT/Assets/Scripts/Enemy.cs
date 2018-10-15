@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-
     public float moveSpeed = 1.0f; // 이동속도
     public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.
     public float distanceOfTile = 1.0f; // 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
-
+    
 
     public float hp = 100f;
+    public float currentHp;
     private Transform target; // 쫓아갈 대상
     private Animator animation; // Animator 선언
     private Vector3 testTarget; // 2d baked target test
@@ -36,28 +37,35 @@ public class Enemy : MonoBehaviour
     private bool isActive = true;
     public bool IsActive { get; set; }
     // 여기까지
+    public Image healthBarFilled;
 
 
-
-    // Use this for initialization
-    void Start()
+// Use this for initialization
+void Start()
     {
-        rigidbodys = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        InvokeRepeating("getClosestEnemy", 0, AiTime);
-        InvokeRepeating("GotoPlayer", 0, AiTime);
+        if (GameObject.FindGameObjectWithTag("Player"))
+            {
+            rigidbodys = GetComponent<Rigidbody2D>();
+            boxCollider = GetComponent<BoxCollider2D>();
+            InvokeRepeating("getClosestEnemy", 0, AiTime);
+            InvokeRepeating("GotoPlayer", 0, AiTime);
 
-        // 김윤성이 추가했습니다.
-        IsActive = true;
-        this.health.MaxVal = 10;
-        this.health.CurrentValue = this.health.MaxVal;
-        health.Initialize();
-        // 여기까지.
+            // 김윤성이 추가했습니다.
+            IsActive = true;
+            this.health.MaxVal = 10;
+            this.health.CurrentValue = this.health.MaxVal;
+            health.Initialize();
+            // 여기까지.
+            currentHp = hp;
+            healthBarFilled.fillAmount = 1f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currentHp <= 0)
+            Destroy(gameObject);
         if (target != null)//debug용
         {
             Debug.DrawLine(transform.position, target.position,
@@ -227,10 +235,10 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        if (IsActive)
-        {
-            health.CurrentValue -= damage;
-        }
+
+        currentHp -= damage;
+
+        healthBarFilled.fillAmount = (float)currentHp / hp;
     }
 }
 
