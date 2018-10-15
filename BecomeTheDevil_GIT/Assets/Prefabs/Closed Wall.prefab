@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212253069901065478}
   - component: {fileID: 61258835600808138}
   - component: {fileID: 50772149778444396}
+  - component: {fileID: 114828671277866024}
   m_Layer: 0
   m_Name: Closed Wall
   m_TagString: Untagged
@@ -87,6 +88,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9771429, y: 0.9771429}
   m_EdgeRadius: 0
+--- !u!114 &114828671277866024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881217223790244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!212 &212253069901065478
 SpriteRenderer:
   m_ObjectHideFlags: 1

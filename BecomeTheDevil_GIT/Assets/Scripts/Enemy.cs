@@ -75,6 +75,9 @@ public class Enemy : MonoBehaviour
         adv = Vector2.Distance(transform.position, target.position); // adv에 값을 넣어줍니다.
         odv = Vector2.Distance(transform.position, wall.position);
 
+        Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        GetComponent<NavMeshAgent2D>().destination = w;
+
         if (target != null)//debug용
         {
             Debug.DrawLine(transform.position, target.position,
@@ -208,9 +211,11 @@ public class Enemy : MonoBehaviour
 
     protected virtual void moveEnemy(Vector2 xpos, Vector2 ypos, float speed, float adv)
     {
-        rigidbodys = GetComponent<Rigidbody2D>();
+        //rigidbodys = GetComponent<Rigidbody2D>();
         //transform.position = Vector2.MoveTowards(ypos, xpos, speed * Time.deltaTime); // 이대로만하면 컴퓨터 성능마다 이동속도가 차이가납니다.
-        rigidbodys.position = Vector2.MoveTowards(ypos, xpos, speed * Time.deltaTime);
+        //rigidbodys.position = Vector2.MoveTowards(ypos, xpos, speed * Time.deltaTime);
+        Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        GetComponent<NavMeshAgent2D>().destination = w;
     }
 
 

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4054206462016260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,8 @@ GameObject:
   - component: {fileID: 4669233574153062}
   - component: {fileID: 212223297853563566}
   - component: {fileID: 61925072134665684}
-  m_Layer: 0
+  - component: {fileID: 114351522374665900}
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -119,7 +120,8 @@ GameObject:
   - component: {fileID: 4310915533420730}
   - component: {fileID: 212102290534437280}
   - component: {fileID: 61106015418674920}
-  m_Layer: 0
+  - component: {fileID: 114905442772141006}
+  m_Layer: 10
   m_Name: Wall (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -136,7 +138,8 @@ GameObject:
   - component: {fileID: 4789136686305024}
   - component: {fileID: 212008562356813396}
   - component: {fileID: 61450102377424504}
-  m_Layer: 0
+  - component: {fileID: 114788645221396228}
+  m_Layer: 10
   m_Name: Wall (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -153,7 +156,8 @@ GameObject:
   - component: {fileID: 4153337621493436}
   - component: {fileID: 212780450312199276}
   - component: {fileID: 61016372623779144}
-  m_Layer: 0
+  - component: {fileID: 114248723406154448}
+  m_Layer: 10
   m_Name: Wall (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -170,7 +174,8 @@ GameObject:
   - component: {fileID: 4949012575090506}
   - component: {fileID: 212741269389912820}
   - component: {fileID: 61601380991085760}
-  m_Layer: 0
+  - component: {fileID: 114284452491293192}
+  m_Layer: 10
   m_Name: Wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -545,6 +550,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9771429, y: 0.9771429}
   m_EdgeRadius: 0
+--- !u!114 &114248723406154448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822233703019044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114284452491293192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931420760448434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114351522374665900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121077524187144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!114 &114690738820670498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,6 +620,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114788645221396228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711705527936098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114905442772141006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1670196456249200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!212 &212008562356813396
 SpriteRenderer:
   m_ObjectHideFlags: 1

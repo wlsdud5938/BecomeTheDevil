@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167542548489120}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,8 @@ GameObject:
   - component: {fileID: 4853948358379524}
   - component: {fileID: 212963502911532536}
   - component: {fileID: 61198027369256272}
-  m_Layer: 0
+  - component: {fileID: 114418475703368376}
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -68,7 +69,8 @@ GameObject:
   - component: {fileID: 4884220027846946}
   - component: {fileID: 212598390856125222}
   - component: {fileID: 61358067583929860}
-  m_Layer: 0
+  - component: {fileID: 114786764271968148}
+  m_Layer: 10
   m_Name: Wall (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -85,7 +87,8 @@ GameObject:
   - component: {fileID: 4397919347943806}
   - component: {fileID: 212282106344671838}
   - component: {fileID: 61830911034223686}
-  m_Layer: 0
+  - component: {fileID: 114742380906928456}
+  m_Layer: 10
   m_Name: Wall (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -153,7 +156,8 @@ GameObject:
   - component: {fileID: 4121797538217596}
   - component: {fileID: 212166745859904924}
   - component: {fileID: 61327690259758650}
-  m_Layer: 0
+  - component: {fileID: 114406033111593282}
+  m_Layer: 10
   m_Name: Wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -170,7 +174,8 @@ GameObject:
   - component: {fileID: 4262403823749048}
   - component: {fileID: 212583984804066344}
   - component: {fileID: 61116191471137600}
-  m_Layer: 0
+  - component: {fileID: 114067823296496582}
+  m_Layer: 10
   m_Name: Wall (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -187,7 +192,8 @@ GameObject:
   - component: {fileID: 4700284310833544}
   - component: {fileID: 212937279360649954}
   - component: {fileID: 61002682100303940}
-  m_Layer: 0
+  - component: {fileID: 114699331305669132}
+  m_Layer: 10
   m_Name: Wall (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -678,6 +684,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9771429, y: 0.9771429}
   m_EdgeRadius: 0
+--- !u!114 &114067823296496582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631708505043768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!114 &114115449335257002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -703,6 +724,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114406033111593282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1479120205790524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114418475703368376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015755580424242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!114 &114465257738668304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -717,6 +768,51 @@ MonoBehaviour:
   openingDirection: 3
   spawned: 0
   waitTime: 4
+--- !u!114 &114699331305669132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712490532008394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114742380906928456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1107538221478432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
+--- !u!114 &114786764271968148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070255903834178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  center: {x: 0, y: 0}
+  size: {x: 0.9771429, y: 0.9771429}
+  carve: 1
 --- !u!212 &212166745859904924
 SpriteRenderer:
   m_ObjectHideFlags: 1
