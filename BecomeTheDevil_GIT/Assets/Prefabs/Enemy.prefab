@@ -247,20 +247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3720e9b10d0e2284f8e2e9b8760603c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
+  moveSpeed: 0.1
+  attSpeed: 0.3
   attackRange: 1
   distanceOfTile: 1
+  damage: 5
+  attTimer: 0
+  pathList: []
   hp: 100
   currentHp: 0
   dist: 0
   AiRange: 5000
   AiTime: 0.1
   DebugButton: 0
-  monsterHealth: 10
-  health:
-    bar: {fileID: 114958870865272030, guid: 9d95a29446f1a374d901e84c9fed0011, type: 2}
-    maxVal: 0
-    currentVal: 0
   healthBarFilled: {fileID: 114112313456463152}
 --- !u!114 &114526971591459278
 MonoBehaviour:

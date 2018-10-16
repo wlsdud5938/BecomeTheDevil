@@ -439,7 +439,7 @@ MonoBehaviour:
   projectileType: MeleeBullet
   projectilePrefab: {fileID: 11420752, guid: 55587dd91cb0ebd4d9bb7f87dc4add2a, type: 2}
   projectileSpeed: 3
-  damage: 2
+  damage: 10
   attackTimer: 0.1
   attackCooldown: 1
 --- !u!114 &114898370480490762

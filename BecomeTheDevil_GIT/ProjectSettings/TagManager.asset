@@ -16,6 +16,7 @@ TagManager:
   - Unit
   - Room
   - Bullet
+  - Boss
   layers:
   - Default
   - TransparentFX

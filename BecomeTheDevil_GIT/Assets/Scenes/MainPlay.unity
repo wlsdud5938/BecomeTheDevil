@@ -611,7 +611,7 @@ MonoBehaviour:
   spawnedKeyItem: 0
   spawnedItem: 0
   boss: {fileID: 1898445321837384, guid: 09e14c596e782a742829f1166838514d, type: 2}
-  player: {fileID: 1879959326876458, guid: 24f2bb717981fe2499aec2952393d9f3, type: 2}
+  player: {fileID: 1803883405323362, guid: a5a46d97ad0c44e99a5131a3f12d9bb5, type: 2}
   potal: {fileID: 1853045520984012, guid: a2d04c3dfd4d14e49a431a2f43827f86, type: 2}
   keyTime: 180
 --- !u!1 &1884000459

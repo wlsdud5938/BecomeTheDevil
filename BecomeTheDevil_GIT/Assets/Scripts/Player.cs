@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MovingUnit {
   
@@ -16,7 +17,8 @@ public class Player : MovingUnit {
     private enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
     private float timer;
     private Animator animator;
-
+    private float currentHp;
+    //public Image healthBarFilled;
     // Use this for initialization
 
 
@@ -31,6 +33,8 @@ public class Player : MovingUnit {
 
         base.Start();
         timer += 0.0f;
+        currentHp = hp;
+        //healthBarFilled.fillAmount = 1.0f;
     }
 
 	
@@ -99,4 +103,15 @@ public class Player : MovingUnit {
     protected override void AttemptMove(float xDir, float yDir){ 
         base.AttemptMove(xDir, yDir);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if(other.tag.Equals("Enemy"))
+        {
+            TakeDamage(other.gameObject.GetComponent<Enemy>().damage);
+        }
+
+    }
+
 }

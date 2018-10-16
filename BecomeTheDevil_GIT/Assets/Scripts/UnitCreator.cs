@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UnitCreator : MonoBehaviour {
     private Player player;
-    private float timer = 10.0f;
+    public float setTime = 2.0f;
+    public float timer;
     public Vector3 playerPosition;
     public GameObject unit;
     // Use this for initialization
@@ -14,6 +15,7 @@ public class UnitCreator : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        timer = setTime;
         if (null != GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -25,7 +27,7 @@ public class UnitCreator : MonoBehaviour {
 
     public void OnClick()
     {
-        if(timer >= 10.0f)
+        if(timer >= setTime)
         {
             Instantiate(unit, player.transform.position, Quaternion.identity);
             timer = 0.0f;

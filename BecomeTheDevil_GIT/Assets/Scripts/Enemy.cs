@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     public float moveSpeed = 1.0f; // 이동속도
+    public float attSpeed = 0.3f;
     public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.
     public float distanceOfTile = 1.0f; // 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
+    public float damage = 5f;
+    public float attTimer = 0.0f;
+    private bool isAtt = false;
     public List<GameObject> pathList;
 
 
@@ -30,14 +35,16 @@ public class Enemy : MonoBehaviour
     private string animators; // animator의 motion 값입니다. 아래에 상술
                               //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
 
-    // 김윤성이 추가했어요.
-    [SerializeField]
-    private float monsterHealth = 10f;
-    [SerializeField]
-    private Stat health;
+    /* // 김윤성이 추가했어요.
+     [SerializeField]
+     private float monsterHealth = 10f;
+     [SerializeField]
+     private Stat health;
+     // 여기까지*/
+
     private bool isActive = true;
     public bool IsActive { get; set; }
-    // 여기까지
+
     public Image healthBarFilled;
 
     RoomTemplates templates;
@@ -73,11 +80,12 @@ void Start()
             InvokeRepeating("getClosestEnemy", 0, AiTime);
             InvokeRepeating("GotoPlayer", 0, AiTime);
 
-            // 김윤성이 추가했습니다.
+            
             IsActive = true;
+            /*// 김윤성이 추가했습니다.
             this.health.MaxVal = 10;
             this.health.CurrentValue = this.health.MaxVal;
-            health.Initialize();
+            health.Initialize();*/
             // 여기까지.
             currentHp = hp;
             healthBarFilled.fillAmount = 1f;
@@ -87,6 +95,11 @@ void Start()
     // Update is called once per frame
     void Update()
     {
+        if (isAtt && attTimer >= attSpeed)
+            isAtt = false;
+        else if (isAtt)
+            attTimer += 0.1f * Time.deltaTime;
+
         if (currentHp <= 0)
             Destroy(gameObject);
         if (target != null)//debug용
@@ -275,10 +288,8 @@ void Start()
     {
         if(other.tag.Equals("CenterPoint"))
             pathList.Remove(pathList[0]);
+        if(other.tag.Equals("Boss"))
+            SceneManager.LoadScene("Defeat");
 
     }
 }
-
-
-
-

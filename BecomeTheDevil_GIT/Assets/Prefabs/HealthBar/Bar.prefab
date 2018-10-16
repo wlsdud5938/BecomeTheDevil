@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 224576289008463414}
   - component: {fileID: 222049680715650700}
   - component: {fileID: 114810370454233128}
-  - component: {fileID: 114958870865272030}
   m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
@@ -157,23 +156,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114958870865272030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1620127633396278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5630941393d7c45468b284bac29879d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 114677588631847500}
-  lerpSpeed: 2
-  lerpColors: 0
-  lerpBar: 0
-  fullColor: {r: 0, g: 0, b: 0, a: 0}
-  lowColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &222049680715650700
 CanvasRenderer:
   m_ObjectHideFlags: 1
