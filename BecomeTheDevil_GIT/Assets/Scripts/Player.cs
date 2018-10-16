@@ -89,7 +89,7 @@ public class Player : MovingUnit {
             animator.SetBool("isMoving", true);
             animator.SetBool("isIdle", false);
 
-            AttemptMove(horizontal * movingSpeed, vertical * movingSpeed);
+            AttemptMove(horizontal * movingSpeed*Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
 
         }
 

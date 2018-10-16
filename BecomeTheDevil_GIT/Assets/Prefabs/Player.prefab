@@ -297,12 +297,11 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 1024
-  movingSpeed: 0.1
+  movingSpeed: 2
   chopSpeed: 1
   hp: 100
   countItem: 0
   haveKey: 0
-  healthBarFilled: {fileID: 0}
 --- !u!114 &114624670911908220
 MonoBehaviour:
   m_ObjectHideFlags: 1
