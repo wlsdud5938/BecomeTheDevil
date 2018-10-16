@@ -336,27 +336,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4065144685126990, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4492583602136524, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4008421780864362, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539314120285878, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 70271124446947432, guid: 10c65f0c164d2e04e9c3daf97304609a,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 2}
   m_IsPrefabAsset: 0
@@ -599,7 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f96d823d3abbe648b54f8d5bb3f9e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoints: []
   bottomRooms:
   - {fileID: 1514123677083944, guid: 2105902a5b9497f4f8e6debf227ac138, type: 2}
   - {fileID: 1466559354772944, guid: b3f2b155bf508e94cacdaa0c831817ee, type: 2}
@@ -623,6 +601,10 @@ MonoBehaviour:
   closedRoom: {fileID: 1881217223790244, guid: 71addd1db0904154d960002486bf6a2b, type: 2}
   items: {fileID: 1739568188009332, guid: 3c41b617e07d8484684d3273fbed58f5, type: 2}
   keyItems: {fileID: 1230722215633714, guid: b47c3cec960a12c4fa7e3ee9f68a5878, type: 2}
+  lList: []
+  bList: []
+  tList: []
+  rList: []
   rooms: []
   waitTime: 2
   spawnedBoss: 0

@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 212273107446104330}
   - component: {fileID: 50469440284638012}
   - component: {fileID: 61198634061543706}
-  - component: {fileID: 114804105678317812}
   m_Layer: 8
   m_Name: Unit
   m_TagString: Unit
@@ -443,21 +442,6 @@ MonoBehaviour:
   damage: 2
   attackTimer: 0.1
   attackCooldown: 1
---- !u!114 &114804105678317812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1021419948155122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shape: 1
-  center: {x: -0.02083334, y: 0.0859375}
-  size: {x: 0.75, y: 0.7552083}
-  carve: 1
 --- !u!114 &114898370480490762
 MonoBehaviour:
   m_ObjectHideFlags: 1

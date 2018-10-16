@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 1.0f; // 이동속도
     public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.
     public float distanceOfTile = 1.0f; // 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
-    
+    public List<GameObject> pathList;
+
 
     public float hp = 100f;
     public float currentHp;
@@ -39,10 +40,32 @@ public class Enemy : MonoBehaviour
     // 여기까지
     public Image healthBarFilled;
 
-
+    RoomTemplates templates;
+    float distanceLength;
 // Use this for initialization
 void Start()
     {
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 1)
+        {
+            for(int i = 0; i<templates.bList.Count;i++)
+                pathList.Add(templates.bList[i]);
+        }
+        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 2)
+        {
+            for (int i = 0; i < templates.tList.Count; i++)
+                pathList.Add(templates.tList[i]);
+        }
+        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 3)
+        {
+            for (int i = 0; i < templates.lList.Count; i++)
+                pathList.Add(templates.lList[i]);
+        }
+        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 4)
+        {
+            for (int i = 0; i < templates.rList.Count; i++)
+                pathList.Add(templates.rList[i]);
+        }
         if (GameObject.FindGameObjectWithTag("Player"))
             {
             rigidbodys = GetComponent<Rigidbody2D>();
@@ -68,15 +91,15 @@ void Start()
             Destroy(gameObject);
         if (target != null)//debug용
         {
-            Debug.DrawLine(transform.position, target.position,
+            /*Debug.DrawLine(transform.position, target.position,
                            Color.green); // debug용.
 
-            if (Input.GetKeyDown(KeyCode.R)) // R을 누르면 현재 마우스 위치로 이동합니다. (카메라에 잡힐태니...)
+           /* if (Input.GetKeyDown(KeyCode.R)) // R을 누르면 현재 마우스 위치로 이동합니다. (카메라에 잡힐태니...)
             {
                 Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 GetComponent<NavMeshAgent2D>().destination = w;
                 DebugButton = !DebugButton;
-            }
+            }*/
 
             adv = Vector2.Distance(transform.position, target.position); // adv에 값을 넣어줍니다.
             Vector2 myPos = transform.position;
@@ -184,21 +207,28 @@ void Start()
                 }
             }
         }
+        GotoCore();
     }
 
 
-
+    void GotoCore()
+    {
+        if (pathList.Count != 0)
+        {
+            distanceLength = Vector2.Distance(gameObject.transform.position, pathList[0].gameObject.transform.position);
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, pathList[0].gameObject.transform.position, moveSpeed * Time.deltaTime);
+        }
+    }
 
 
 
     void GotoPlayer()
     {
-        if (DebugButton == true) //test용입니다. 두번 누르면 안되요!
+        /*if (DebugButton == true) //test용입니다. 두번 누르면 안되요!
         {
             Vector3 w = target.position;
             GetComponent<NavMeshAgent2D>().destination = w;
-        }
-        
+        }*/
     }
 
     void getClosestEnemy()
@@ -239,6 +269,13 @@ void Start()
         currentHp -= damage;
 
         healthBarFilled.fillAmount = (float)currentHp / hp;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag.Equals("CenterPoint"))
+            pathList.Remove(pathList[0]);
+
     }
 }
 

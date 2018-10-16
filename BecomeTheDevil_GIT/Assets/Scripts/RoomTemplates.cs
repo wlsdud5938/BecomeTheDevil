@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class RoomTemplates : MonoBehaviour
 {
-    public List<Transform> centerPoints;
     public GameObject[] bottomRooms;
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
@@ -13,6 +12,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject closedRoom;
     public GameObject items;
     public GameObject keyItems;
+    public List<GameObject> lList;
+    public List<GameObject> bList;
+    public List<GameObject> tList;
+    public List<GameObject> rList;
     float timer = 0;
 
     public List<GameObject> rooms;

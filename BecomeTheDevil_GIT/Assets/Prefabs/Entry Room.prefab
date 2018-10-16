@@ -307,7 +307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4602188695438222}
   - component: {fileID: 212092521327683556}
-  - component: {fileID: 114466968613671936}
   - component: {fileID: 70271124446947432}
   m_Layer: 0
   m_Name: EnemyPotal
@@ -362,7 +361,7 @@ Transform:
   m_Children:
   - {fileID: 4846211192014640}
   m_Father: {fileID: 4882537412063858}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4027450692908018
 Transform:
@@ -388,7 +387,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4882537412063858}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4124314227355946
 Transform:
@@ -497,7 +496,7 @@ Transform:
   - {fileID: 4177299610570016}
   - {fileID: 4027450692908018}
   m_Father: {fileID: 4882537412063858}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4538411128846484
 Transform:
@@ -531,7 +530,7 @@ Transform:
   - {fileID: 4316255056964228}
   - {fileID: 4884568413399174}
   m_Father: {fileID: 4882537412063858}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4585262352794682
 Transform:
@@ -608,10 +607,10 @@ Transform:
   m_LocalPosition: {x: 5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4065144685126990}
   - {fileID: 4539314120285878}
   - {fileID: 4492583602136524}
   - {fileID: 4008421780864362}
-  - {fileID: 4065144685126990}
   - {fileID: 4602188695438222}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1080,7 +1079,7 @@ CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938597389470510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1131,21 +1130,6 @@ MonoBehaviour:
   openingDirection: 1
   spawned: 0
   waitTime: 4
---- !u!114 &114466968613671936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1938597389470510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a99d2eab88b747a9bd011e3d849162f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shape: 1
-  center: {x: -0.003449535, y: 0.00000004768372}
-  size: {x: 0.3, y: 0.62}
-  carve: 1
 --- !u!114 &114504862747173848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1157,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: -1
 --- !u!114 &114869786570984578
 MonoBehaviour:
   m_ObjectHideFlags: 1
