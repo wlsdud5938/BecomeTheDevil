@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class Tower : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     [SerializeField]        // 유니티 에디터에서 보임.
     private string projectileType;     // 유닛에 따라 공격을 다르게.
 
-    [SerializeField]
+    /*[SerializeField]
     private Projectile projectilePrefab;           // 발사체 프리팹
-
+    */
     [SerializeField]
     private float projectileSpeed;              // 발사체 속도.
 
@@ -25,10 +25,8 @@ public abstract class Tower : MonoBehaviour
     [SerializeField]
     private float attackTimer = 0.1f;
     [SerializeField]
-    private float attackCooldown = 0.5f;
+    private float attackCooldown = 0.5f;    // 공격 쿨타임
     private Animator myAnimator;
-
-    public Element ElementType { get; protected set; }
 
     public Enemy Target
     {
@@ -88,9 +86,9 @@ public abstract class Tower : MonoBehaviour
             }
         }
 
-        if (enemy.Count > 0 && target == null)   // target == null 한 Saitama가 원 밖으로 나갈 때.
+        if (enemy.Count > 0 && target == null)   // target == null 한 적이 원 밖으로 나갈 때.
         {
-            target = enemy.Dequeue();      // enemy Queue에 있는 걸 빼면서 아직 원 안에 있는 Saitama를 타겟으로 지정.
+            target = enemy.Dequeue();      // enemy Queue에 있는 걸 빼면서 아직 원 안에 있는 적을 타겟으로 지정.
         }
 
         if (target != null && target.IsActive)     // 타겟이 원 안에 살아 있다면
@@ -106,20 +104,11 @@ public abstract class Tower : MonoBehaviour
 
     private void Attack()
     {
-        /*
-        //Creates the projectile
-        ProjectTile projectile = GameManager.Instance.Pool.GetObject(projectilePrefab.name).GetComponent<ProjectTile>();
-
-        //Sets the projectiles position
+        // 발사체 생성
+        Projectile projectile = BattleManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
+        // 발사체 위치를 타워의 위치로.
         projectile.transform.position = transform.position;
-
-        //Initializes the projectile
-        projectile.Initialize(this);        // projectile에 target 을 알려줌.
-        */
-        Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
-
-        projectile.transform.position = transform.position;
-
+        // 발사체 초기화
         projectile.Initialize(this);
 
     }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour {
+public class BattleManager : Singleton<BattleManager> {
     public GameObject bullet;
    
     public GameObject sword;
     public static BattleManager instance = null;
+    public ObjectPool Pool;
 
- 
+
 
     public int humanPlayerBulletDirX = 0;              // 플레이어 공격 방향
     public int humanPlayerBulletDirY = 1;
@@ -22,7 +23,7 @@ public class BattleManager : MonoBehaviour {
     private void Awake()
     {
         instance = this;
-
+        Pool = GetComponent<ObjectPool>();      // 이것 땜에 고생했다;;;
     }
     // Use this for initialization
 
@@ -49,7 +50,5 @@ public class BattleManager : MonoBehaviour {
         humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
         Instantiate(sword, player.transform.position, Quaternion.identity);
     }
-
-
-
+    
 }
