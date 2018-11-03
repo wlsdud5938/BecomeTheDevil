@@ -23,7 +23,7 @@ public class BattleManager : Singleton<BattleManager> {
     private void Awake()
     {
         instance = this;
-        Pool = GetComponent<ObjectPool>();      // 이것 땜에 고생했다;;;
+        Pool = GetComponent<ObjectPool>();      // Pool 에 BattleManager의 컴포넌트인 ObjectPool 스크립트를 초기화 시켜줌.
     }
     // Use this for initialization
 
