@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4604767135210230}
   - component: {fileID: 2569400266543745570}
   m_Layer: 0
-  m_Name: Stage1_01
+  m_Name: testmap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
