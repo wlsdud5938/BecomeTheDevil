@@ -12,10 +12,14 @@ public class Enemy : MonoBehaviour
     public float distanceOfTile = 1.0f; // DOT 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
     public float damage = 5f;
     public float attTimer = 0.0f;
+    public Sprite[] sprites;  // enemy version에 따라 다른 sprite rendering
+    public int versionType;  //enemy version
+
+     
     private bool isAtt = false;
     public List<GameObject> pathList;
 
-    public float hp = 100f;
+    public float maxHp;
     public float currentHp;
     private Transform target; // 쫓아갈 대상
     private Animator animation; // Animator 선언
@@ -29,6 +33,7 @@ public class Enemy : MonoBehaviour
 
     private int dir; //Animator에서, Int0 = Front / 1 = Back / 2 = Left / 3 = Right / 4 = None
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
+    private SpriteRenderer spriteRenderer;
 
     private bool isActive = true;
     public bool IsActive { get; set; }
@@ -40,7 +45,17 @@ public class Enemy : MonoBehaviour
 // Use this for initialization
 void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbodys = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        maxHp = GameManager.Instance.maxHpOfEnemy[versionType];//type에 맞는 최대 hp 초기화          
+        IsActive = true;
+        currentHp = maxHp; //현재 hp max hp로 처음에 초기
+        spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
+        healthBarFilled.fillAmount = 1;
+
         if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 1)
         {
             for(int i = 0; i<templates.bList.Count;i++)
@@ -62,14 +77,9 @@ void Start()
                 pathList.Add(templates.rList[i]);
         }
         if (GameObject.FindGameObjectWithTag("Player"))
-            {
-            rigidbodys = GetComponent<Rigidbody2D>();
-            boxCollider = GetComponent<BoxCollider2D>();
-            InvokeRepeating("getClosestEnemy", 0, AiTime);  
-                        
-            IsActive = true;
-            currentHp = hp;
-            healthBarFilled.fillAmount = 1f;
+        {
+            InvokeRepeating("getClosestEnemy", 0, AiTime);
+            
         }
     }
 
@@ -225,7 +235,7 @@ void Start()
 
     protected virtual void AnimatorOfEnemy(int dir, string animators)
     {
-        animation = GetComponent<Animator>();
+       
         animation.SetInteger(animators, dir);
         //dir => Int // 0 = Front / 1 = Back / 2 = Left / 3 = Right 
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
@@ -236,7 +246,7 @@ void Start()
 
         currentHp -= damage;
 
-        healthBarFilled.fillAmount = (float)currentHp / hp;
+        healthBarFilled.fillAmount = (float)currentHp / maxHp;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

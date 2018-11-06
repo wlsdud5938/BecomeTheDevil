@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    
-    
 
-    private int health = 15;
-    public GameObject[] enemys;
     public GameObject enemy;
-    private float timer = 0.0f;
+    public float nextWaveTime;
+    public int numOfEnemyPerWave;
     public GameObject entryRoom;
+    public float[] maxHpOfEnemy; // 기본 에너미 hp
+
+
+    private float enemySpawnTimer = 0.0f;
+    private Dictionary<int, Enemy> enemyInstanceMap = new Dictionary<int, Enemy>();
     // Use this for initialization
     void Awake()
     {
@@ -21,11 +23,16 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer >= 5.0f)
+        enemySpawnTimer += Time.deltaTime;
+        if(enemySpawnTimer >= nextWaveTime)
         {
-            timer = 0.0f;
-            Instantiate(enemy, entryRoom.transform.GetChild(0).transform.position, Quaternion.identity);
+            enemySpawnTimer = 0.0f;
+            for (int i = 0; i < numOfEnemyPerWave; i++)
+            {
+                GameObject clone = Instantiate(enemy, entryRoom.transform.GetChild(0).transform.position, Quaternion.identity);
+                clone.GetComponent<Enemy>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+            }
+
 
         }
     }

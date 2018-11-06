@@ -20,8 +20,8 @@ public class HPBar : MonoBehaviour
 
     void UpdateHPBar()
     {
-        HPSlider.maxValue = stat.HP;
-        HPSlider.value = stat.currentHP;
+      // HPSlider.maxValue = stat.HP;
+      //  HPSlider.value = stat.currentHP;
         
         // statu의 값을 받아와 HP Silder의 값을 변경한다.
     }
