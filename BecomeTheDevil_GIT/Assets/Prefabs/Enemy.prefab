@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114328418017269648}
   - component: {fileID: 114792052246186620}
   m_Layer: 10
-  m_Name: HealthBarCanvas
+  m_Name: EnemyHealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 61058792419618430}
   - component: {fileID: 212835136462938034}
   - component: {fileID: 114505276963902074}
+  - component: {fileID: 114855383842139240}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602054973030844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.518, y: 0.087, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0.087, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 224711108918940310}
@@ -250,7 +251,6 @@ MonoBehaviour:
   moveSpeed: 1
   attSpeed: 0.3
   attackRange: 1
-  distanceOfTile: 1
   damage: 5
   attTimer: 0
   sprites:
@@ -258,13 +258,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f36241b7d4a7c4ea6b8f946b1613975c, type: 3}
   - {fileID: 21300000, guid: 96a67f123f5ec41c18681bbbb12c781b, type: 3}
   versionType: 0
-  pathList: []
-  maxHp: 0
-  currentHp: 0
-  dist: 0
   AiRange: 5000
   AiTime: 0.1
-  healthBarFilled: {fileID: 114112313456463152}
+  distanceOfTile: 1
 --- !u!114 &114526971591459278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,6 +289,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114855383842139240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602054973030844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ffb7eac28272d4ca9f444a0801f5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movoingSpeed: 1
+  attackDamage: 10
+  attackRange: 10
+  attackSpeed: 1
+  maxHP: 100
+  currentHP: 100
+  healthBarFilled: {fileID: 114112313456463152}
+  versionType: 0
 --- !u!212 &212835136462938034
 SpriteRenderer:
   m_ObjectHideFlags: 1

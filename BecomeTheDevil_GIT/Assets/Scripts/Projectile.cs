@@ -54,7 +54,9 @@ public class Projectile : MonoBehaviour
             if (target.gameObject == other.gameObject && target != null )
             {
                 // 타겟에게 데미지를 주고 발사체를 없앰.
-                target.TakeDamage(parent.Damage);
+                other.GetComponent<Statu>().TakeDamage(parent.Damage);
+                //target.transform.parent.GetComponent<Statu>().TakeDamage(parent.Damage);
+                //target.TakeDamage(parent.Damage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
             }
             Enemy hitInfo = other.GetComponent<Enemy>();

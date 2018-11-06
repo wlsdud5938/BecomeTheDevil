@@ -57,5 +57,5 @@ MonoBehaviour:
   entryRoom: {fileID: 0}
   maxHpOfEnemy:
   - 100
-  - 100
-  - 100
+  - 70
+  - 30

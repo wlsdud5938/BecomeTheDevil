@@ -37,11 +37,11 @@ public class Enemy : MonoBehaviour
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
     
     //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
-    public float maxHp;
-    public float currentHp;
+    //public float maxHp;
+    //public float currentHp;
     private bool isActive = true;
     public bool IsActive { get; set; }
-    public Image healthBarFilled;
+    //public Image healthBarFilled;
 
     // Use this for initialization
     void Start()
@@ -53,10 +53,10 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
 
         //HP관련선언//일단 살려둡니다.
-        maxHp = GameManager.Instance.maxHpOfEnemy[versionType];//type에 맞는 최대 hp 초기화          
+        //maxHp = GameManager.Instance.maxHpOfEnemy[versionType];//type에 맞는 최대 hp 초기화          
         IsActive = true;
-        currentHp = maxHp; //현재 hp max hp로 처음에 초기
-        healthBarFilled.fillAmount = 1;
+        //currentHp = maxHp; //현재 hp max hp로 처음에 초기
+        //healthBarFilled.fillAmount = 1;
         //HP
     }
 
@@ -68,8 +68,8 @@ public class Enemy : MonoBehaviour
         else if (isAtt)
             attTimer += 0.1f * Time.deltaTime; //공격 모션이 attTimer에 맞게 실행되도록 하는 코드입니다. *추측...
 
-        if (currentHp <= 0)
-            Destroy(gameObject);
+        //if (currentHp <= 0)
+        //    Destroy(gameObject);
 
         if (target != null)
         {
@@ -207,11 +207,11 @@ public class Enemy : MonoBehaviour
         //dir => Int // 0 = Front / 1 = Back / 2 = Left / 3 = Right 
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
-    public void TakeDamage(float damage)
-    {
+    //public void TakeDamage(float damage)
+    //{
 
-        currentHp -= damage;
+        //currentHp -= damage;
 
-        healthBarFilled.fillAmount = (float)currentHp / maxHp;
-    }
+        //healthBarFilled.fillAmount = (float)currentHp / maxHp;
+    //}
 }
