@@ -6,81 +6,58 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
+    //능력치 관련 선언//
     public float moveSpeed = 1.0f; // 이동속도
     public float attSpeed = 0.3f;
-    public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.
-    public float distanceOfTile = 1.0f; // DOT 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
+    public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.    
     public float damage = 5f;
     public float attTimer = 0.0f;
-    public Sprite[] sprites;  // enemy version에 따라 다른 sprite rendering
-    public int versionType;  //enemy version
-
-     
     private bool isAtt = false;
-    public List<GameObject> pathList;
 
-    public float maxHp;
-    public float currentHp;
-    private Transform target; // 쫓아갈 대상
-    private Animator animation; // Animator 선언
-    public float dist; // AI관련 거리변수
+    //스프라이트 관련 선언
+    public Sprite[] sprites;  // enemy version에 따라 다른 sprite rendering
+    public int versionType;  //enemy version     
+    
+    //Ai 관련 선언//
+    private float adv; //Ai 관련 enemy와 player사이의 distance입니다.
+    private float dist; // AI관련 거리변수
     public float AiRange = 1.0f; // AI의 Player, Tower를 찾는 거리입니다. 이 안에선 Player와 Tower를 우선 공격합니다. 그 외에선 core를 찾습니다.
     public float AiTime = 1.0f; // Ai가 반복적으로 path를 찾는 시간입니다.
+    public float distanceOfTile = 1.0f; // DOT 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
 
+    //Start에 선언할 컴포넌트 관련 선언//
+    private Transform target; // 쫓아갈 대상
+    private Animator animation; // Animator 선언
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigidbodys; // test
-    private float adv; //enemy와 player사이의 distance입니다.
-
-    private int dir; //Animator에서, Int0 = Front / 1 = Back / 2 = Left / 3 = Right / 4 = None
-    private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     private SpriteRenderer spriteRenderer;
 
+    //Animator 관련 선언 //
+    private int dir; //Animator에서, Int0 = Front / 1 = Back / 2 = Left / 3 = Right / 4 = None
+    private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
+    
+    //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
+    public float maxHp;
+    public float currentHp;
     private bool isActive = true;
     public bool IsActive { get; set; }
-
     public Image healthBarFilled;
 
-    RoomTemplates templates;
-    float distanceLength;
-// Use this for initialization
-void Start()
+    // Use this for initialization
+    void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbodys = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
+
+        //HP관련선언//일단 살려둡니다.
         maxHp = GameManager.Instance.maxHpOfEnemy[versionType];//type에 맞는 최대 hp 초기화          
         IsActive = true;
         currentHp = maxHp; //현재 hp max hp로 처음에 초기
-        spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
         healthBarFilled.fillAmount = 1;
-
-        if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 1)
-        {
-            for(int i = 0; i<templates.bList.Count;i++)
-                pathList.Add(templates.bList[i]);
-        }
-        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 2)
-        {
-            for (int i = 0; i < templates.tList.Count; i++)
-                pathList.Add(templates.tList[i]);
-        }
-        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 3)
-        {
-            for (int i = 0; i < templates.lList.Count; i++)
-                pathList.Add(templates.lList[i]);
-        }
-        else if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 4)
-        {
-            for (int i = 0; i < templates.rList.Count; i++)
-                pathList.Add(templates.rList[i]);
-        }
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            InvokeRepeating("getClosestEnemy", 0, AiTime);
-            
-        }
+        //HP
     }
 
     // Update is called once per frame
@@ -89,13 +66,13 @@ void Start()
         if (isAtt && attTimer >= attSpeed)
             isAtt = false;
         else if (isAtt)
-            attTimer += 0.1f * Time.deltaTime;
+            attTimer += 0.1f * Time.deltaTime; //공격 모션이 attTimer에 맞게 실행되도록 하는 코드입니다. *추측...
 
         if (currentHp <= 0)
             Destroy(gameObject);
-        if (target != null)
-        { 
 
+        if (target != null)
+        {
             adv = Vector2.Distance(transform.position, target.position); // 적과 나 사이의 거리값 설정
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.position;
@@ -196,19 +173,10 @@ void Start()
                 }
             }
         }
-        GotoCore();
     }
 
-    void GotoCore()
-    {
-        if (pathList.Count != 0)
-        {
-            distanceLength = Vector2.Distance(gameObject.transform.position, pathList[0].gameObject.transform.position);
-            gameObject.transform.position = Vector2.MoveTowards(transform.position, pathList[0].gameObject.transform.position, moveSpeed * Time.deltaTime);
-        }
-    }
-
-    void getClosestEnemy()
+    void getClosestEnemy() //Enemy와 해당 태그(지금은 플레이어만) 사이의 거리를 target으로 반환해줍니다.
+        //지금 이 함수는 플레이어와 자신의 거리를 인식해서 방향을 확인하는 용도로 쓰이고 있습니다.
     {
         //비용이 큼 - 특정 태그의 오브젝트를 모두 찾음
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -235,25 +203,15 @@ void Start()
 
     protected virtual void AnimatorOfEnemy(int dir, string animators)
     {
-       
         animation.SetInteger(animators, dir);
         //dir => Int // 0 = Front / 1 = Back / 2 = Left / 3 = Right 
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
-
     public void TakeDamage(float damage)
     {
 
         currentHp -= damage;
 
         healthBarFilled.fillAmount = (float)currentHp / maxHp;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.tag.Equals("CenterPoint"))
-            pathList.Remove(pathList[0]);
-        if(other.tag.Equals("Boss"))
-            SceneManager.LoadScene("Defeat");
     }
 }
