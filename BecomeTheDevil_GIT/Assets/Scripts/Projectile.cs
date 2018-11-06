@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             // Projectile 이 오른쪽으로 향해 있어야 앞이 적쪽으로 향함.
         }
-        else if (!target.IsActive)  // 타겟이 죽으면 발사체 없앰.
+        else if (!target.IsActive || target == null)  // 타겟이 죽으면 발사체 없앰.
         {
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
         // 적과 충돌하면
         if (other.tag == "Enemy")
         {
-            if (target.gameObject == other.gameObject)
+            if (target.gameObject == other.gameObject && target != null )
             {
                 // 타겟에게 데미지를 주고 발사체를 없앰.
                 target.TakeDamage(parent.Damage);
