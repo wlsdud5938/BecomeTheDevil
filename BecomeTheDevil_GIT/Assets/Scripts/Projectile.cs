@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
                 //target.TakeDamage(parent.Damage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
             }
-            Enemy hitInfo = other.GetComponent<Enemy>();
+            // Enemy hitInfo = other.GetComponent<Enemy>();
             //Debug.Log("Hit Enemy");
         }
     }

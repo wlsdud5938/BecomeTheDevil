@@ -9,15 +9,17 @@ public class Statu : MonoBehaviour {
     public float attackRange = 10f;   //공격 사거리
     public float attackSpeed = 1f;   //공격 속도
     public float maxHP = 100;            //최대 hp
-    public float currentHP;            //현재 hp
+    [SerializeField]
+    private float currentHP;            //현재 hp
     public Image healthBarFilled;    // 현재 체력 Image.
     public int versionType;          // 적 version
 
     // Use this for initialization
     void Awake () {
         maxHP = GameManager.Instance.maxHpOfEnemy[versionType];
-        healthBarFilled.fillAmount = (float)currentHP / maxHP;
-        healthBarFilled.fillAmount = 1;
+        //healthBarFilled.fillAmount = (float)currentHP / maxHP;
+        currentHP = maxHP;          // 처음 생성됐을 때 최대 체력을 갖고 태어남.
+        healthBarFilled.fillAmount = 1; // 체력바를 가득 채움.
     }
 	
 	// Update is called once per frame

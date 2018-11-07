@@ -117,7 +117,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61058792419618430
 BoxCollider2D:
@@ -252,7 +252,7 @@ MonoBehaviour:
   attSpeed: 0.3
   attackRange: 1
   damage: 5
-  attTimer: 0
+  attTimer: 0.9
   sprites:
   - {fileID: 21300002, guid: af8f1e225475b9a4eaf52ebf6527b3d0, type: 3}
   - {fileID: 21300000, guid: f36241b7d4a7c4ea6b8f946b1613975c, type: 3}
