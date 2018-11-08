@@ -13,14 +13,14 @@ public class Enemy : MonoBehaviour
     public float damage = 5f;
     public float attTimer = 0.0f;
     private bool isAtt = false;
-    private bool canAttack = true; // 공격속도를 세팅하기 위한 변수.
+    
 
     //스프라이트 관련 선언
     public Sprite[] sprites;  // enemy version에 따라 다른 sprite rendering
     public int versionType;  //enemy version     
     
     //Ai 관련 선언//
-    private float enemyToTargetDist; //Ai 관련 enemy와 player사이의 distance입니다.
+    private float adv; //Ai 관련 enemy와 player사이의 distance입니다.
     private float dist; // AI관련 거리변수
     public float AiRange = 1.0f; // AI의 Player, Tower를 찾는 거리입니다. 이 안에선 Player와 Tower를 우선 공격합니다. 그 외에선 core를 찾습니다.
     public float AiTime = 1.0f; // Ai가 반복적으로 path를 찾는 시간입니다.
@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (isAtt && attTimer >= attSpeed)
             isAtt = false;
         else if (isAtt)
@@ -67,10 +68,10 @@ public class Enemy : MonoBehaviour
         
         if (target != null)
         {
-            enemyToTargetDist = Vector2.Distance(transform.position, target.position); // 적과 나 사이의 거리값 설정
+            adv = Vector2.Distance(transform.position, target.position); // 적과 나 사이의 거리값 설정
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.position;
-            if ((attackRange <= enemyToTargetDist) && (target != null))
+            if ((attackRange <= adv) && (target != null))
             {
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
@@ -115,7 +116,7 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
-            else if (enemyToTargetDist < attackRange) // Range 안의 적을 공격합니다.
+            else if (adv < attackRange) // Range 안의 적을 공격합니다.
             {
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
@@ -124,21 +125,21 @@ public class Enemy : MonoBehaviour
                         AnimatorOfEnemy(2, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //AttackEnemy(targetPos, myPos, enemyToTargetDist);
+                        //AttackEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보며 공격.
                     {
                         AnimatorOfEnemy(1, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //moveEnemy(targetPos, myPos, enemyToTargetDist);
+                        //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보며 공격.
                     {
                         AnimatorOfEnemy(0, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //moveEnemy(targetPos, myPos, enemyToTargetDist);
+                        //moveEnemy(targetPos, myPos, adv);
                     }
                 }
                 if (targetPos.x > myPos.x) //플레이어가 Enemy(자신)보다 우측이면,
@@ -148,21 +149,21 @@ public class Enemy : MonoBehaviour
                         AnimatorOfEnemy(3, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //moveEnemy(targetPos, myPos, enemyToTargetDist);
+                        //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보도록 고정한다.
                     {
                         AnimatorOfEnemy(1, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //moveEnemy(targetPos, myPos, enemyToTargetDist);
+                        //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보도록 고정한다.
                     {
                         AnimatorOfEnemy(0, "EnemyChop");
                         AnimatorOfEnemy(4, "EnemyRun");
                         AnimatorOfEnemy(4, "EnemyIdle");
-                        //moveEnemy(targetPos, myPos, enemyToTargetDist);
+                        //moveEnemy(targetPos, myPos, adv);
                     }
                 }
             }
@@ -202,9 +203,6 @@ public class Enemy : MonoBehaviour
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
 
-    private void Attack()
-    {
-        canAttack = false;
-    }
+    
 
 }

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    // 타워 관련.
     private Enemy target;
     private Tower parent;   // 발사체를 가지고 있는 타워.
+    // 적 관련.
+    private GameObject target2;
+    private Enemy2 parentEnemy;  // 발사체를 가지고 있는 적.
+    
 
     // Use this for initialization
     void Start()
@@ -25,6 +29,13 @@ public class Projectile : MonoBehaviour
         // 타워에서 정해놓은 타겟으로 초기화.
         this.target = parent.Target;
         this.parent = parent;
+    }
+
+    public void Initialize(Enemy2 parentEnemy)
+    {
+        // 타워에서 정해놓은 타겟으로 초기화.
+        this.target2 = parentEnemy.Target;
+        this.parentEnemy = parentEnemy;
     }
 
     private void MoveToTarget()
