@@ -29,8 +29,8 @@ public class GameManager : Singleton<GameManager>
             enemySpawnTimer = 0.0f;
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
-                GameObject clone = Instantiate(enemy, entryRoom.transform.GetChild(0).transform.position, Quaternion.identity);
-                clone.GetComponent<Enemy>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+                //GameObject clone = Instantiate(enemy, entryRoom.transform.GetChild(0).transform.position, Quaternion.identity);
+                //clone.GetComponent<Enemy>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
             }
 
 

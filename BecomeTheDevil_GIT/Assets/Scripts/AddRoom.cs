@@ -6,6 +6,7 @@ public class AddRoom : MonoBehaviour {
 
 	private RoomTemplates templates;
     public int centry;
+    public int parentRoom = 0;
 
 
 	void Start(){
