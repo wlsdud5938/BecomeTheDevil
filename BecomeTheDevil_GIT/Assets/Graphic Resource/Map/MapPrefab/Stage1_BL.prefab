@@ -43,7 +43,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1360353829314200
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939678946481782}
   - component: {fileID: 2569400268197419714}
+  - component: {fileID: 114334655934126262}
   m_Layer: 0
   m_Name: Stage1_BL
   m_TagString: Untagged
@@ -348,7 +349,7 @@ Transform:
   m_LocalScale: {x: 1.5625, y: 1.5625, z: 1}
   m_Children: []
   m_Father: {fileID: 4939678946481782}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4200982297558230
 Transform:
@@ -380,7 +381,7 @@ Transform:
   - {fileID: 4639702089558360}
   - {fileID: 4862296625762480}
   m_Father: {fileID: 4939678946481782}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4303783972360678
 Transform:
@@ -519,11 +520,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661899459740594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -15, z: 0}
   m_LocalScale: {x: 0.64, y: 0.64, z: 1}
   m_Children:
-  - {fileID: 4237262271205846}
   - {fileID: 4158903554166920}
+  - {fileID: 4237262271205846}
   - {fileID: 4640211444441460}
   - {fileID: 4319830604757782}
   - {fileID: 4902158828453696}
@@ -582,7 +583,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925069839928026}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1061,6 +1062,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114334655934126262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661899459740594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799cb87b77053c547a3029adb3ea62d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapCode: 110
 --- !u!156049354 &2569400268197419714
 Grid:
   m_ObjectHideFlags: 1
@@ -1395,7 +1408,7 @@ Tilemap:
   - first: {x: -12, y: -7, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -2294,8 +2307,8 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: c756510d87aebbb4d9141a53aa1dbbe0, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 21300058, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 5
@@ -2304,8 +2317,8 @@ Tilemap:
     m_Data: {fileID: 21300060, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300058, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300128, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 1
@@ -5454,7 +5467,7 @@ Tilemap:
   - first: {x: 3, y: -8, z: 0}
     second:
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5728,12 +5741,12 @@ Tilemap:
     m_Data: {fileID: 21300098, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300096, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300134, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
-  - m_RefCount: 7
-    m_Data: {fileID: 21300116, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 7
+    m_Data: {fileID: 21300116, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300134, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300150, guid: 3f476dbb048720545af77f6a96f3818a, type: 3}
   - m_RefCount: 6
