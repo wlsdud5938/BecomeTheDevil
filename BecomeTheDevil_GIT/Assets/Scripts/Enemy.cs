@@ -40,20 +40,31 @@ public class Enemy : MonoBehaviour
 
     public Image healthBarFilled;
 
+    GameManager gameManager; //코드량 줄이기위해 instance 캐싱
+
     RoomTemplates templates;
     float distanceLength;
 // Use this for initialization
 void Start()
     {
+
+        gameManager = GameManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbodys = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        maxHp = GameManager.Instance.maxHpOfEnemy[versionType];//type에 맞는 최대 hp 초기화          
-        IsActive = true;
+        maxHp = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
+        maxHp += gameManager.idxOfWave * (maxHp * gameManager.levelBalanceConst-maxHp); //최대 체력 levelbalance와 웨이브에 맞게 올려줌
         currentHp = maxHp; //현재 hp max hp로 처음에 초기
-        spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
+        damage += gameManager.idxOfWave * (damage * gameManager.levelBalanceConst - damage);
+        spriteRenderer.sprite = sprites[versionType];
+        Debug.Log(gameManager.idxOfWave);
+
+
+
+        IsActive = true;
+        //스프라이트 버전에 맞게 렌더
         healthBarFilled.fillAmount = 1;
 
         if (templates.rooms[templates.rooms.Count - 1].gameObject.GetComponent<AddRoom>().path == 1)
@@ -247,6 +258,12 @@ void Start()
         currentHp -= damage;
 
         healthBarFilled.fillAmount = (float)currentHp / maxHp;
+
+        if(currentHp<=0)
+        {
+            //die
+            gameManager.currNumOfEnemyes--; //죽을 때 맵 현재 적 숫자 하나 줄
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

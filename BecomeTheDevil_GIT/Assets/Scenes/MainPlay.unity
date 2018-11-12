@@ -673,9 +673,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf8a3e88f431f0489c94d0e28e2e56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemys: []
   enemy: {fileID: 1602054973030844, guid: 8642c51ebf0e7b64f9c80e83318c415c, type: 2}
+  nextWaveTime: 10
+  numOfEnemyPerWave: 5
   entryRoom: {fileID: 1003063947}
+  maxHpOfEnemy:
+  - 1
+  - 2
+  - 3
 --- !u!4 &1093837415
 Transform:
   m_ObjectHideFlags: 0
