@@ -38,21 +38,21 @@ public class Enemy : MonoBehaviour
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
     
     //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
-    //public float maxHp;
-    //public float currentHp;
+    public float maxHp;
+    public float currentHp;
     private bool isActive = true;
     public bool IsActive { get; set; }
     //public Image healthBarFilled;
 
-<<<<<<< HEAD
+
     public Image healthBarFilled;
 
     GameManager gameManager; //코드량 줄이기위해 instance 캐싱
 
     RoomTemplates templates;
     float distanceLength;
-// Use this for initialization
-void Start()
+    // Use this for initialization
+    void Start()
     {
 
         gameManager = GameManager.Instance;
@@ -62,32 +62,19 @@ void Start()
         animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         maxHp = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
-        maxHp += gameManager.idxOfWave * (maxHp * gameManager.levelBalanceConst-maxHp); //최대 체력 levelbalance와 웨이브에 맞게 올려줌
+        maxHp += gameManager.idxOfWave * (maxHp * gameManager.levelBalanceConst - maxHp); //최대 체력 levelbalance와 웨이브에 맞게 올려줌
         currentHp = maxHp; //현재 hp max hp로 처음에 초기
         damage += gameManager.idxOfWave * (damage * gameManager.levelBalanceConst - damage);
         spriteRenderer.sprite = sprites[versionType];
         Debug.Log(gameManager.idxOfWave);
 
 
-
+        InvokeRepeating("getClosestEnemy", 0, AiTime); //Player를 주기적으로 찾습니다. 임시 AI입니다.
         IsActive = true;
         //스프라이트 버전에 맞게 렌더
         healthBarFilled.fillAmount = 1;
-=======
-    // Use this for initialization
-    void Start()
-    {
-        rigidbodys = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        animation = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprites[versionType]; //스프라이트 버전에 맞게 렌더
-        InvokeRepeating("getClosestEnemy", 0, AiTime); //Player를 주기적으로 찾습니다. 임시 AI입니다.
->>>>>>> 54d022c6df51b66be4fea2bdf7bc58a886f2655b
 
-        IsActive = true;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -234,7 +221,7 @@ void Start()
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
 
-<<<<<<< HEAD
+
     public void TakeDamage(float damage)
     {
 
@@ -248,8 +235,5 @@ void Start()
             gameManager.currNumOfEnemyes--; //죽을 때 맵 현재 적 숫자 하나 줄
         }
     }
-=======
-    
->>>>>>> 54d022c6df51b66be4fea2bdf7bc58a886f2655b
 
 }
