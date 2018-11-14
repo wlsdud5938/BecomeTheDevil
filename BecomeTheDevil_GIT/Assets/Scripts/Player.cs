@@ -17,7 +17,6 @@ public class Player : MovingUnit {
     private enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
     private float timer;
     private Animator animator;
-    private float currentHp;
     //public Image healthBarFilled;
     // Use this for initialization
 
@@ -33,8 +32,6 @@ public class Player : MovingUnit {
 
         base.Start();
         timer += 0.0f;
-        currentHp = hp;
-        //healthBarFilled.fillAmount = 1.0f;
     }
 
 	
@@ -96,15 +93,12 @@ public class Player : MovingUnit {
        
     }
    
-    public void TakeDamage(float Damage){
-        hp -= Damage;
-    }
 
     protected override void AttemptMove(float xDir, float yDir){ 
         base.AttemptMove(xDir, yDir);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
 
         if(other.tag.Equals("Enemy"))
@@ -112,6 +106,7 @@ public class Player : MovingUnit {
             TakeDamage(other.gameObject.GetComponent<Enemy>().damage);
         }
 
-    }
+    }*/
+    // 적이 충돌판정해서 Player한테 데미지 주는 걸로 할 예정.
 
 }

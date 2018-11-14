@@ -17,11 +17,11 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private int damage;                         // 데미지
 
-    private SpriteRenderer mySpriteRenderer;        // 사정거리를 보여줌.
+    //private SpriteRenderer mySpriteRenderer;        // 사정거리를 보여줌.
 
     private Enemy target;
-    private Queue<Enemy> enemy = new Queue<Enemy>();
-    private bool canAttack = true;
+    private Queue<Enemy> enemy = new Queue<Enemy>();    // Enemy 들을 저장해놓는 Queue
+    private bool canAttack = true;                      // 공격 쿨타임 때 사용할 bool 변수
     [SerializeField]
     private float attackTimer = 0.1f;
     [SerializeField]
@@ -58,13 +58,14 @@ public class Tower : MonoBehaviour
     {     // 이거 Start로 하니까 안때림 무엇???
         myAnimator = transform.parent.GetComponent<Animator>();
 
-        mySpriteRenderer = transform.GetComponent<SpriteRenderer>();
+        //mySpriteRenderer = transform.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Targetting();
+
         //Debug.Log(target);
     }
 

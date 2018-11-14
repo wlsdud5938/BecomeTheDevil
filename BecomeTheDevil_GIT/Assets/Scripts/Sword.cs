@@ -27,7 +27,8 @@ public class Sword : MonoBehaviour {
         { //부딪힌 객체가 적인지 검사합니다.
             if (other.tag.Equals("Enemy"))
             {
-                other.GetComponent<Enemy>().TakeDamage(swordDamage);
+                //other.GetComponent<Enemy>().TakeDamage(swordDamage);
+                other.GetComponent<Statu>().TakeDamage(swordDamage);
             }
             Destroy(this.gameObject); //자기 자신을 지웁니다.
             Debug.Log("dd");
