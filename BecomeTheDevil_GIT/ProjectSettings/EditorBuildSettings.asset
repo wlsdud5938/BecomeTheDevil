@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 762f32ff18cd0084b8621750aa28ce2f
   - enabled: 1
     path: Assets/Scenes/MainPlay.unity
-    guid: 8ef57dcd9f1a2c746b2182a2205be90c
+    guid: d1810f897326e43fab6d9597d458daed
   - enabled: 1
     path: Assets/Scenes/Defeat.unity
     guid: 055f2de67bad37f48860db0b68c89473
