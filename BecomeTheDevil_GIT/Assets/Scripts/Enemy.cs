@@ -6,18 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    //능력치 관련 선언//
-    public float moveSpeed = 1.0f; // 이동속도
-    public float attSpeed = 0.3f;
-    public float attackRange = 1.0f; // 무기의 Range, 작을 수록 가까이 달라붙습니다.    
-    public float damage = 5f;
-    public float attTimer = 0.0f;
-    private bool isAtt = false;
-    
-
-    //스프라이트 관련 선언
-    public Sprite[] sprites;  // enemy version에 따라 다른 sprite rendering
-    public int versionType;  //enemy version     
+    Statu statu; // 스탯 
+    public float attTimer = 0.0f; //attTimer 0으로 초기화해줘야
+    private bool isAtt = false;  //isAtt 공격할 수 있냐 true로 만드는 코드 없음. 왜 필요한거죠
     
     //Ai 관련 선언//
     private float adv; //Ai 관련 enemy와 player사이의 distance입니다.
@@ -38,58 +29,44 @@ public class Enemy : MonoBehaviour
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
     
     //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
-    public float maxHp;
-    public float currentHp;
     private bool isActive = true;
     public bool IsActive { get; set; }
     //public Image healthBarFilled;
 
 
-    public Image healthBarFilled;
 
-    GameManager gameManager; //코드량 줄이기위해 instance 캐싱
+
+   
 
     RoomTemplates templates;
     float distanceLength;
     // Use this for initialization
     void Start()
     {
-
-        gameManager = GameManager.Instance;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        statu = GetComponent<Statu>();
         rigidbodys = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        maxHp = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
-        maxHp += gameManager.idxOfWave * (maxHp * gameManager.levelBalanceConst - maxHp); //최대 체력 levelbalance와 웨이브에 맞게 올려줌
-        currentHp = maxHp; //현재 hp max hp로 처음에 초기
-        damage += gameManager.idxOfWave * (damage * gameManager.levelBalanceConst - damage);
-        spriteRenderer.sprite = sprites[versionType];
-        Debug.Log(gameManager.idxOfWave);
-
-
         InvokeRepeating("getClosestEnemy", 0, AiTime); //Player를 주기적으로 찾습니다. 임시 AI입니다.
         IsActive = true;
-        //스프라이트 버전에 맞게 렌더
-        healthBarFilled.fillAmount = 1;
+        //스프라이트 버전에 맞게 렌더링
 
     }
     // Update is called once per frame
     void Update()
     {
-        
-        if (isAtt && attTimer >= attSpeed)
-            isAtt = false;
-        else if (isAtt)
-            attTimer += 0.1f * Time.deltaTime; //공격 모션이 attTimer에 맞게 실행되도록 하는 코드입니다. *추측...
-        
+        attTimer += Time.deltaTime;
+        if (attTimer >= statu.attackSpeed)
+            isAtt = true; 
+        //공격하고 난 다음 attTimer 0으로 isAtt false로 만들어주세요
+
         if (target != null)
         {
             adv = Vector2.Distance(transform.position, target.position); // 적과 나 사이의 거리값 설정
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.position;
-            if ((attackRange <= adv) && (target != null))
+            if ((statu.attackRange <= adv) && (target != null))
             {
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
@@ -134,7 +111,7 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
-            else if (adv < attackRange) // Range 안의 적을 공격합니다.
+            else if (adv < statu.attackRange) // Range 안의 적을 공격합니다.
             {
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
@@ -222,18 +199,5 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(float damage)
-    {
-
-        currentHp -= damage;
-
-        healthBarFilled.fillAmount = (float)currentHp / maxHp;
-
-        if(currentHp<=0)
-        {
-            //die
-            gameManager.currNumOfEnemyes--; //죽을 때 맵 현재 적 숫자 하나 줄
-        }
-    }
-
+ 
 }
