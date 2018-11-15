@@ -883,7 +883,7 @@ MonoBehaviour:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1789,6 +1789,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1431379255574062, guid: 7bb3ad9fa35ac3d4eaf3c2449c7d0f3f,
     type: 2}
   m_PrefabInternal: {fileID: 707376712}
+--- !u!114 &1553397572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553397568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717496c8f896d0a46a960f2e1238fe06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1554754132 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1026218220587112, guid: 13d1b33e592aeea4abd5f0038509a4ca,
