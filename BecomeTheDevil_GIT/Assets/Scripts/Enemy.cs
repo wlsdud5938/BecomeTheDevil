@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     //Animator 관련 선언 //
-    private int dir; //Animator에서, Int0 = Front / 1 = Back / 2 = Left / 3 = Right / 4 = None
+    private float dir; //Animator에서, Int0 = Front / 0.3 = Back / 0.6 = Left / 1 = Right 
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
     
     //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
@@ -72,68 +72,50 @@ public class Enemy : MonoBehaviour
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 좌측을 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(2, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.6f, "EnemyRun");
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(1, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.3f, "EnemyRun");
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보도록 고정한다.
                     {
                         AnimatorOfEnemy(0, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
                     }
                 }
                 if (targetPos.x > myPos.x) //플레이어가 Enemy(자신)보다 우측이면,
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 우측을 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(3, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(1, "EnemyRun");
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(1, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.3f, "EnemyRun");
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보도록 고정한다.
                     {
                         AnimatorOfEnemy(0, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyIdle");
                     }
                 }
             }
-            else if (adv < statu.attackRange) // Range 안의 적을 공격합니다.
+            else if (statu.attackRange > adv) // Range 안의 적을 공격합니다.
             {
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 좌측을 공격하도록 고정.
                     {
-                        AnimatorOfEnemy(2, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.6f, "EnemyChop");
                         //AttackEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보며 공격.
                     {
-                        AnimatorOfEnemy(1, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.3f, "EnemyChop");
                         //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보며 공격.
                     {
                         AnimatorOfEnemy(0, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
                         //moveEnemy(targetPos, myPos, adv);
                     }
                 }
@@ -141,23 +123,17 @@ public class Enemy : MonoBehaviour
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 우측을 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(3, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(1, "EnemyChop");
                         //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y > targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 아래에 있으면, 아래를 보도록 고정한다.
                     {
-                        AnimatorOfEnemy(1, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
+                        AnimatorOfEnemy(0.3f, "EnemyChop");
                         //moveEnemy(targetPos, myPos, adv);
                     }
                     else if (myPos.y <= targetPos.y) // DOT 구간 내에 없으면서 Player가 나보다 위에 있으면 위를 보도록 고정한다.
                     {
                         AnimatorOfEnemy(0, "EnemyChop");
-                        AnimatorOfEnemy(4, "EnemyRun");
-                        AnimatorOfEnemy(4, "EnemyIdle");
                         //moveEnemy(targetPos, myPos, adv);
                     }
                 }
@@ -191,10 +167,41 @@ public class Enemy : MonoBehaviour
         target = closest;
     }
 
-    protected virtual void AnimatorOfEnemy(int dir, string animators)
-    {
-        animation.SetInteger(animators, dir);
-        //dir => Int // 0 = Front / 1 = Back / 2 = Left / 3 = Right 
+    protected virtual void AnimatorOfEnemy(float direction, string animators)
+    {     
+        if (animators == "EnemyRun")
+        {
+            animation.SetFloat("Dir", direction); // 방향을 설정
+            animation.SetBool("EnemyRun", true); //Run 활성화
+            animation.SetBool("EnemyIdle", false);
+            animation.SetBool("EnemyChop", false);
+            animation.SetBool("EnemyHit", false);
+        }
+        if (animators == "EnemyIdle")
+        {
+            animation.SetFloat("Dir", direction); // 방향을 설정
+            animation.SetBool("EnemyRun", false); 
+            animation.SetBool("EnemyIdle", true); // Idle 활성화
+            animation.SetBool("EnemyChop", false);
+            animation.SetBool("EnemyHit", false);
+        }
+        if (animators == "EnemyChop")
+        {
+            animation.SetFloat("Dir", direction); // 방향을 설정
+            animation.SetBool("EnemyRun", false);
+            animation.SetBool("EnemyIdle", false); 
+            animation.SetBool("EnemyChop", true); // Chop 활성화
+            animation.SetBool("EnemyHit", false);
+        }
+        if (animators == "EnemyHit")
+        {
+            animation.SetFloat("Dir", direction); // 방향을 설정
+            animation.SetBool("EnemyRun", false);
+            animation.SetBool("EnemyIdle", false);
+            animation.SetBool("EnemyChop", false);
+            animation.SetBool("Enemyhit", true); // Hit 활성화
+        }
+        //direction => float // 0 => front // 0.3 => back // 0.6 => left // 1 => Right
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
 
