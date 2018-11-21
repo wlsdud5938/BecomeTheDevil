@@ -45,7 +45,7 @@ public class Player : MovingUnit {
         vertical = (int)Input.GetAxisRaw("Vertical");
 
 
-
+        /*
         if (Input.GetKeyDown(KeyCode.F)&&attTimer>statu.attackSpeed)
         {
             attTimer = 0;
@@ -62,7 +62,7 @@ public class Player : MovingUnit {
             }
             
 
-        }
+        }*/
         if (Input.GetKeyDown("space"))
         {
             isHuman = !isHuman;

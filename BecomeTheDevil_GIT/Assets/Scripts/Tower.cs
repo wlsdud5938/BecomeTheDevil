@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Tower : MonoBehaviour
 {
     [SerializeField]        // 유니티 에디터에서 보임.
-    private string projectileType;     // 유닛에 따라 공격을 다르게.
+    private string projectileType;     // 유닛에 따라 발사체를 다르게.
 
     /*[SerializeField]
     private Projectile projectilePrefab;           // 발사체 프리팹
@@ -90,8 +90,9 @@ public class Tower : MonoBehaviour
         if (enemy.Count > 0 && target == null)   // target == null 한 적이 원 밖으로 나갈 때.
         {
             target = enemy.Dequeue();      // enemy Queue에 있는 걸 빼면서 아직 원 안에 있는 적을 타겟으로 지정.
+            //Debug.Log(target);
         }
-
+        //Debug.Log(target.IsActive);
         if (target != null && target.IsActive)     // 타겟이 원 안에 살아 있다면
         {
             if (canAttack)
@@ -111,7 +112,7 @@ public class Tower : MonoBehaviour
         projectile.transform.position = transform.position;
         // 발사체 초기화
         projectile.Initialize(this);
-
+        Debug.Log("공격!");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -119,6 +120,8 @@ public class Tower : MonoBehaviour
         if (other.tag == "Enemy")
         {
             enemy.Enqueue(other.GetComponent<Enemy>());
+            Debug.Log("SB");
+            Debug.Log(enemy.Count);
         }
     }
 
@@ -126,6 +129,8 @@ public class Tower : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            Debug.Log("나감");
+            Debug.Log(enemy.Count);
             target = null;      // range 밖으로 나가면 target 해제
         }
     }

@@ -47,5 +47,6 @@ public class Statu : MonoBehaviour {
         HPSlider.value = currentHP;
         if (currentHP <= 0)
             Destroy(gameObject);
+        //Debug.Log("TakeDamage 씰행!");
     }
 }

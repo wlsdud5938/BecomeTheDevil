@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currNumOfEnemyes);
+        //Debug.Log(currNumOfEnemyes);
         enemySpawnTimer += Time.deltaTime;
         if(enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes==0)
         {

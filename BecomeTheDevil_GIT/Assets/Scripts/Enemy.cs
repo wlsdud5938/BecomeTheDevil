@@ -27,16 +27,24 @@ public class Enemy : MonoBehaviour
     //Animator 관련 선언 //
     private float dir; //Animator에서, Int0 = Front / 0.3 = Back / 0.6 = Left / 1 = Right 
     private string animators; //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}   
-    
+
     //HP관련 선언 // 참조하는 것들 때문에 일시적으로 살려놨습니다.
-    private bool isActive = true;
-    public bool IsActive { get; set; }
+
+    private bool isActive = true;  // 적이 살아있을 땐 true, 죽으면 false값을 가지는 변수입니다.
+
+    public bool IsActive
+    {
+        get
+        {
+            return isActive;
+        }
+    }
     //public Image healthBarFilled;
 
 
 
 
-   
+
 
     RoomTemplates templates;
     float distanceLength;
@@ -49,9 +57,7 @@ public class Enemy : MonoBehaviour
         animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         InvokeRepeating("getClosestEnemy", 0, AiTime); //Player를 주기적으로 찾습니다. 임시 AI입니다.
-        IsActive = true;
         //스프라이트 버전에 맞게 렌더링
-
     }
     // Update is called once per frame
     void Update()
