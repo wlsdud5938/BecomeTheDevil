@@ -17,6 +17,7 @@ TagManager:
   - Room
   - Bullet
   - Boss
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ public class LoadingOn : MonoBehaviour {
 	void Update () {
         if (GameObject.FindGameObjectWithTag("Player"))
             isOn = true;
-        Debug.Log(gameObject.transform.GetChild(0));
+ 
         if (isOn == true)
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
 	}

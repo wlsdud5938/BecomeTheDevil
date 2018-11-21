@@ -92,13 +92,13 @@ public class RoomTemplates : MonoBehaviour
         {
             for(int i =0 ; i < 30 ; i++)
             {
-                Debug.Log(nodeTable[0,i] + " " + nodeTable[1, i] + " " + nodeTable[2, i] + " " + nodeTable[3, i] + " " +
+               /* Debug.Log(nodeTable[0,i] + " " + nodeTable[1, i] + " " + nodeTable[2, i] + " " + nodeTable[3, i] + " " +
                 nodeTable[4, i] + " " + nodeTable[5, i] + " " + nodeTable[6, i] + " " + nodeTable[7, i] + " " + nodeTable[8, i] + " " +
                     nodeTable[9, i] + " " + nodeTable[10, i] + " " + nodeTable[11, i] + " " + nodeTable[12, i] + " " + nodeTable[13, i] + " " +
                     nodeTable[ 14, i] + " " + nodeTable[15, i] + " " + nodeTable[16, i] + " " + nodeTable[17, i] + " " + nodeTable[18, i] + " " +
                     nodeTable[19, i] + " " + nodeTable[20, i] + " " + nodeTable[21, i] + " " + nodeTable[22, i] + " " + nodeTable[23, i] + " " +
                     nodeTable[24, i] + " " + nodeTable[25, i] + " " + nodeTable[26, i] + " " + nodeTable[27, i] + " " + nodeTable[28, i] + " " +
-                    nodeTable[29, i] + " ");
+                    nodeTable[29, i] + " ");*/
             }
             debugMd = true;
         }

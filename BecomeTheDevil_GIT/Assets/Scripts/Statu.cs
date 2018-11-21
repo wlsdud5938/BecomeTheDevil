@@ -26,6 +26,7 @@ public class Statu : MonoBehaviour {
         isEnemy = CompareTag("Enemy");
         if (isEnemy)
         {
+            gameManager.currNumOfEnemyes++;
             maxHP = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
             maxHP += gameManager.idxOfWave * (maxHP * gameManager.levelBalanceConst - maxHP); //최대 체력 levelbalance와 웨이브에 맞게 올려
             attackDamage += gameManager.idxOfWave * (attackDamage * gameManager.levelBalanceConst - attackDamage);
@@ -45,6 +46,12 @@ public class Statu : MonoBehaviour {
         currentHP -= damage;
         healthBarFilled.fillAmount = (float)currentHP / maxHP;
         if (currentHP <= 0)
+        {
+            if (isEnemy)
+            {
+                gameManager.currNumOfEnemyes--;
+            }
             Destroy(gameObject);
+        }
     }
 }

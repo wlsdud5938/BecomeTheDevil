@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
         InvokeRepeating("getClosestEnemy", 0, AiTime); //Player를 주기적으로 찾습니다. 임시 AI입니다.
         IsActive = true;
         //스프라이트 버전에 맞게 렌더링
-
     }
     // Update is called once per frame
     void Update()

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61198634061543706}
   - component: {fileID: 114594019395240362}
   - component: {fileID: 61974200535108330}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Unit
   m_TagString: Unit
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 212611368246971538}
   - component: {fileID: 58950446260695502}
   - component: {fileID: 114471458808345390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4359255236385240}
   - component: {fileID: 60813573712498874}
   - component: {fileID: 114961370583111740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224355953409647794}
   - component: {fileID: 114660384089509630}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HPSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 223139411850796748}
   - component: {fileID: 114634057820464034}
   - component: {fileID: 114192850154230748}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4921174644921256}
   - component: {fileID: 60304192632954970}
   - component: {fileID: 114898370480490762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4687975734347280}
   - component: {fileID: 60360514176182628}
   - component: {fileID: 114356686062064026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 224640050220764760}
   - component: {fileID: 222307559488500154}
   - component: {fileID: 114926467148919872}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HPBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 224363200155758314}
   - component: {fileID: 222398753003171134}
   - component: {fileID: 114890572896556796}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224585751756060394}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HP Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4225107728149484}
   - component: {fileID: 60387555878028304}
   - component: {fileID: 114936689653128840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DownRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,9 +472,9 @@ BoxCollider2D:
   m_Offset: {x: -0.020833328, y: 0.057275206}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5277778, y: 0.3862069}
-    oldSize: {x: 0.75, y: 0.7552083}
-    newSize: {x: 0.75, y: 0.7552083}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.26, y: 0.28}
+    newSize: {x: 0.26, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -497,9 +497,9 @@ BoxCollider2D:
   m_Offset: {x: -0.01940018, y: -0.07313816}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5277778, y: 0.3862069}
-    oldSize: {x: 0.75, y: 0.7552083}
-    newSize: {x: 0.75, y: 0.7552083}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.26, y: 0.28}
+    newSize: {x: 0.26, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -583,9 +583,8 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
-  maxHP: 100
-  currentHP: 23.05
   healthBarFilled: {fileID: 114890572896556796}
+  maxHP: 100
   versionType: 0
 --- !u!114 &114634057820464034
 MonoBehaviour:
@@ -778,12 +777,12 @@ SpriteRenderer:
   m_SortingLayerID: -1303767067
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 90527541ad2f09e47a0010e446193e93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96a67f123f5ec41c18681bbbb12c781b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 0.7552083}
+  m_Size: {x: 0.26, y: 0.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -903,7 +902,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.7, y: 0}
   m_SizeDelta: {x: -0.84706926, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
