@@ -53,10 +53,6 @@ public class Statu : MonoBehaviour {
                 gameManager.currNumOfEnemyes--;
             }
             Destroy(gameObject);
-<<<<<<< HEAD
         }
-=======
-        //Debug.Log("TakeDamage 씰행!");
->>>>>>> 0476cba49ec0dddd94d477970d7d00855c429fb0
     }
 }

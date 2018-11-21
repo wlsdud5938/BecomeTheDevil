@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour {
     public Button[] unitButtons; // 유닛 버튼
     public GameObject[] units;  //생성되어야 하는 unit 프리팹 어레이
     public float buttonInterval = 1f; // 버튼 간격
+    public float xPosMax = 47, xPosMin = 33; //맵 최대 최소 x,y 좌표 (맵크기)
+    public float yPosMax = -10, yPosMin = -19;
 
     //마우스 바꿔야함
     public Texture2D cursorTexture; 
@@ -27,14 +29,6 @@ public class UIController : MonoBehaviour {
     Button[] cloneUnitButton; //생성한 유닛 버튼 그 자체
     Button cloneTowerButton; //생성한 타워 버튼 
 
-    private void OnMouseEnter()
-    {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-    }
-    private void OnMouseExit()
-    {
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
-    }
 
     // Use this for initialization
     void Start () {
@@ -61,7 +55,7 @@ public class UIController : MonoBehaviour {
                 Vector3 target = camera.ScreenToWorldPoint(Input.mousePosition);  //마우스좌표 메인카메라 기준 좌표로 변환
                 Ray2D ray = new Ray2D(target, Vector2.zero);
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-                if (hit.collider.isTrigger && hit.collider.CompareTag("Map")) // 부딪히는 콜라이더 없을 때, 즉 닿는 물체 없는 곳에서 생성 가능
+                if (hit.collider==null&&IsInMap(target)) // 부딪히는 콜라이더 없을 때, 맵 안일때만 유닛 생성
                 {
                     GenerateUnit(target);
                 }
@@ -71,8 +65,20 @@ public class UIController : MonoBehaviour {
             }
 
         } //눌린 unitbutton이 있으면 해당 유닛 생성
+        hotSpot = camera.ScreenToWorldPoint(Input.mousePosition);
+        if (IsInMap(hotSpot))
+        {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
+        else
+        {
+            Cursor.SetCursor(null, hotSpot, cursorMode);
+        }
         
 	}
+    bool IsInMap(Vector3 target){ 
+        return xPosMin < target.x && target.x < xPosMax && yPosMin < target.y && target.y < yPosMax;
+    }//맵 안에 범위인지 리턴하는 함수
 
     void GenerateUnit(Vector3 target){
         target.z = 0; //z를 0으로 만들어야함, screenToWorld가 z를 -10으로 만듬
