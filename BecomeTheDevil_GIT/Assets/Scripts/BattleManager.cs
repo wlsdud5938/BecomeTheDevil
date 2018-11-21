@@ -37,18 +37,7 @@ public class BattleManager : Singleton<BattleManager> {
 
 
 	}
-    public void HumanPlayerChop(int ver, int hor)
-    {
-        player = GameObject.FindWithTag("Player");
-        humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
-        Instantiate(bullet, player.transform.position, Quaternion.identity);
-
-    }
-    public void SlimePlayerChop(int ver, int hor)
-    {
-        player = GameObject.FindWithTag("Player");
-        humanPlayerBulletDirY = ver; humanPlayerBulletDirX = hor;
-        Instantiate(sword, player.transform.position, Quaternion.identity);
-    }
+    
+    
     
 }

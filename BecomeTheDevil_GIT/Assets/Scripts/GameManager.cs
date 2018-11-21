@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
 
         if(currNumOfEnemyes==0)
             enemySpawnTimer += Time.deltaTime;
@@ -42,6 +43,11 @@ public class GameManager : Singleton<GameManager>
         // 적 다 잡고 유저한테 일정 시간 후에 적 스폰
 
         if(enemySpawnTimer >= nextWaveTime)
+=======
+        //Debug.Log(currNumOfEnemyes);
+        enemySpawnTimer += Time.deltaTime;
+        if(enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes==0)
+>>>>>>> 0476cba49ec0dddd94d477970d7d00855c429fb0
         {
             currNumOfEnemyes = numOfEnemyPerWave; //웨이브 생성 순간, 현재 적 숫자를 웨이브당 적 생성 숫자로 초기화
             enemySpawnTimer = 0.0f;

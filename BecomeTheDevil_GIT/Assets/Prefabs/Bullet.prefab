@@ -50,7 +50,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1779715901435034}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911d8591430fc48b69637a0e80c09c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 20
-  bulletSpeed: 3
-  bulletRange: 3
 --- !u!212 &212336390890270042
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Enemy2 : MonoBehaviour {
     [SerializeField]
     private string projectileType; // 발사체를 배틀매니져에서 고름.
-
-    [SerializeField]
-    private float projectileSpeed;              // 발사체 속도.
+    
+    public float projectileSpeed = 10f;              // 발사체 속도.
 
     [SerializeField]
     private int damage;                         // 데미지
@@ -15,43 +15,32 @@ public class Enemy2 : MonoBehaviour {
     // 공격 속도
     private bool canAttack = true; // 공격속도를 세팅하기 위해
     public float attackTimer = 0.1f;
-    public float attackCooldown = 5.0f;
-
-    public GameObject target;   // 타겟. 유니티에서 설정.
+    public float attackCooldown = 1.0f;
+    public float attackSpeed = 3.0f;
+    
+    public Statu unitTarget;
+    private Queue<Statu> unit = new Queue<Statu>();
     bool isSearch = false;      // 적이 타겟을 발견했을 때.
-
-    public GameObject Target
+    private Animator myAnimator; // 적의 공격 애니메이션
+    
+    public float Damage
     {
         get
         {
-            return target;
+            return damage;
         }
     }
+    
 
     // Use this for initialization
     void Start () {
-		
+        myAnimator = transform.parent.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Search();       // 타겟을 찾음.
-        if (isSearch)   // 타겟이 일정거리에 들어오면
-        {
-            Targetting();   // 타게팅 후 공격.
-        }
+        Targetting();
 	}
-
-    void Search()
-    {
-        float distance = Vector3.Distance(target.transform.position, transform.position);
-        //거리가 가까워지면 탐색에 걸림
-        if (distance <= 10)
-            isSearch = true;
-        else if (distance > 10)
-            isSearch = false;
-    }
-    
     private void Targetting()
     {
         if (!canAttack)     // 공격할 수 없다면
@@ -65,11 +54,21 @@ public class Enemy2 : MonoBehaviour {
             }
         }
 
-        if (target != null /*&& target.IsActive*/)
+        if (unit.Count > 0 && unitTarget == null)   // target == null 한 적이 원 밖으로 나갈 때.
+        {
+            unitTarget = unit.Dequeue();      // Queue에 있는 걸 빼면서 아직 원 안에 있는 적을 타겟으로 지정.
+            //Debug.Log("타겟 지정");
+            //Debug.Log(unitTarget);
+        }
+
+        if (unitTarget != null /*&& target.IsActive*/)
         {
             if (canAttack)
             {
                 Attack();
+                myAnimator.SetBool("EnemyChop", true);
+                myAnimator.SetBool("EnemyIdle", false);
+                myAnimator.SetBool("EnemyRun", false);
                 canAttack = false;
             }
         }
@@ -78,10 +77,29 @@ public class Enemy2 : MonoBehaviour {
     private void Attack()
     {
         // 발사체 생성
-        Projectile projectile = BattleManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
+        EnemySword projectile = BattleManager.Instance.Pool.GetObject(projectileType).GetComponent<EnemySword>();
         // 발사체 위치를 타워의 위치로.
-        projectile.transform.position = transform.position;
+        projectile.transform.position = transform.parent.position;
         // 발사체 초기화
         projectile.Initialize(this);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Unit" || other.tag == "Player")
+        {
+            unit.Enqueue(other.GetComponent<Statu>());
+            Debug.Log("유닛 들어옴");
+            Debug.Log(unit.Count);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Unit" || other.tag == "Player")
+        {
+            unitTarget = null;
+            Debug.Log("유닛 나감");
+            Debug.Log(unit.Count);
+        }
     }
 }

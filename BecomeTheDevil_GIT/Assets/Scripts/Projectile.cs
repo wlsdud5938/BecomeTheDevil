@@ -7,9 +7,6 @@ public class Projectile : MonoBehaviour
     // 타워 관련.
     private Enemy target;
     private Tower parent;   // 발사체를 가지고 있는 타워.
-    // 적 관련.
-    private GameObject target2;
-    private Enemy2 parentEnemy;  // 발사체를 가지고 있는 적.
     
 
     // Use this for initialization
@@ -29,18 +26,12 @@ public class Projectile : MonoBehaviour
         // 타워에서 정해놓은 타겟으로 초기화.
         this.target = parent.Target;
         this.parent = parent;
-    }
-
-    public void Initialize(Enemy2 parentEnemy)
-    {
-        // 타워에서 정해놓은 타겟으로 초기화.
-        this.target2 = parentEnemy.Target;
-        this.parentEnemy = parentEnemy;
+        
     }
 
     private void MoveToTarget()
     {
-        if (target != null && target.IsActive)
+        if (target != null /*&& target.IsActive*/)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.ProjectileSpeed);
             // 방향이 있는 발사체일 경우 적 방향으로 회전시킴. 
@@ -51,7 +42,7 @@ public class Projectile : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             // Projectile 이 오른쪽으로 향해 있어야 앞이 적쪽으로 향함.
         }
-        else if (!target.IsActive || target == null)  // 타겟이 죽으면 발사체 없앰.
+        else if (/*!target.IsActive ||*/ target == null)  // 타겟이 죽으면 발사체 없앰.
         {
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
@@ -74,6 +65,8 @@ public class Projectile : MonoBehaviour
             //Debug.Log("Hit Enemy");
         }
     }
+
+
 
 
 }
