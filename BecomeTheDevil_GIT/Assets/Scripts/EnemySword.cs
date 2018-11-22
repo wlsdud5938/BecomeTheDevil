@@ -17,11 +17,6 @@ public class EnemySword : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(playerTarget != null)
-        {
-            MoveToPlayerTarget();
-        }*/
         if(unitTarget != null)
         {
             MoveToUnitTarget();
@@ -32,33 +27,10 @@ public class EnemySword : MonoBehaviour {
     {
         // 총알을 쏜 적으로 초기화.
         this.parent = parent;
-        //this.playerTarget = parent.playerTarget;
         this.unitTarget = parent.unitTarget;
         //bulletTime = parent.Range / parent.BulletSpeed;
-        // 나중에 애니메이션 바꾸면 parent.Cur_hor 이런식으로 바꾸자.
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(parent.Cur_hor * parent.attackSpeed, parent.Cur_ver * parent.attackSpeed);
     }
     
-    /*
-    private void MoveToPlayerTarget()
-    {
-        if (playerTarget != null)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * parent.projectileSpeed);
-            // 방향이 있는 발사체일 경우 적 방향으로 회전시킴. 
-            Vector2 dir = playerTarget.transform.position - transform.position;
-
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            // Projectile 이 오른쪽으로 향해 있어야 앞이 적쪽으로 향함.
-        }
-        else if (/*!playerTarget.IsActive ||*//* playerTarget == null)  // 타겟이 죽으면 발사체 없앰.
-        {
-            BattleManager.Instance.Pool.ReleaseObject(gameObject);
-        }
-    }*/
-
     private void MoveToUnitTarget()
     {
         if (unitTarget != null)
@@ -84,13 +56,13 @@ public class EnemySword : MonoBehaviour {
         if (other.tag == "Player" || other.tag == "Unit")
         {
              // 타겟에게 데미지를 주고 발사체를 없앰.
-             other.GetComponent<Statu>().TakeDamage(parent.Damage);
+             other.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
              BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
     }
-    
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         BattleManager.Instance.Pool.ReleaseObject(gameObject);
-    }
+    }*/
 }

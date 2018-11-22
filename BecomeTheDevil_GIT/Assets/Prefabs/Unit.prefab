@@ -250,7 +250,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021419948155122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0, z: 0}
+  m_LocalPosition: {x: -1.39, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 224921901047160162}
@@ -718,7 +718,7 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
-  HPSlider: {fileID: 0}
+  HPSlider: {fileID: 114090770953055656}
   maxHP: 100
   versionType: 0
 --- !u!114 &114873050402678558

@@ -8,9 +8,7 @@ public class Enemy2 : MonoBehaviour {
     private string projectileType; // 발사체를 배틀매니져에서 고름.
     
     public float projectileSpeed = 10f;              // 발사체 속도.
-
-    [SerializeField]
-    private int damage;                         // 데미지
+    
 
     // 공격 속도
     private bool canAttack = true; // 공격속도를 세팅하기 위해
@@ -23,13 +21,6 @@ public class Enemy2 : MonoBehaviour {
     bool isSearch = false;      // 적이 타겟을 발견했을 때.
     private Animator myAnimator; // 적의 공격 애니메이션
     
-    public float Damage
-    {
-        get
-        {
-            return damage;
-        }
-    }
     
 
     // Use this for initialization
@@ -88,8 +79,8 @@ public class Enemy2 : MonoBehaviour {
         if (other.tag == "Unit" || other.tag == "Player")
         {
             unit.Enqueue(other.GetComponent<Statu>());
-            Debug.Log("유닛 들어옴");
-            Debug.Log(unit.Count);
+            //Debug.Log("유닛 들어옴");
+            //Debug.Log(unit.Count);
         }
     }
 
@@ -98,8 +89,8 @@ public class Enemy2 : MonoBehaviour {
         if (other.tag == "Unit" || other.tag == "Player")
         {
             unitTarget = null;
-            Debug.Log("유닛 나감");
-            Debug.Log(unit.Count);
+            //Debug.Log("유닛 나감");
+            //Debug.Log(unit.Count);
         }
     }
 }

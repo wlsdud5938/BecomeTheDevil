@@ -120,7 +120,7 @@ public class Tower : MonoBehaviour
         if (other.tag == "Enemy")
         {
             enemy.Enqueue(other.GetComponent<Enemy>());
-            Debug.Log("SB");
+            Debug.Log("적 들어옴");
             Debug.Log(enemy.Count);
         }
     }
@@ -129,7 +129,7 @@ public class Tower : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("나감");
+            Debug.Log("적 나감");
             Debug.Log(enemy.Count);
             target = null;      // range 밖으로 나가면 target 해제
         }

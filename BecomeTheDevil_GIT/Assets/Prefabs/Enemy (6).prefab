@@ -757,7 +757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: EnemySword
   projectileSpeed: 10
-  damage: 0
   attackTimer: 0.1
   attackCooldown: 1
   attackSpeed: 3
