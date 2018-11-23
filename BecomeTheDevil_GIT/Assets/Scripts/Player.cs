@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MovingUnit {
+public class Player : MonoBehaviour
+{
     public int countItem = 0;
     public bool haveKey = false;
 
+    int horizontal = 0;
+    int vertical = 0;
 
 
     bool isHuman=true;
@@ -17,21 +20,19 @@ public class Player : MovingUnit {
     Animator animator;
 
 
-    protected override  void Start () {
+    protected void Start () {
         statu = GetComponent<Statu>();
         animator = GetComponent<Animator>();
         animator.SetFloat("DirX", cur_hor);
         animator.SetFloat("DirY", cur_ver);
         animator.SetBool("isHuman", isHuman);
-        base.Start();
+
         attTimer += 0.0f;
     }
 
 	
 	// Update is called once per frame
 	void Update () {
-        int horizontal = 0;
-        int vertical = 0;
         attTimer += Time.deltaTime;
         animator.SetBool("isIdle", true);
         animator.SetBool("isMoving", false);
@@ -75,18 +76,17 @@ public class Player : MovingUnit {
             animator.SetBool("isMoving", true);
             animator.SetBool("isIdle", false);
 
-            AttemptMove(horizontal * statu.movoingSpeed * Time.deltaTime, vertical * statu.movoingSpeed * Time.deltaTime);
-
         }
 
-       
-    }
-   
-
-    protected override void AttemptMove(float xDir, float yDir){ 
-        base.AttemptMove(xDir, yDir);
+        Move();
     }
 
+    void Move()
+    {
+        transform.Translate(Vector3.right * statu.movoingSpeed * Time.smoothDeltaTime * horizontal, 0);
+        transform.Translate(Vector3.up * statu.movoingSpeed * Time.smoothDeltaTime * vertical, 0);
+
+    }
 
 
 }

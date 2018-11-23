@@ -52,6 +52,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: mini
+    uniqueID: 2388275123
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

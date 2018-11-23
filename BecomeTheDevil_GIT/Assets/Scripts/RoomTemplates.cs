@@ -15,21 +15,21 @@ public class RoomTemplates : MonoBehaviour
     public GameObject closedRoom_Right;
     public GameObject closedRoom_Left;
 
-    public GameObject[] TBLR;
-    public GameObject[] TLR;
-    public GameObject[] TBL;
-    public GameObject[] TBR;
-    public GameObject[] TB;
-    public GameObject[] TL;
-    public GameObject[] TR;
-    public GameObject[] T;
-    public GameObject[] BLR;
-    public GameObject[] BL;
-    public GameObject[] BR;
-    public GameObject[] B;
-    public GameObject[] LR;
-    public GameObject[] L;
-    public GameObject[] R;
+    public List <GameObject> TBLR;
+    public List <GameObject> TLR;
+    public List<GameObject> TBL;
+    public List<GameObject> TBR;
+    public List<GameObject> TB;
+    public List<GameObject> TL;
+    public List<GameObject> TR;
+    public List<GameObject> T;
+    public List<GameObject> BLR;
+    public List<GameObject> BL;
+    public List<GameObject> BR;
+    public List<GameObject> B;
+    public List<GameObject> LR;
+    public List<GameObject> L;
+    public List<GameObject> R;
     
 
     public GameObject items;
@@ -51,6 +51,8 @@ public class RoomTemplates : MonoBehaviour
     bool debugMd = false;
     public bool doorTrigger = false;
     GameObject nowPlayer;
+    public GameObject currentPlayer;
+    public GameObject currentEnemy;
 
     public int[,] nodeTable = new int[30,30];
 
@@ -105,6 +107,7 @@ public class RoomTemplates : MonoBehaviour
         if (spawnedBoss == true )
         {
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
+            currentPlayer.transform.position = currentMapnode.transform.position;
         }
         if (doorTrigger == true)
             doorTrigger = false;
