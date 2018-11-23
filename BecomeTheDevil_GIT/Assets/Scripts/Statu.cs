@@ -11,12 +11,12 @@ public class Statu : MonoBehaviour {
     public Slider HPSlider;
     public float maxHP = 100;            //최대 hp
     public  int versionType;          // tag==Enemy인 경우에만 사용. gameManager에서 instantiate할때 초기화
+    public float currentHP;          // 현재 채력 
 
 
 
 
 
-    float currentHP;          // 현재 채력 
     bool isEnemy;             //tag가 적인지 확인
     GameManager gameManager; //코드량 줄이기위해 instance 캐싱
 

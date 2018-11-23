@@ -13,9 +13,14 @@ public class UIController : MonoBehaviour {
     public float yPosMax = -10, yPosMin = -19;
 
     //마우스 바꿔야함
-    public Texture2D cursorTexture; 
+    public Texture2D inMapCursor;  //맵 안에서 커서
+    public Texture2D outMapCursor; //맵 밖에서 커서
+    public Texture2D[] canBuildUnitCursor;  //유닛 생성하려고 좌표 찍으려 할 때 가능한 위치일 때 커서
+    public Texture2D[] cantBuildUnitCursor; //유닛 생성하려고 좌표 찍으려 할 때 불가능한 위치일 때 커서
+
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+    public Vector2 mouseTarget;
 
     Camera camera; //메인카메라
     GameManager gameManager; 
@@ -45,35 +50,57 @@ public class UIController : MonoBehaviour {
         gameManager = GameManager. Instance; //게임 매니저 캐싱
 
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
+        mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 (카메라를 기준)
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
-        {
-            //1: 여기서 마우스 커서 모양 바꾸고
-            if (Input.GetMouseButtonDown(0))  //유저가 유닛 버튼을 클릭하고, 생성하려는 좌표를 클릭한 상황
-            {
-                Vector3 target = camera.ScreenToWorldPoint(Input.mousePosition);  //마우스좌표 메인카메라 기준 좌표로 변환
-                Ray2D ray = new Ray2D(target, Vector2.zero);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-                if (hit.collider==null&&IsInMap(target)) // 부딪히는 콜라이더 없을 때, 맵 안일때만 유닛 생성
+        {  
+            Ray2D ray = new Ray2D(mouseTarget, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
+
+            if (hit.collider == null && IsInMap(mouseTarget))
+            {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
+
+                hotSpot.x = canBuildUnitCursor[idxOfClickedUB].width / 2;
+                hotSpot.y = canBuildUnitCursor[idxOfClickedUB].height / 2;
+                Cursor.SetCursor(canBuildUnitCursor[idxOfClickedUB], hotSpot, cursorMode);
+                //유닛 생성할 수 있는 커서로 렌더링, 핫스팟은 유저가 클릭했을때 찍힐 좌표
+
+                if (Input.GetMouseButton(0))
                 {
-                    GenerateUnit(target);
-                }
+                    GenerateUnit(mouseTarget);
+                }//유닛 생성
 
-                else Debug.Log(hit.collider); //여기서 생성 못한다고 알려줌
-
+            }
+            else
+            {//유닛 생성 불가능 한 상태
+                hotSpot.x = cantBuildUnitCursor[idxOfClickedUB].width / 2;
+                hotSpot.y = cantBuildUnitCursor[idxOfClickedUB].height / 2;
+                Cursor.SetCursor(cantBuildUnitCursor[idxOfClickedUB], hotSpot, cursorMode);
+                //유닛 생성 불가능 커서a로 렌더링
             }
 
         } //눌린 unitbutton이 있으면 해당 유닛 생성
-        hotSpot = camera.ScreenToWorldPoint(Input.mousePosition);
-        if (IsInMap(hotSpot))
-        {
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-        }
-        else
-        {
-            Cursor.SetCursor(null, hotSpot, cursorMode);
-        }
+
+        else 
+        { 
+            if (IsInMap(mouseTarget))
+            {
+                hotSpot.x = inMapCursor.width / 2;
+                hotSpot.y = inMapCursor.height / 2;
+                Cursor.SetCursor(inMapCursor, hotSpot, cursorMode);
+                // 마우스 좌표 맵안에 일 때, 커서는 과녁 커서
+            }
+            else
+            {
+                hotSpot.x = 0;
+                hotSpot.y = 0;
+                Cursor.SetCursor(outMapCursor, hotSpot, cursorMode);
+                //마우스 좌표 맵 밖일 때, 커서는 ui 마우스 커
+            }
+        }//유닛 버튼이 클릭이 아닌 상황
         
 	}
     bool IsInMap(Vector3 target){ 
