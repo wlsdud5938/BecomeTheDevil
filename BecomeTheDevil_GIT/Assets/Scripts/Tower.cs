@@ -109,10 +109,10 @@ public class Tower : MonoBehaviour
         // 발사체 생성
         Projectile projectile = BattleManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
         // 발사체 위치를 타워의 위치로.
-        projectile.transform.position = transform.position;
+        projectile.transform.position = transform.parent.GetComponent<Statu>().middlePoint.position;
         // 발사체 초기화
         projectile.Initialize(this);
-        Debug.Log("공격!");
+        //Debug.Log("공격!");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -120,8 +120,8 @@ public class Tower : MonoBehaviour
         if (other.tag == "Enemy")
         {
             enemy.Enqueue(other.GetComponent<Enemy>());
-            Debug.Log("적 들어옴");
-            Debug.Log(enemy.Count);
+            //Debug.Log("적 들어옴");
+            //Debug.Log(enemy.Count);
         }
     }
 
@@ -129,8 +129,8 @@ public class Tower : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("적 나감");
-            Debug.Log(enemy.Count);
+            //Debug.Log("적 나감");
+            //Debug.Log(enemy.Count);
             target = null;      // range 밖으로 나가면 target 해제
         }
     }

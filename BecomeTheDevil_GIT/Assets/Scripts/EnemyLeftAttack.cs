@@ -14,10 +14,10 @@ public class EnemyLeftAttack : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" || other.tag == "Unit")
+        if (other.transform.parent.tag == "Player" || other.transform.parent.tag == "Unit")
         {
-            myAnimator.SetFloat("AttackX", -1.0f);
-            myAnimator.SetFloat("AttackY", 0.0f);
+            myAnimator.SetFloat("AttackX", 0.6f);
+            //myAnimator.SetFloat("AttackY", 0.0f);
         }
     }
 }

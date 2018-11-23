@@ -11,14 +11,10 @@ public class Player : MovingUnit {
 
     bool isHuman=true;
     Statu statu; // 스탯 
-    int cur_hor=0, cur_ver=1; // 총쏠 방향 결정하기 위함
+    int cur_hor=0, cur_ver=0; // 총쏠 방향 결정하기 위함
     enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
     float attTimer; //어택 타이머
     Animator animator;
-   
-
-
-
 
 
     protected override  void Start () {

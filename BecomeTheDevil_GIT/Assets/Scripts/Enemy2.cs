@@ -59,6 +59,7 @@ public class Enemy2 : MonoBehaviour {
                 Attack();
                 myAnimator.SetBool("EnemyChop", true);
                 myAnimator.SetBool("EnemyIdle", false);
+                myAnimator.SetBool("EnemyHit", false);
                 myAnimator.SetBool("EnemyRun", false);
                 canAttack = false;
             }
@@ -70,7 +71,7 @@ public class Enemy2 : MonoBehaviour {
         // 발사체 생성
         EnemySword projectile = BattleManager.Instance.Pool.GetObject(projectileType).GetComponent<EnemySword>();
         // 발사체 위치를 타워의 위치로.
-        projectile.transform.position = transform.parent.position;
+        projectile.transform.position = transform.parent.GetComponent<Statu>().middlePoint.position;
         // 발사체 초기화
         projectile.Initialize(this);
     }

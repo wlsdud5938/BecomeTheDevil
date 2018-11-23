@@ -173,7 +173,7 @@ public class Enemy : MonoBehaviour
         target = closest;
     }
 
-    protected virtual void AnimatorOfEnemy(float direction, string animators)
+    public void AnimatorOfEnemy(float direction, string animators)
     {     
         if (animators == "EnemyRun")
         {
