@@ -337,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centry: 0
   parentRoom: 0
+  realCentry: 0
 --- !u!114 &114465257738668304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -381,7 +382,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905141867406724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

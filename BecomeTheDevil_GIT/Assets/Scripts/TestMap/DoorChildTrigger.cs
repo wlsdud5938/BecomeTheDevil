@@ -31,7 +31,16 @@ public class DoorChildTrigger : MonoBehaviour {
     {
         if (templates.doorTrigger == false && other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            templates.ChangeCurrentRoom(doorNum, other.gameObject);
+            if (other.CompareTag("Enemy"))
+            {
+                Destroy(other.gameObject.GetComponent<NavMeshAgent2D>());
+                templates.ChangeCurrentRoomEnemy(doorNum, other.gameObject);
+                other.GetComponent<EnemyAITest>().enemyPathDoor.RemoveAt(0);
+                other.GetComponent<EnemyAITest>().isMove = true;
+
+            }
+            if (other.CompareTag("Player"))
+                templates.ChangeCurrentRoom(doorNum, other.gameObject);
             templates.doorTrigger = true;
         }
         /*if (map.doorTrigger == false && other.CompareTag("Player") || other.CompareTag("Enemy"))

@@ -30,7 +30,8 @@ public class RoomTemplates : MonoBehaviour
     public List<GameObject> LR;
     public List<GameObject> L;
     public List<GameObject> R;
-    
+    public List<GameObject> enemyPath;
+    public List<GameObject> enemyPathDoor;
 
     public GameObject items;
     public GameObject keyItems;
@@ -52,7 +53,10 @@ public class RoomTemplates : MonoBehaviour
     public bool doorTrigger = false;
     GameObject nowPlayer;
     public GameObject currentPlayer;
+    public GameObject currentBoss;
     public GameObject currentEnemy;
+    GameObject bosss;
+    bool isPathfind = false;
 
     public int[,] nodeTable = new int[30,30];
 
@@ -62,6 +66,7 @@ public class RoomTemplates : MonoBehaviour
     }
     void Update()
     {
+
         timer += Time.deltaTime;
         if (waitTime <= 0 && spawnedBoss == false)
         {
@@ -73,11 +78,10 @@ public class RoomTemplates : MonoBehaviour
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     else
                     {
-                        /*Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
+                        Instantiate(boss, rooms[rooms.Count-1].GetComponent<MapNode>().realMap.transform.position, Quaternion.identity);
+                        bosss = Instantiate(currentBoss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
 
-                        int targetIndex = Random.Range(1, rooms.Count - 2);
-                        Instantiate(potal, rooms[targetIndex].transform.position, Quaternion.identity);
-                        potalPosition = targetIndex;*/
+
                         playerPosition.Set(currentMapnode.GetComponent<MapNode>().realMap.transform.position.x, currentMapnode.GetComponent<MapNode>().realMap.transform.position.y, currentMapnode.GetComponent<MapNode>().realMap.transform.position.z);
                         nowPlayer = Instantiate(player, playerPosition, Quaternion.identity);
 
@@ -106,11 +110,62 @@ public class RoomTemplates : MonoBehaviour
         }
         if (spawnedBoss == true )
         {
+            currentMapnode.transform.Find("mapimg").GetComponent<SpriteRenderer>().enabled = true;
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
+            if(currentMapnode == rooms[rooms.Count - 1])
+                bosss.GetComponent<SpriteRenderer>().enabled = true;
             currentPlayer.transform.position = currentMapnode.transform.position;
         }
         if (doorTrigger == true)
             doorTrigger = false;
+        if(spawnedBoss == true && isPathfind == false)
+        {
+            FindPath();
+            isPathfind = true;
+        }
+
+    }
+
+    void FindPath()
+    {
+        GameObject bossRoom = rooms[rooms.Count - 1];
+        GameObject currentRoom = bossRoom;
+        enemyPath.Add(bossRoom);
+        int nowCentry = bossRoom.GetComponent<AddRoom>().realCentry;
+        while (nowCentry != 0)
+        {
+            if (currentRoom.GetComponent<MapNode>().upNode != null && currentRoom.GetComponent<MapNode>().upNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().upNode);
+                enemyPathDoor.Insert(0, currentRoom.GetComponent<MapNode>().upNode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").transform.Find("BDoor").gameObject);
+                currentRoom = currentRoom.GetComponent<MapNode>().upNode;
+            }
+            else if (currentRoom.GetComponent<MapNode>().downNode != null && currentRoom.GetComponent<MapNode>().downNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().downNode);
+                enemyPathDoor.Insert(0, currentRoom.GetComponent<MapNode>().downNode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").transform.Find("TDoor").gameObject);
+
+                currentRoom = currentRoom.GetComponent<MapNode>().downNode;
+
+            }
+            else if (currentRoom.GetComponent<MapNode>().leftNode != null && currentRoom.GetComponent<MapNode>().leftNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().leftNode);
+                enemyPathDoor.Insert(0, currentRoom.GetComponent<MapNode>().leftNode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").transform.Find("RDoor").gameObject);
+
+                currentRoom = currentRoom.GetComponent<MapNode>().leftNode;
+
+            }
+            else if (currentRoom.GetComponent<MapNode>().rightNode != null && currentRoom.GetComponent<MapNode>().rightNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().rightNode);
+                enemyPathDoor.Insert(0, currentRoom.GetComponent<MapNode>().rightNode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").transform.Find("LDoor").gameObject);
+
+                currentRoom = currentRoom.GetComponent<MapNode>().rightNode;
+
+            }
+            nowCentry--;
+        }
     }
 
     public void ChangeCurrentRoom(int doorNum, GameObject other)
@@ -146,6 +201,33 @@ public class RoomTemplates : MonoBehaviour
             currentMapnode = currentMapnode.GetComponent<MapNode>().rightNode;
             other.transform.position = new Vector3(currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").transform.position.x + 1
                 , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").transform.position.y, 0);
+        }
+    }
+    public void ChangeCurrentRoomEnemy(int doorNum, GameObject other)
+    {
+        if (doorNum == 1)
+        {
+            other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().upNode;
+            other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").transform.position.x
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").transform.position.y + 1.5F, 0);
+        }
+        else if (doorNum == 2)
+        {
+            other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().downNode;
+            other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").transform.position.x
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").transform.position.y - 1.5F, 0);
+        }
+        else if (doorNum == 3)
+        {
+            other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().leftNode;
+            other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").transform.position.x - 1.5f
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").transform.position.y, 0);
+        }
+        else if (doorNum == 4)
+        {
+            other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().rightNode;
+            other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").transform.position.x + 1.5f
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").transform.position.y, 0);
         }
     }
 }
