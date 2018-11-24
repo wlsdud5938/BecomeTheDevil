@@ -35,7 +35,7 @@ public class MapPath : MonoBehaviour {
         }
         else if (doorNum == 3)
         {
-            currentMapnode = currentMapnode.GetComponent<MapNode>().leftNode;
+            currentMapnode = pathRooms[3];
             other.transform.position = new Vector3(currentMapnode.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").transform.position.x - 1
                 , currentMapnode.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").transform.position.y, 0);
         }

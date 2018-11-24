@@ -16,5 +16,5 @@ public class LoadingOn : MonoBehaviour {
  
         if (isOn == true)
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
-	}
+    }
 }

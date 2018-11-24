@@ -13,7 +13,12 @@ public class Statu : MonoBehaviour {
     public  int versionType;          // tag==Enemy인 경우에만 사용. gameManager에서 instantiate할때 초기화
     public float currentHP;          // 현재 채력 
 
+    // 애니메이션의 pivot이 bottom center로 잡혀있어서 오브젝트의 변경된 중심점.
+    //public Vector3 offset = new Vector3(0, 0.5f, 0);
+    //public Vector3 changeTransform;     
 
+    public Transform middlePoint;       // transform.position 대신 이걸 쓰도록.
+    bool isPlayer = false;
 
  
     bool isEnemy;             //tag가 적인지 확인
@@ -23,6 +28,7 @@ public class Statu : MonoBehaviour {
     {
         gameManager = GameManager.Instance;
         isEnemy = CompareTag("Enemy");
+        isPlayer = CompareTag("Player");
 
         if (isEnemy)
         {
@@ -33,9 +39,12 @@ public class Statu : MonoBehaviour {
         }//에너미인 경우, 웨이브 라운드에 숫자에 따라 강해짐 최대체력이 달라짐
 
         currentHP = maxHP;          // 처음 생성됐을 때 최대 체력을 갖고 태어남.
-        
-        HPSlider.maxValue = maxHP;
-        HPSlider.value = currentHP;
+
+        if (!isPlayer)
+        {
+            HPSlider.maxValue = maxHP;
+            HPSlider.value = currentHP;
+        }
     }
 	
 	// Update is called once per frame
@@ -46,7 +55,6 @@ public class Statu : MonoBehaviour {
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
-        HPSlider.value = currentHP;
         if (currentHP <= 0)
         {
             if (isEnemy)

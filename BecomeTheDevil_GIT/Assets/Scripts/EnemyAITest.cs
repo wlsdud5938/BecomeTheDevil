@@ -4,7 +4,9 @@ using System.Collections;
 public class EnemyAITest : MonoBehaviour
 {
     public bool isMove = false;
-    MapPath map;
+    public GameObject path;
+    public MapPath map;
+    Vector3 w;
 
     private void Start()
     {
@@ -13,18 +15,20 @@ public class EnemyAITest : MonoBehaviour
     }
     void Update()
     {
-        if (map.currentMapnode.transform.Find("Path"))
-        {
-            Vector3 w = map.currentMapnode.transform.Find("Path").gameObject.transform.position;
-            GetComponent<NavMeshAgent2D>().destination = w;
-            Debug.Log(w.ToString());
-        }
         if (isMove)
         {
             isMove = false;
             gameObject.AddComponent<NavMeshAgent2D>();
 
         }
+        if (map.currentMapnode.transform.Find("Path"))
+        {
+            path = map.currentMapnode.transform.Find("Path").gameObject;
+            w = map.currentMapnode.transform.Find("Path").gameObject.transform.position;
+            GetComponent<NavMeshAgent2D>().destination = w;
+            //Debug.Log(w.ToString());
+        }
+        
     }
 
 }

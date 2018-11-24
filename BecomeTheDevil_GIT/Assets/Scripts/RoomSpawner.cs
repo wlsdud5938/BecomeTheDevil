@@ -162,78 +162,107 @@ public class RoomSpawner : MonoBehaviour
     {
         if(room.GetComponent<MapNode>() != null && room.GetComponent<MapNode>().mapCode == 1)
         {
-            rand = Random.Range(0, templates.R.Length);
+            rand = Random.Range(0, templates.R.Count);
             room.GetComponent<MapNode>().realMap = templates.R[rand];
+            templates.R.Remove(templates.R[rand]);
         }
         else if (room.GetComponent<MapNode>().mapCode == 10)
         {
-            rand = Random.Range(0, templates.L.Length);
+            rand = Random.Range(0, templates.L.Count);
             room.GetComponent<MapNode>().realMap = templates.L[rand];
+            templates.L.Remove(templates.L[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 11)
         {
-            rand = Random.Range(0, templates.LR.Length);
+            rand = Random.Range(0, templates.LR.Count);
             room.GetComponent<MapNode>().realMap = templates.LR[rand];
+            templates.LR.Remove(templates.LR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 100)
         {
-            rand = Random.Range(0, templates.B.Length);
+            rand = Random.Range(0, templates.B.Count);
             room.GetComponent<MapNode>().realMap = templates.B[rand];
+            templates.B.Remove(templates.B[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 101)
         {
-            rand = Random.Range(0, templates.BR.Length);
+            rand = Random.Range(0, templates.BR.Count);
             room.GetComponent<MapNode>().realMap = templates.BR[rand];
+            templates.BR.Remove(templates.BR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 110)
         {
-            rand = Random.Range(0, templates.BL.Length);
+            rand = Random.Range(0, templates.BL.Count);
             room.GetComponent<MapNode>().realMap = templates.BL[rand];
+            templates.BL.Remove(templates.BL[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 111)
         {
-            rand = Random.Range(0, templates.BLR.Length);
+            rand = Random.Range(0, templates.BLR.Count);
             room.GetComponent<MapNode>().realMap = templates.BLR[rand];
+            templates.BLR.Remove(templates.BLR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1000)
         {
-            rand = Random.Range(0, templates.T.Length);
+            rand = Random.Range(0, templates.T.Count);
             room.GetComponent<MapNode>().realMap = templates.T[rand];
+            templates.T.Remove(templates.T[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1001)
         {
-            rand = Random.Range(0, templates.TR.Length);
+            rand = Random.Range(0, templates.TR.Count);
             room.GetComponent<MapNode>().realMap = templates.TR[rand];
+            templates.TR.Remove(templates.TR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1010)
         {
-            rand = Random.Range(0, templates.TL.Length);
+            rand = Random.Range(0, templates.TL.Count);
             room.GetComponent<MapNode>().realMap = templates.TL[rand];
+            templates.TL.Remove(templates.TL[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1011)
         {
-            rand = Random.Range(0, templates.TLR.Length);
+            rand = Random.Range(0, templates.TLR.Count);
             room.GetComponent<MapNode>().realMap = templates.TLR[rand];
+            templates.TLR.Remove(templates.TLR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1100)
         {
-            rand = Random.Range(0, templates.TB.Length);
+            rand = Random.Range(0, templates.TB.Count);
             room.GetComponent<MapNode>().realMap = templates.TB[rand];
+            templates.TB.Remove(templates.TB[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1101)
         {
-            rand = Random.Range(0, templates.TBR.Length);
+            rand = Random.Range(0, templates.TBR.Count);
             room.GetComponent<MapNode>().realMap = templates.TBR[rand];
+            templates.TBR.Remove(templates.TBR[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1110)
         {
-            rand = Random.Range(0, templates.TBL.Length);
+            rand = Random.Range(0, templates.TBL.Count);
             room.GetComponent<MapNode>().realMap = templates.TBL[rand];
+            templates.TBL.Remove(templates.TBL[rand]);
+
         }
         else if (room.GetComponent<MapNode>().mapCode == 1111)
         {
-            rand = Random.Range(0, templates.TBLR.Length);
+            rand = Random.Range(0, templates.TBLR.Count);
             room.GetComponent<MapNode>().realMap = templates.TBLR[rand];
+            templates.TBLR.Remove(templates.TBLR[rand]);
+
         }
     }
 

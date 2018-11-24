@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class UIController : MonoBehaviour {
 
     //타워 버튼 클릭하면 유닛 버튼 생서
@@ -52,8 +53,7 @@ public class UIController : MonoBehaviour {
         spawnPos.y = towerButton.transform.position.y + towerButton.transform.GetComponent<RectTransform>().rect.height+17;
         //x,y 계산 법
 
-        cloneTriangleImage = Instantiate(triangleImage, triangleImage.transform.position, Quaternion.identity);
-        cloneTriangleImage.transform.SetParent(gameObject.transform, false);
+
         gameManager = GameManager. Instance; //게임 매니저 캐싱
 
     }
@@ -62,12 +62,14 @@ public class UIController : MonoBehaviour {
     {
         mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 (카메라를 기준)
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
-        {  
+        {
+            Debug.Log(mouseTarget);
             Ray2D ray = new Ray2D(mouseTarget, Vector2.zero);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
 
-            if (hit.collider == null && IsInMap(mouseTarget))
+            Debug.Log(hit.point.ToString());
+            if (hit.rigidbody == null && IsInMap(mouseTarget))
             {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
 
                 hotSpot.x = canBuildUnitCursor[idxOfClickedUB].width / 2;
@@ -77,6 +79,7 @@ public class UIController : MonoBehaviour {
 
                 if (Input.GetMouseButton(0))
                 {
+
                     GenerateUnit(mouseTarget);
                 }//유닛 생성
 
@@ -110,8 +113,9 @@ public class UIController : MonoBehaviour {
         }//유닛 버튼이 클릭이 아닌 상황
         
 	}
-    bool IsInMap(Vector3 target){ 
+    bool IsInMap(Vector3 target){
         return xPosMin < target.x && target.x < xPosMax && yPosMin < target.y && target.y < yPosMax;
+        //return true;
     }//맵 안에 범위인지 리턴하는 함수
 
     void GenerateUnit(Vector3 target){
@@ -127,6 +131,7 @@ public class UIController : MonoBehaviour {
     }//유닛을 생성하는 함수
 
     void DestroyUnitButtons(){
+        Destroy(cloneTriangleImage);
         for (int i = 0; i < cloneUnitButton.Length; i++){
             Destroy(cloneUnitButton[i].gameObject);
         }
@@ -143,6 +148,9 @@ public class UIController : MonoBehaviour {
         //click이 되있는 상태이면  유닛 버튼 삭제
 
         isClickedTB = true; //상태 변화
+
+        cloneTriangleImage = Instantiate(triangleImage, triangleImage.transform.position, Quaternion.identity);
+        cloneTriangleImage.transform.SetParent(gameObject.transform, false);
 
         //Towerbutton 정보값 코드양 줄이려고 캐싱
         float TBXpos = towerButton.transform.position.x, TBYpos = towerButton.transform.position.y;

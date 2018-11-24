@@ -6,22 +6,15 @@ public class GameManager : Singleton<GameManager>
 {
     //유니티 창에서 조절해야 하는 값
     public GameObject enemy; 
-    public float nextWaveTime;  //현재 웨이브 다 잡고 다음 웨이브까지 시간 
+    public float nextWaveTime =3f;  //현재 웨이브 다 잡고 다음 웨이브까지 시간 
     public int numOfEnemyPerWave; //웨이브당 생성되는 적 숫자
     public GameObject entryRoom;
     public float[] maxHpOfEnemy; // 기본 에너미 hp
     public float levelBalanceConst = 1.1f; // 다음 웨이브에서 강해지는 기본 스탯 비율
 
-
-
-
-
-
     public int idxOfWave = 0;  //웨이브 라운드 넘버
     public int currNumOfEnemyes=0; //현재 맵에 총 적 숫자 Tag로 찾을 경우 성능 저하
-
-
-    float enemySpawnTimer = 0.0f;
+    public float enemySpawnTimer = 0.0f;
    
     Dictionary<int, Enemy> enemyInstanceMap = new Dictionary<int, Enemy>();
 

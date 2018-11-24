@@ -9,15 +9,15 @@ public class EnemyRightAttack : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        myAnimator = transform.parent.parent.GetComponent<Animator>();
+        myAnimator = transform.root.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" || other.tag == "Unit")
+        if (other.transform.root.tag == "Player" || other.transform.root.tag == "Unit")
         {
             myAnimator.SetFloat("AttackX", 1.0f);
-            myAnimator.SetFloat("AttackY", 0.0f);
+            //myAnimator.SetFloat("AttackY", 0.0f);
         }
     }
 }

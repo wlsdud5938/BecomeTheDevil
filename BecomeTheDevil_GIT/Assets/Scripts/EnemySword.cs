@@ -35,9 +35,9 @@ public class EnemySword : MonoBehaviour {
     {
         if (unitTarget != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, unitTarget.transform.position, Time.deltaTime * parent.projectileSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, unitTarget.middlePoint.position, Time.deltaTime * parent.projectileSpeed);
             // 방향이 있는 발사체일 경우 적 방향으로 회전시킴. 
-            Vector2 dir = unitTarget.transform.position - transform.position;
+            Vector2 dir = unitTarget.middlePoint.position - transform.position;
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
@@ -49,15 +49,30 @@ public class EnemySword : MonoBehaviour {
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어와 충돌하면
-        if (other.tag == "Player" || other.tag == "Unit")
+        
+        if (other.transform.parent.tag == "Player")
         {
-             // 타겟에게 데미지를 주고 발사체를 없앰.
-             other.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
-             BattleManager.Instance.Pool.ReleaseObject(gameObject);
+            if (unitTarget.gameObject == other.transform.parent.gameObject && unitTarget != null)
+            {
+                // 타겟에게 데미지를 주고 발사체를 없앰.
+                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+                BattleManager.Instance.Pool.ReleaseObject(gameObject);
+            }
+        }
+
+        // 유닛과 충돌하면
+        else if (other.transform.parent.tag == "Unit")
+        {
+            if (unitTarget.gameObject == other.transform.parent.gameObject && unitTarget != null)
+            {
+                // 타겟에게 데미지를 주고 발사체를 없앰.
+                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+                BattleManager.Instance.Pool.ReleaseObject(gameObject);
+            }
+
         }
     }
     /*

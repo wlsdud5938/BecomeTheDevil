@@ -33,15 +33,16 @@ public class Projectile : MonoBehaviour
     {
         if (target != null /*&& target.IsActive*/)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.ProjectileSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, target.GetComponent<Statu>().middlePoint.position, Time.deltaTime * parent.ProjectileSpeed);
             // 방향이 있는 발사체일 경우 적 방향으로 회전시킴. 
-            Vector2 dir = target.transform.position - transform.position;
+            Vector2 dir = target.GetComponent<Statu>().middlePoint.position - transform.position;
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             // Projectile 이 오른쪽으로 향해 있어야 앞이 적쪽으로 향함.
         }
+        
         else if (/*!target.IsActive ||*/ target == null)  // 타겟이 죽으면 발사체 없앰.
         {
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
@@ -51,12 +52,14 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 적과 충돌하면
-        if (other.tag == "Enemy")
+        if (other.transform.parent.tag == "Enemy")
         {
-            if (target.gameObject == other.gameObject && target != null )
+            Debug.Log("tag == Enemy 확인");
+            if (target.gameObject == other.transform.parent.gameObject && target != null )
             {
+                Debug.Log("오예");
                 // 타겟에게 데미지를 주고 발사체를 없앰.
-                other.GetComponent<Statu>().TakeDamage(parent.Damage);
+                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
                 //target.transform.parent.GetComponent<Statu>().TakeDamage(parent.Damage);
                 //target.TakeDamage(parent.Damage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
