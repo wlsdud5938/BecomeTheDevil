@@ -40,7 +40,7 @@ public class RoomSpawner : MonoBehaviour
                 rand = Random.Range(0, templates.bottomRooms.Length);
                 room = Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
                 Maching(room);
-
+                room.GetComponent<AddRoom>().realCentry =parentroom.GetComponent<AddRoom>().realCentry + 1;
             }
             else if (openingDirection == 2)
             {
@@ -48,6 +48,7 @@ public class RoomSpawner : MonoBehaviour
                 rand = Random.Range(0, templates.topRooms.Length);
                 room = Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             else if (openingDirection == 3)
@@ -56,6 +57,7 @@ public class RoomSpawner : MonoBehaviour
                 rand = Random.Range(0, templates.leftRooms.Length);
                 room = Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             else if (openingDirection == 4)
@@ -64,6 +66,7 @@ public class RoomSpawner : MonoBehaviour
                 rand = Random.Range(0, templates.rightRooms.Length);
                 room = Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             spawned = true;
@@ -75,6 +78,7 @@ public class RoomSpawner : MonoBehaviour
                 // Need to spawn a room with a BOTTOM door.
                 room = Instantiate(templates.closedRoom_Bottom, transform.position, templates.closedRoom_Bottom.transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             else if (openingDirection == 2)
@@ -82,6 +86,7 @@ public class RoomSpawner : MonoBehaviour
                 // Need to spawn a room with a TOP door.
                 room = Instantiate(templates.closedRoom_Top, transform.position, templates.closedRoom_Top.transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             else if (openingDirection == 3)
@@ -89,6 +94,7 @@ public class RoomSpawner : MonoBehaviour
                 // Need to spawn a room with a LEFT door.
                 room = Instantiate(templates.closedRoom_Left, transform.position, templates.closedRoom_Left.transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             else if (openingDirection == 4)
@@ -96,6 +102,7 @@ public class RoomSpawner : MonoBehaviour
                 // Need to spawn a room with a RIGHT door.
                 room = Instantiate(templates.closedRoom_Right, transform.position, templates.closedRoom_Right.transform.rotation);
                 Maching(room);
+                room.GetComponent<AddRoom>().realCentry = parentroom.GetComponent<AddRoom>().realCentry + 1;
 
             }
             spawned = true;

@@ -30,7 +30,7 @@ public class RoomTemplates : MonoBehaviour
     public List<GameObject> LR;
     public List<GameObject> L;
     public List<GameObject> R;
-    
+    public List<GameObject> enemyPath;
 
     public GameObject items;
     public GameObject keyItems;
@@ -52,7 +52,10 @@ public class RoomTemplates : MonoBehaviour
     public bool doorTrigger = false;
     GameObject nowPlayer;
     public GameObject currentPlayer;
+    public GameObject currentBoss;
     public GameObject currentEnemy;
+    GameObject bosss;
+    bool isPathfind = false;
 
     public int[,] nodeTable = new int[30,30];
 
@@ -73,11 +76,10 @@ public class RoomTemplates : MonoBehaviour
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     else
                     {
-                        /*Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
+                        Instantiate(boss, rooms[rooms.Count-1].GetComponent<MapNode>().realMap.transform.position, Quaternion.identity);
+                        bosss = Instantiate(currentBoss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
 
-                        int targetIndex = Random.Range(1, rooms.Count - 2);
-                        Instantiate(potal, rooms[targetIndex].transform.position, Quaternion.identity);
-                        potalPosition = targetIndex;*/
+
                         playerPosition.Set(currentMapnode.GetComponent<MapNode>().realMap.transform.position.x, currentMapnode.GetComponent<MapNode>().realMap.transform.position.y, currentMapnode.GetComponent<MapNode>().realMap.transform.position.z);
                         nowPlayer = Instantiate(player, playerPosition, Quaternion.identity);
 
@@ -106,11 +108,55 @@ public class RoomTemplates : MonoBehaviour
         }
         if (spawnedBoss == true )
         {
+            currentMapnode.transform.Find("mapimg").GetComponent<SpriteRenderer>().enabled = true;
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
+            if(currentMapnode == rooms[rooms.Count - 1])
+                bosss.GetComponent<SpriteRenderer>().enabled = true;
             currentPlayer.transform.position = currentMapnode.transform.position;
         }
         if (doorTrigger == true)
             doorTrigger = false;
+        if(spawnedBoss == true && isPathfind == false)
+        {
+            FindPath();
+            isPathfind = true;
+        }
+
+    }
+
+    void FindPath()
+    {
+        GameObject bossRoom = rooms[rooms.Count - 1];
+        GameObject currentRoom = bossRoom;
+        enemyPath.Add(bossRoom);
+        int nowCentry = bossRoom.GetComponent<AddRoom>().realCentry;
+        while (nowCentry != 0)
+        {
+            if (currentRoom.GetComponent<MapNode>().upNode != null && currentRoom.GetComponent<MapNode>().upNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().upNode);
+                currentRoom = currentRoom.GetComponent<MapNode>().upNode;
+            }
+            else if (currentRoom.GetComponent<MapNode>().downNode != null && currentRoom.GetComponent<MapNode>().downNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().downNode);
+                currentRoom = currentRoom.GetComponent<MapNode>().downNode;
+
+            }
+            else if (currentRoom.GetComponent<MapNode>().leftNode != null && currentRoom.GetComponent<MapNode>().leftNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().leftNode);
+                currentRoom = currentRoom.GetComponent<MapNode>().leftNode;
+
+            }
+            else if (currentRoom.GetComponent<MapNode>().rightNode != null && currentRoom.GetComponent<MapNode>().rightNode.GetComponent<AddRoom>().realCentry == nowCentry - 1)
+            {
+                enemyPath.Insert(0, currentRoom.GetComponent<MapNode>().rightNode);
+                currentRoom = currentRoom.GetComponent<MapNode>().rightNode;
+
+            }
+            nowCentry--;
+        }
     }
 
     public void ChangeCurrentRoom(int doorNum, GameObject other)
