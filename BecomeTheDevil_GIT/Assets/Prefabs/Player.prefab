@@ -338,9 +338,10 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
-  HPSlider: {fileID: 0}
+  HPSlider: {fileID: 114072609926220102, guid: fdd3aa9348e8040548065828d6572327, type: 2}
   maxHP: 100
   versionType: 0
+  currentHP: 0
 --- !u!114 &114854126942839790
 MonoBehaviour:
   m_ObjectHideFlags: 1
