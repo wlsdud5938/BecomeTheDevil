@@ -8,6 +8,7 @@ public class RoomCode : MonoBehaviour {
     // Use this for initialization
     void Start () {
         path = GameObject.FindGameObjectWithTag("Rooms").GetComponent<MapPath>();
+        transform.Find("MapCamera").gameObject.SetActive(false);
     }
 
     /*private void Update()
