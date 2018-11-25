@@ -57,11 +57,17 @@ public class Enemy2 : MonoBehaviour {
             if (canAttack)
             {
                 Attack();
-                myAnimator.SetBool("EnemyChop", true);
-                myAnimator.SetBool("EnemyIdle", false);
+                myAnimator.SetTrigger("EnemyChop");
+                myAnimator.SetBool("EnemyIdle", true);
                 myAnimator.SetBool("EnemyHit", false);
                 myAnimator.SetBool("EnemyRun", false);
                 canAttack = false;
+                if(unitTarget.transform.position.x - transform.position.x > 0)
+                {
+                    myAnimator.SetFloat("Dir", 1f);
+                }
+                else
+                    myAnimator.SetFloat("Dir", 0);
             }
         }
     }

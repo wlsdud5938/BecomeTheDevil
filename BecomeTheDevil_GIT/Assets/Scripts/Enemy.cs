@@ -180,7 +180,7 @@ public class Enemy : MonoBehaviour
             animation.SetFloat("Dir", direction); // 방향을 설정
             animation.SetBool("EnemyRun", true); //Run 활성화
             animation.SetBool("EnemyIdle", false);
-            animation.SetBool("EnemyChop", false);
+            //animation.SetTrigger("EnemyChop");
             animation.SetBool("EnemyHit", false);
         }
         if (animators == "EnemyIdle")

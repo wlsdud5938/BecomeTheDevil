@@ -18,6 +18,9 @@ TagManager:
   - Bullet
   - Boss
   - Camera
+  - PlayerHitCollider
+  - EnemyHitCollider
+  - UnitHitCollider
   layers:
   - Default
   - TransparentFX

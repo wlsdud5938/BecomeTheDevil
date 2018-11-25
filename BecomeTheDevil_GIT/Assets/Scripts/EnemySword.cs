@@ -51,29 +51,18 @@ public class EnemySword : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 플레이어와 충돌하면
+        // 플레이어 또는 유닛과 충돌하면
+        if (other.tag == "PlayerHitCollider" || other.tag == "UnitHitCollider")
+        {
+            //if (unitTarget.gameObject == other.gameObject/*&& unitTarget != null*/)
+            //{
+            
+                // 타겟에게 데미지를 주고 발사체를 없앰.
+                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+                BattleManager.Instance.Pool.ReleaseObject(gameObject);
+            //}
+        }
         
-        if (other.transform.parent.tag == "Player")
-        {
-            if (unitTarget.gameObject == other.transform.parent.gameObject && unitTarget != null)
-            {
-                // 타겟에게 데미지를 주고 발사체를 없앰.
-                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
-                BattleManager.Instance.Pool.ReleaseObject(gameObject);
-            }
-        }
-
-        // 유닛과 충돌하면
-        else if (other.transform.parent.tag == "Unit")
-        {
-            if (unitTarget.gameObject == other.transform.parent.gameObject && unitTarget != null)
-            {
-                // 타겟에게 데미지를 주고 발사체를 없앰.
-                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
-                BattleManager.Instance.Pool.ReleaseObject(gameObject);
-            }
-
-        }
     }
     /*
     private void OnTriggerExit2D(Collider2D other)

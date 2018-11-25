@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 61619286994306420}
   m_Layer: 8
   m_Name: BoxColider2DTrigger
-  m_TagString: Untagged
+  m_TagString: UnitHitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021419948155122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.39, y: 0, z: 0}
+  m_LocalPosition: {x: -0.65, y: 1.91, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4618874025813204}

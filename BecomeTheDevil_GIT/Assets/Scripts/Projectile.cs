@@ -52,18 +52,20 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 적과 충돌하면
-        if (other.transform.parent.tag == "Enemy")
+        if (other.tag == "EnemyHitCollider")
         {
             Debug.Log("tag == Enemy 확인");
-            if (target.gameObject == other.transform.parent.gameObject && target != null )
-            {
+            //if (target.gameObject == other.transform.parent.gameObject && target != null )
+            //{
                 Debug.Log("오예");
                 // 타겟에게 데미지를 주고 발사체를 없앰.
-                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+                //other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
                 //target.transform.parent.GetComponent<Statu>().TakeDamage(parent.Damage);
                 //target.TakeDamage(parent.Damage);
+                Statu target = other.transform.parent.GetComponent<Statu>();
+                target.TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
-            }
+            //}
             // Enemy hitInfo = other.GetComponent<Enemy>();
             //Debug.Log("Hit Enemy");
         }

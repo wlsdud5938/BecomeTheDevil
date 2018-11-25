@@ -26,9 +26,9 @@ public class PlayerBullet : MonoBehaviour {
     {
         if(col.tag.Equals("Wall"))
             Destroy(this.gameObject);
-        if (col.tag == "Enemy")
+        if (col.tag == "EnemyHitCollider")
         {
-            col.GetComponent<Statu>().TakeDamage(parent.GetComponent<Statu>().attackDamage);
+            col.transform.parent.GetComponent<Statu>().TakeDamage(parent.GetComponent<Statu>().attackDamage);
             Destroy(this.gameObject);
             Debug.Log("Player가 적을 맞춤");
         }

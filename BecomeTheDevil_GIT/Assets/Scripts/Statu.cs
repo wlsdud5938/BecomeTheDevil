@@ -39,6 +39,8 @@ public class Statu : MonoBehaviour {
         }//에너미인 경우, 웨이브 라운드에 숫자에 따라 강해짐 최대체력이 달라짐
 
         currentHP = maxHP;          // 처음 생성됐을 때 최대 체력을 갖고 태어남.
+        HPSlider.maxValue = maxHP;
+        HPSlider.value = currentHP;
 
         if (!isPlayer)
         {
@@ -55,6 +57,7 @@ public class Statu : MonoBehaviour {
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
+        HPSlider.value = currentHP;
         if (currentHP <= 0)
         {
             if (isEnemy)
