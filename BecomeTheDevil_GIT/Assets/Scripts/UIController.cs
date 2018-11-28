@@ -44,6 +44,10 @@ public class UIController : MonoBehaviour {
 
         cloneUnitButton = new Button[unitButtons.Length]; 
         camera = Camera.main; //메인 카메라 캐싱, 마우스 좌표를 메인카메라 기준 좌표로 변환하기 위해
+        //camera.transparencySortMode = TransparencySortMode.CustomAxis;
+        //camera.transparencySortAxis = new Vector3(0.0f, 1.0f, 0.0f);
+        //쏘트 y축으로 하려고a
+         
         //타워버튼 생성
         cloneTowerButton = Instantiate(towerButton, towerButton.transform.position, Quaternion.identity); 
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
@@ -79,8 +83,10 @@ public class UIController : MonoBehaviour {
 
                 if (Input.GetMouseButton(0))
                 {
+                    hotSpot.x = (int)mouseTarget.x+0.5f;
+                    hotSpot.y = (int)mouseTarget.y+0.4f;
 
-                    GenerateUnit(mouseTarget);
+                    GenerateUnit(hotSpot);
                 }//유닛 생성
 
             }
@@ -114,8 +120,8 @@ public class UIController : MonoBehaviour {
         
 	}
     bool IsInMap(Vector3 target){
-        return xPosMin < target.x && target.x < xPosMax && yPosMin < target.y && target.y < yPosMax;
-        //return true;
+        //return xPosMin < target.x && target.x < xPosMax && yPosMin < target.y && target.y < yPosMax;
+        return true;
     }//맵 안에 범위인지 리턴하는 함수
 
     void GenerateUnit(Vector3 target){
