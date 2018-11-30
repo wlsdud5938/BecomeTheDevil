@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public string projectileType;   // 오브젝트 풀에서 불러올 총알 이름.
+    public string fakeBulletName;   // 오브젝트 풀에서 불러올 가짜 총알 이름.
+    public GameObject bulletPrefab; //발사할 총알
+    public GameObject fakeBulletPrefab; // 가짜 총알
+
     public int countItem = 0;
     public bool haveKey = false;
 
@@ -62,8 +67,7 @@ public class Player : MonoBehaviour
         }*/
         if (Input.GetKeyDown("space"))
         {
-            Debug.Log("fd");
-            GameManager.Instance.EquipStoneItem(100);
+          
             isHuman = !isHuman;
             animator.SetTrigger("Change");
             animator.SetBool("isIdle", false);
@@ -79,12 +83,12 @@ public class Player : MonoBehaviour
             animator.SetBool("isIdle", false);
 
         }
-        if(Input.GetKeyDown(KeyCode.K)){
-            Debug.Log("fd");
-            GameManager.Instance.EquipStoneItem(100);
+
+        if (isHuman)
+        {
+            Move();
         }
 
-        Move();
     }
 
     void Move()

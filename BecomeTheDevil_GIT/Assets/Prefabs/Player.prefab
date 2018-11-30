@@ -231,10 +231,10 @@ Rigidbody2D:
   m_GameObject: {fileID: 1803883405323362}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 2
-  m_LinearDrag: 0
+  m_Mass: 1000
+  m_LinearDrag: 1000
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -333,6 +333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a382208740f744bf1a9ed34729626b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: 
+  fakeBulletName: 
+  bulletPrefab: {fileID: 0}
+  fakeBulletPrefab: {fileID: 0}
   countItem: 0
   haveKey: 0
 --- !u!114 &114785722339270536
@@ -350,8 +354,9 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
+  attackCoolTime: 1
   HPSlider: {fileID: 0}
-  maxHP: 100
+  maxHP: 100000000
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4921146559434144}
@@ -366,12 +371,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba8cd90b5f35744a88f530251596791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: PlayerBullet
+  projectileType1: 
+  projectileType2: 
+  fakeBulletName: 
   bulletPrefab: {fileID: 1684421416880126, guid: a911df503c8c91048a9610b362aed351,
     type: 2}
   fakeBulletPrefab: {fileID: 1084322577660816, guid: 9ca628611b9ce0f498e41813259feaaf,
     type: 2}
-  bulletSpawnTime: 5
+  isClick: 0
+  mouseButtonUp: 0
   deletBulletTime: 3
+  bulletDelay: 0.2
   spawnBulletPoint1: {fileID: 1425872483583148}
   spawnBulletPoint2: {fileID: 1012779947928914}
   spawnBulletPoint3: {fileID: 1868468412692796}

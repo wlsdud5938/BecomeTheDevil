@@ -8,13 +8,14 @@ public class Enemy2 : MonoBehaviour {
     private string projectileType; // 발사체를 배틀매니져에서 고름.
     
     public float projectileSpeed = 10f;              // 발사체 속도.
-    
 
-    // 공격 속도
+
+    // 공격 스탯
+    Statu stat;
     private bool canAttack = true; // 공격속도를 세팅하기 위해
     public float attackTimer = 0.1f;
-    public float attackCooldown = 1.0f;
-    public float attackSpeed = 3.0f;
+    //public float attackCooldown = 1.0f;
+    //public float attackSpeed = 3.0f;
     
     public Statu unitTarget;
     private Queue<Statu> unit = new Queue<Statu>();
@@ -26,6 +27,7 @@ public class Enemy2 : MonoBehaviour {
     // Use this for initialization
     void Start () {
         myAnimator = transform.parent.GetComponent<Animator>();
+        stat = transform.parent.GetComponent<Statu>();
 	}
 	
 	// Update is called once per frame
@@ -36,9 +38,9 @@ public class Enemy2 : MonoBehaviour {
     {
         if (!canAttack)     // 공격할 수 없다면
         {
-            attackTimer += Time.deltaTime;  // attackTimer 증가.
+            attackTimer += Time.deltaTime * stat.attackSpeed;  // attackTimer 증가.
 
-            if (attackTimer >= attackCooldown)  // attackTimer가 쿨타임보다 커지면
+            if (attackTimer >= stat.attackCoolTime)  // attackTimer가 쿨타임보다 커지면
             {
                 canAttack = true;               // 공격 가능.
                 attackTimer = 0;

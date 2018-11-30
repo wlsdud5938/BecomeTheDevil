@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 223639063640549826}
   - component: {fileID: 114957070817781852}
   - component: {fileID: 114603030511277954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4126849564528676}
   - component: {fileID: 60034877579570132}
   - component: {fileID: 114314524220878658}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224799664723899444}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 224309392263121882}
   - component: {fileID: 222139043691381058}
   - component: {fileID: 114497469176763310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 114239963018809338}
   - component: {fileID: 61240525776246460}
   - component: {fileID: 50407092014123132}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CenterEnemy1
   m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 212524627417855962}
   - component: {fileID: 58992136835816256}
   - component: {fileID: 114622923634154678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 224943165219408790}
   - component: {fileID: 222086158740822858}
   - component: {fileID: 114299246361923196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,8 +176,7 @@ GameObject:
   - component: {fileID: 212885587095050698}
   - component: {fileID: 114301724350753826}
   - component: {fileID: 114891729706096278}
-  - component: {fileID: 114089051877334888}
-  - component: {fileID: 114739578080469574}
+  - component: {fileID: 114592142142057710}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -194,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224834202981171404}
   - component: {fileID: 114880840588033124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +210,7 @@ GameObject:
   - component: {fileID: 4797749795310896}
   - component: {fileID: 60825333137152692}
   - component: {fileID: 114458357110563596}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,9 +324,9 @@ Rigidbody2D:
   m_GameObject: {fileID: 1414705647297722}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -486,7 +485,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.058684647, y: -0.62}
+  m_Offset: {x: 0.058684647, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -542,26 +541,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114089051877334888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1897112339300944}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad705bba33f3642f4bc26cd844e12c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3.5
-  angularSpeed: 120
-  acceleration: 8
-  stoppingDistance: 0
-  autoBraking: 1
-  radius: 0.5
-  quality: 4
-  priority: 50
-  autoRepath: 1
 --- !u!114 &114146928513887308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -578,7 +557,7 @@ MonoBehaviour:
   acceleration: 8
   stoppingDistance: 0
   autoBraking: 1
-  radius: 0.5
+  radius: 0.56
   quality: 4
   priority: 50
   autoRepath: 1
@@ -694,6 +673,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114592142142057710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897112339300944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa0f9ade6b847f4a9b8cdcf50d3226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
 --- !u!114 &114603030511277954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -724,30 +715,7 @@ MonoBehaviour:
   projectileType: EnemySword
   projectileSpeed: 10
   attackTimer: 0.1
-  attackCooldown: 1
-  attackSpeed: 3
   unitTarget: {fileID: 0}
---- !u!114 &114739578080469574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1897112339300944}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef4d471103c37f4190f2b6a3d8e17c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMove: 0
-  path: {fileID: 0}
-  enemyPathDoor: []
-  enemyPath: []
-  manager: {fileID: 0}
-  temp: {fileID: 0}
-  nowRoom: {fileID: 0}
-  w: {x: 0, y: 0}
-  player: {fileID: 0}
-  findPlayer: 0
 --- !u!114 &114880840588033124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -811,6 +779,7 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
+  attackCoolTime: 1
   HPSlider: {fileID: 114880840588033124}
   maxHP: 100
   versionType: 0
@@ -915,8 +884,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1303767067
-  m_SortingLayer: 5
+  m_SortingLayerID: -46067193
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c8aca44fe16499944be1abe05f6af7cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

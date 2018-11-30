@@ -22,6 +22,7 @@ TagManager:
   - EnemyHitCollider
   - UnitHitCollider
   - PlayerSlider
+  - PlayerRange
   layers:
   - Default
   - TransparentFX

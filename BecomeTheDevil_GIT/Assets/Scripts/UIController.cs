@@ -26,10 +26,10 @@ public class UIController : MonoBehaviour {
     public Vector2 unitSpawnSpot = Vector2.zero;
     public Vector2 mouseTarget = Vector2.zero;
 
+
    
     GameManager gameManager;
     Camera camera;
-
 
 
     bool isClickedTB = false; //towerButton 눌린 상태냐고
@@ -55,6 +55,7 @@ public class UIController : MonoBehaviour {
 
 
         gameManager = GameManager. Instance; //게임 매니저 캐싱
+
 
     }
     // Update is called once per frame

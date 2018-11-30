@@ -54,13 +54,13 @@ public class EnemySword : MonoBehaviour {
         // 플레이어 또는 유닛과 충돌하면
         if (other.tag == "PlayerHitCollider" || other.tag == "UnitHitCollider")
         {
-            //if (unitTarget.gameObject == other.gameObject/*&& unitTarget != null*/)
-            //{
+            if (/*unitTarget.gameObject == other.gameObject&&*/ unitTarget != null)
+            {
             
                 // 타겟에게 데미지를 주고 발사체를 없앰.
                 other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
-            //}
+            }
         }
         
     }
