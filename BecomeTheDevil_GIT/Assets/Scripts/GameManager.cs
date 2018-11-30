@@ -38,11 +38,19 @@ public class GameManager : Singleton<GameManager>
             enemySpawnTimer = 0.0f;
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
-                GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
-                clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+                StartCoroutine( MakeClone());
             }
             idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }
     }
- 
+
+    IEnumerator MakeClone()
+    {
+        yield return new WaitForSeconds(1f);
+        GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
+        clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+        yield return new WaitForSeconds(1f);
+
+    }
+
 }
