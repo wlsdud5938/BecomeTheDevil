@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour {
 
-    public float bulletSpeed = 5f; // 총알 속도
+    public float bulletSpeed = 10f; // 총알 속도
     public float bulletTime = 0f;
     public float bulletTime2 = 0f;
     public float deleteBulletTime = 1f;
@@ -14,9 +14,10 @@ public class PlayerBullet : MonoBehaviour {
 
     public BulletController parent;
     public Statu statu;
-    public bool mousePosition;  // 오브젝트풀링특성상 업데이트에서 불값을 확인하면서 마우스포지션을 받아야 함.
+    public Vector2 mousePosition;  // 오브젝트풀링특성상 업데이트에서 불값을 확인하면서 마우스포지션을 받아야 함.
 
     public Vector2 movePos;
+    private Vector2 vector2Position;// 회전 연산때문에 Vector2형태의 playerPosition
     private Vector3 playerPosition; // 총알이 발사될 때의 플레이어 위치.
     public float distance;  // 총알과 플레이어 사이의 거리, 사거리에 사용.
     
@@ -28,11 +29,19 @@ public class PlayerBullet : MonoBehaviour {
         statu = parent.GetComponent<Statu>();
         attackDamage = statu.attackDamage;
         attackRange = statu.attackRange;
-        mousePosition = true;
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // 총알이 생성될 때 플레이어 위치 저장.
         playerPosition = parent.transform.position;
+        vector2Position.x = transform.position.x;
+        vector2Position.y = transform.position.y;
         // 크기도 받아옴.
         transform.localScale = parent.bulletPrefab.transform.localScale;
+        
+        // 총알 마우스 방향으로 rotate.
+        Vector2 dir = mousePosition - vector2Position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //transform.Find("Sprite").transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.Find("Sprite").transform.Rotate(Vector3.forward, angle);
     }
 	
 	// Update is called once per frame
@@ -52,15 +61,21 @@ public class PlayerBullet : MonoBehaviour {
         //GetComponent<Transform>().transform.Translate(movePos.normalized * bulletSpeed * Time.deltaTime); 
 
         MoveToMouse();
+        //transform.position = Vector3.MoveTowards(transform.position, mousePosition, Time.deltaTime * bulletSpeed);
         //rigidBody.AddForce(movePos);
-        
+
         distance = Vector3.Distance(playerPosition, transform.position);
         if (attackRange < distance)    // 사거리보다 길어지면.
         {
             //transform.localScale = new Vector3(1f, 1f, 1f); //크기 초기화.
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
+        /*
+        Vector2 dir = movePos - vector2Position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        */
         //bulletTime += Time.deltaTime;
         //bulletTime2 += Time.deltaTime;
         /*
@@ -77,9 +92,9 @@ public class PlayerBullet : MonoBehaviour {
             //Destroy(gameObject);
             bulletTime = 0;
         }*/
-        
-        
-        
+
+
+
         // 총알 크기 증가.
     }
 

@@ -82,8 +82,11 @@ public class Player : MonoBehaviour
             animator.SetBool("isIdle", false);
 
         }
-
-        Move();
+        if (isHuman)
+        {
+            Move();
+        }
+        
     }
 
     void Move()

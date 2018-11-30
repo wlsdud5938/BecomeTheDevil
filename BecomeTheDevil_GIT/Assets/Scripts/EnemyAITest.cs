@@ -16,6 +16,8 @@ public class EnemyAITest : MonoBehaviour
     public Vector2 w;
     public GameObject player;
     public bool findPlayer = false;
+    private Animator myAnimator;
+    private float tempPosition;
 
     private void Start()
     {
@@ -23,6 +25,13 @@ public class EnemyAITest : MonoBehaviour
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         //map = GameObject.FindGameObjectWithTag("Rooms").GetComponent<MapPath>();
         nowRoom = temp.enemyPath[0];
+        tempPosition = transform.position.x;
+        myAnimator = transform.Find("Enemy").GetComponent<Animator>();
+        /*
+        var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        agent = go.AddComponent<NavMeshAgent>();
+        ProjectTo2D(agent.transform.position)
+        transform.position = NavMeshUtils2D.ProjectTo2D(agent.transform.position);*/
     }
     void Update()
     {
@@ -51,6 +60,25 @@ public class EnemyAITest : MonoBehaviour
             findPlayer = false;
             //Debug.Log(w.ToString());
         }
+        /*
+        Debug.Log(GetComponent<NavMeshAgent2D>().agent.transform.position.x);
+        if (GetComponent<NavMeshAgent2D>().agent.transform.position.x > 0)
+        {
+            myAnimator.SetFloat("Dir", 1);
+        }
+        else if (GetComponent<NavMeshAgent2D>().agent.transform.position.x < 0)
+        {
+            myAnimator.SetFloat("Dir", 0);
+        }*/
+        if(transform.position.x - tempPosition > 0)
+        {
+            myAnimator.SetFloat("Dir", 1);
+        }
+        else if(transform.position.x - tempPosition < 0)
+        {
+            myAnimator.SetFloat("Dir", 0);
+        }
+        tempPosition = transform.position.x;
 
     }
 

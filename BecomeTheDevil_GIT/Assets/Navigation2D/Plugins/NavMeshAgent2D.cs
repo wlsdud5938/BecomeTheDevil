@@ -21,7 +21,7 @@ public class NavMeshAgent2D : MonoBehaviour
     public bool autoRepath = true;
 
     // the projection
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     // cache
     new Rigidbody2D rigidbody2D;
