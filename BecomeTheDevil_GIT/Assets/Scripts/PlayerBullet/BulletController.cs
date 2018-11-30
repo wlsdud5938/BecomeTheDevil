@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour {
     public string fakeBulletName;   // 오브젝트 풀에서 불러올 가짜 총알 이름.
     public GameObject bulletPrefab; //발사할 총알
     public GameObject fakeBulletPrefab; // 가짜 총알
+    public bool canAttack = true;  //이거 마우스 위치나 유닛 버튼 눌른 상황이면 공격 못하게 할 변수
     
     bool canShoot = true; //총알을 쏠 수 있는 상태 확인
 
@@ -91,7 +92,7 @@ public class BulletController : MonoBehaviour {
                 ShootBullet();      // 총알 발사.
             }
         }
-        else if(Input.GetMouseButtonDown(0) && canShoot)
+        else if(Input.GetMouseButtonDown(0) && canShoot && canAttack)
         {
             isClick = true;
             SpawnBullet();

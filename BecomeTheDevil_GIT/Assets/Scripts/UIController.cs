@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour {
     GameManager gameManager;
     Camera camera;
 
+    BulletController playerBC; // 플레이어 불렛 컨트롤러
 
     bool isClickedTB = false; //towerButton 눌린 상태냐고
     bool isClickedUB = false; //unitButton 눌린 상태인지
@@ -44,15 +45,12 @@ public class UIController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-  
+        playerBC = GameObject.FindWithTag("Player").GetComponent<BulletController>(); //플레이어 불렛 컨트롤러
         cloneUnitButton = new Button[unitButtons.Length];
         //타워버튼 생성
         cloneTowerButton = Instantiate(towerButton, towerButton.transform.position, Quaternion.identity); 
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
         cloneTowerButton.transform.SetParent(gameObject.transform,false);
-
-
-
 
         gameManager = GameManager. Instance; //게임 매니저 캐싱
 
@@ -67,6 +65,7 @@ public class UIController : MonoBehaviour {
 
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
         {
+            playerBC.canAttack = false;
             unitSpawnSpot.x = (int)unitSpawnSpot.x + 0.5f;
             unitSpawnSpot.y = (int)unitSpawnSpot.y - 0.5f;
           
@@ -90,6 +89,13 @@ public class UIController : MonoBehaviour {
                 {
                     GenerateUnit(unitSpawnSpot);
                 }//유닛 생성
+                if (Input.GetMouseButton(1))
+                {
+                    isClickedUB = false; //clickedUB 상태 false로 바꿈
+                    DestroyUnitButtons(); //유닛을 생성한 후에는 유닛 버튼 삭제
+                    isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
+                                      
+                }//유저가 유닛생성취
             }
 
             else
@@ -107,6 +113,7 @@ public class UIController : MonoBehaviour {
         { 
             if (IsInMap(mouseTarget))
             {
+                playerBC.canAttack = true; //마우스 맵안에 있고 유닛 버튼 클릭한 상황 아니라 공격 가능
                 hotSpot.x = inMapCursor.width / 2;
                 hotSpot.y = inMapCursor.height / 2;
                 Cursor.SetCursor(inMapCursor, hotSpot, cursorMode);
@@ -114,6 +121,7 @@ public class UIController : MonoBehaviour {
             }
             else
             {
+                playerBC.canAttack = false; //마우스 맵 밖에 있으므로 사용자 공격 못함
                 hotSpot.x = 0;
                 hotSpot.y = 0;
                 Cursor.SetCursor(outMapCursor, hotSpot, cursorMode);
