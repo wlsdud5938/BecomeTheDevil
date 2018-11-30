@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 4882641637173444}
   - component: {fileID: 20749335015925854}
   - component: {fileID: 81292070333955620}
-  - component: {fileID: 114123863609979346}
+  - component: {fileID: 114205019967672558}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: MainCamera
@@ -254,7 +254,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1798561667049480
 GameObject:
@@ -1425,18 +1425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorNum: 4
---- !u!114 &114123863609979346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1722583380414580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f08a6f40d2ec4de981f811bfc829f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TexturePixelsPerWorldUnit: 64
 --- !u!114 &114181321857636144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1449,6 +1437,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorNum: 3
+--- !u!114 &114205019967672558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722583380414580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f08a6f40d2ec4de981f811bfc829f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TexturePixelsPerWorldUnit: 64
 --- !u!114 &114322946374815524
 MonoBehaviour:
   m_ObjectHideFlags: 1

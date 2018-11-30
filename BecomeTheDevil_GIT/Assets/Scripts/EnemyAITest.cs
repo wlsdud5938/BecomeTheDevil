@@ -18,7 +18,7 @@ public class EnemyAITest : MonoBehaviour
     {
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         //map = GameObject.FindGameObjectWithTag("Rooms").GetComponent<MapPath>();
-
+        nowRoom = temp.currentMapnode;
     }
     void Update()
     {
@@ -43,7 +43,7 @@ public class EnemyAITest : MonoBehaviour
         }*/      
         if (enemyPathDoor[0])
         {
-            GetComponent<NavMeshAgent2D>().destination = enemyPathDoor[0].transform.position;
+            GetComponent<NavMeshAgent2D>().destination = enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center;
             //Debug.Log(w.ToString());
         }
 

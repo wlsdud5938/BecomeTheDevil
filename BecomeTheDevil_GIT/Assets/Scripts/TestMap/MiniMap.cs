@@ -27,13 +27,11 @@ public class MiniMap : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.M) && zoom == false)
         {
-            transform.Find("Canvas").transform.Find("sMini").gameObject.SetActive(false);
             transform.Find("Canvas").transform.Find("bMini").gameObject.SetActive(true);
             zoom = true;
         }
         else if((Input.GetKeyDown(KeyCode.M) && zoom == true))
         {
-            transform.Find("Canvas").transform.Find("sMini").gameObject.SetActive(true);
             transform.Find("Canvas").transform.Find("bMini").gameObject.SetActive(false);
             zoom = false;
         }

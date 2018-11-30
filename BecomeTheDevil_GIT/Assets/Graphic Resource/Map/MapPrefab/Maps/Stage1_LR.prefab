@@ -235,7 +235,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1827905394419188
 GameObject:
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 4711478551509882}
   - component: {fileID: 20086556886665340}
   - component: {fileID: 81441613962575152}
-  - component: {fileID: 114492589242091868}
+  - component: {fileID: 114392317453309354}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: MainCamera
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorNum: 3
---- !u!114 &114492589242091868
+--- !u!114 &114392317453309354
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4889039409610000}
   - component: {fileID: 20368227391752774}
   - component: {fileID: 81357113890467698}
-  - component: {fileID: 114282820322622832}
+  - component: {fileID: 114337292101494206}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: MainCamera
@@ -223,7 +223,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1811512857356584
 GameObject:
@@ -1149,7 +1149,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114282820322622832
+--- !u!114 &114337292101494206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

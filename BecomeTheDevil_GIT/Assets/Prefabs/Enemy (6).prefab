@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 114353314318507872}
   - component: {fileID: 114265181073540342}
   - component: {fileID: 61159028228791958}
+  - component: {fileID: 114883311228341162}
+  - component: {fileID: 114835476766058452}
   m_Layer: 10
   m_Name: Enemy (6)
   m_TagString: Enemy
@@ -652,6 +654,43 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114835476766058452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630744798538722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef4d471103c37f4190f2b6a3d8e17c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMove: 0
+  path: {fileID: 0}
+  enemyPathDoor: []
+  enemyPath: []
+  temp: {fileID: 0}
+  nowRoom: {fileID: 0}
+--- !u!114 &114883311228341162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630744798538722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad705bba33f3642f4bc26cd844e12c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
+  angularSpeed: 120
+  acceleration: 8
+  stoppingDistance: 0
+  autoBraking: 1
+  radius: 0.5
+  quality: 4
+  priority: 50
+  autoRepath: 1
 --- !u!114 &114886038569709558
 MonoBehaviour:
   m_ObjectHideFlags: 1
