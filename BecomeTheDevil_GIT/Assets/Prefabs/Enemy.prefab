@@ -651,6 +651,7 @@ MonoBehaviour:
   enemyPath: []
   temp: {fileID: 0}
   nowRoom: {fileID: 0}
+  w: {x: 0, y: 0}
 --- !u!114 &114599523883733170
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,7 +12,7 @@ public class EnemyAITest : MonoBehaviour
     public RoomTemplates temp;
     bool isCopy = false;
     public GameObject nowRoom;
-    Vector3 w;
+    public Vector2 w;
 
     private void Start()
     {
@@ -43,7 +43,8 @@ public class EnemyAITest : MonoBehaviour
         }*/      
         if (enemyPathDoor[0])
         {
-            GetComponent<NavMeshAgent2D>().destination = enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center;
+            w = new Vector2 (enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.x, enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.y);
+            GetComponent<NavMeshAgent2D>().destination = w;
             //Debug.Log(w.ToString());
         }
 
