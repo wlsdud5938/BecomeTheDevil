@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
                 GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
-                clone.GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+                clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
             }
             idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }

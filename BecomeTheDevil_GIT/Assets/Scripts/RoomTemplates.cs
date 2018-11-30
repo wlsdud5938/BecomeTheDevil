@@ -94,20 +94,6 @@ public class RoomTemplates : MonoBehaviour
         {
             waitTime -= Time.deltaTime;
         }
-        if(spawnedBoss == true && debugMd == false)     //맵이 이상이없다면 삭제될 구문입니다.
-        {
-            for(int i =0 ; i < 30 ; i++)
-            {
-               /* Debug.Log(nodeTable[0,i] + " " + nodeTable[1, i] + " " + nodeTable[2, i] + " " + nodeTable[3, i] + " " +
-                nodeTable[4, i] + " " + nodeTable[5, i] + " " + nodeTable[6, i] + " " + nodeTable[7, i] + " " + nodeTable[8, i] + " " +
-                    nodeTable[9, i] + " " + nodeTable[10, i] + " " + nodeTable[11, i] + " " + nodeTable[12, i] + " " + nodeTable[13, i] + " " +
-                    nodeTable[ 14, i] + " " + nodeTable[15, i] + " " + nodeTable[16, i] + " " + nodeTable[17, i] + " " + nodeTable[18, i] + " " +
-                    nodeTable[19, i] + " " + nodeTable[20, i] + " " + nodeTable[21, i] + " " + nodeTable[22, i] + " " + nodeTable[23, i] + " " +
-                    nodeTable[24, i] + " " + nodeTable[25, i] + " " + nodeTable[26, i] + " " + nodeTable[27, i] + " " + nodeTable[28, i] + " " +
-                    nodeTable[29, i] + " ");*/
-            }
-            debugMd = true;
-        }
         if (spawnedBoss == true )
         {
             currentMapnode.transform.Find("mapimg").GetComponent<SpriteRenderer>().enabled = true;
@@ -173,34 +159,49 @@ public class RoomTemplates : MonoBehaviour
         if (doorNum == 1)
         {
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(false);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = false;
             currentMapnode.GetComponent<MapNode>().upNode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
             currentMapnode = currentMapnode.GetComponent<MapNode>().upNode;
             other.transform.position = new Vector3(currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.x
-                , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.y + 1.5F, 0);
+                , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.y + 2F, 0);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = true;
+
         }
         else if (doorNum == 2)
         {
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(false);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = false;
+
             currentMapnode.GetComponent<MapNode>().downNode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
             currentMapnode = currentMapnode.GetComponent<MapNode>().downNode;
             other.transform.position = new Vector3(currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.x
-                , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.y - 1.5F, 0);
+                , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.y - 2F, 0);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = true;
+
         }
         else if (doorNum == 3)
         {
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(false);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = false;
+
             currentMapnode.GetComponent<MapNode>().leftNode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
             currentMapnode = currentMapnode.GetComponent<MapNode>().leftNode;
             other.transform.position = new Vector3(currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").GetComponent<BoxCollider2D>().bounds.center.x - 1.5f
                 , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("RDoor").GetComponent<BoxCollider2D>().bounds.center.y, 0);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = true;
+
         }
         else if (doorNum == 4)
         {
             currentMapnode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(false);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = false;
+
             currentMapnode.GetComponent<MapNode>().rightNode.GetComponent<MapNode>().realMap.transform.Find("MapCamera").gameObject.SetActive(true);
             currentMapnode = currentMapnode.GetComponent<MapNode>().rightNode;
             other.transform.position = new Vector3(currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").GetComponent<BoxCollider2D>().bounds.center.x + 1.5f
                 , currentMapnode.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("LDoor").GetComponent<BoxCollider2D>().bounds.center.y, 0);
+            currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = true;
+
         }
     }
     public void ChangeCurrentRoomEnemy(int doorNum, GameObject other)
@@ -209,13 +210,13 @@ public class RoomTemplates : MonoBehaviour
         {
             other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().upNode;
             other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.x
-                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.y + 1.5F, 0);
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("BDoor").GetComponent<BoxCollider2D>().bounds.center.y + 2F, 0);
         }
         else if (doorNum == 2)
         {
             other.GetComponent<EnemyAITest>().nowRoom = other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().downNode;
             other.transform.position = new Vector3(other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.x
-                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.y - 1.5F, 0);
+                , other.GetComponent<EnemyAITest>().nowRoom.GetComponent<MapNode>().realMap.transform.Find("07_DoorTrigger").gameObject.transform.Find("TDoor").GetComponent<BoxCollider2D>().bounds.center.y - 2F, 0);
         }
         else if (doorNum == 3)
         {

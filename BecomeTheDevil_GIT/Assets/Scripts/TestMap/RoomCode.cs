@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class RoomCode : MonoBehaviour {
     public int mapCode;
-    public MapPath path;
+    public RoomTemplates  temp;
+    public bool inPlayer = false;
+    public bool inUnit = false;
     // Use this for initialization
     void Start () {
-        path = GameObject.FindGameObjectWithTag("Rooms").GetComponent<MapPath>();
+        temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         transform.Find("MapCamera").gameObject.SetActive(false);
     }
-
-    /*private void Update()
-    {
-        //테스트용입니다.
-        if (path.currentMapnode == gameObject)
-        {
-            transform.Find("MapCamera").gameObject.SetActive(true);
-        }
-        else
-            transform.Find("MapCamera").gameObject.SetActive(false);
-    }*/
+    
 
 }

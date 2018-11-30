@@ -9,7 +9,7 @@ public class EnemyRightAttack : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        myAnimator = transform.root.GetComponent<Animator>();
+        myAnimator = transform.parent.transform.parent.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

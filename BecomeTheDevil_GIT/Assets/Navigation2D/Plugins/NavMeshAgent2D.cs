@@ -27,6 +27,7 @@ public class NavMeshAgent2D : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     new Collider2D collider2D;
 
+    Vector3 rePosition;
     // monobehaviour ///////////////////////////////////////////////////////////
     void Awake()
     {
@@ -34,6 +35,8 @@ public class NavMeshAgent2D : MonoBehaviour
         var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         go.name = "NAVIGATION2D_AGENT";
         go.transform.position = NavMeshUtils2D.ProjectTo3D(transform.position); // todo height 0.5 again?
+        rePosition = new Vector3(go.transform.position.x, go.transform.position.y + 0.9f, go.transform.position.z);
+        go.transform.position.Set(rePosition.x, rePosition.y, rePosition.z);
         agent = go.AddComponent<NavMeshAgent>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();

@@ -9,16 +9,20 @@ public class EnemyAITest : MonoBehaviour
     public GameObject path;
     public List<GameObject> enemyPathDoor;
     public List<GameObject> enemyPath;
+    public GameManager manager;
     public RoomTemplates temp;
     bool isCopy = false;
     public GameObject nowRoom;
-    Vector3 w;
+    public Vector2 w;
+    public GameObject player;
+    public bool findPlayer = false;
 
     private void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         //map = GameObject.FindGameObjectWithTag("Rooms").GetComponent<MapPath>();
-        nowRoom = temp.currentMapnode;
+        nowRoom = temp.enemyPath[0];
     }
     void Update()
     {
@@ -26,6 +30,7 @@ public class EnemyAITest : MonoBehaviour
         {
             enemyPathDoor = temp.enemyPathDoor.ToList();
             enemyPath = temp.enemyPath.ToList();
+            player = GameObject.FindGameObjectWithTag("Player");
             isCopy = true;
         }
         if (isMove)
@@ -34,16 +39,16 @@ public class EnemyAITest : MonoBehaviour
             gameObject.AddComponent<NavMeshAgent2D>();
 
         }
-        /*if (map.currentMapnode.transform.Find("Path"))
+        if(nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer)
         {
-            path = map.currentMapnode.transform.Find("Path").gameObject;
-            w = map.currentMapnode.transform.Find("Path").gameObject.transform.position;
+            GetComponent<NavMeshAgent2D>().destination = player.transform.position;
+            findPlayer = true;
+        } 
+        if (!nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer && enemyPathDoor[0])
+        {
+            w = new Vector2 (enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.x, enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.y);
             GetComponent<NavMeshAgent2D>().destination = w;
-            //Debug.Log(w.ToString());
-        }*/      
-        if (enemyPathDoor[0])
-        {
-            GetComponent<NavMeshAgent2D>().destination = enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center;
+            findPlayer = false;
             //Debug.Log(w.ToString());
         }
 
