@@ -97,6 +97,7 @@ public class Tower : MonoBehaviour
         {
             if (canAttack)
             {
+                Debug.Log("공격");
                 Attack();
                 myAnimator.SetTrigger("Attack");
                 canAttack = false;
@@ -119,9 +120,9 @@ public class Tower : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            enemy.Enqueue(other.GetComponent<Enemy>());
-            //Debug.Log("적 들어옴");
-            //Debug.Log(enemy.Count);
+            enemy.Enqueue(other.transform.GetChild(0).GetComponent<Enemy>());
+            Debug.Log("적 들어옴");
+            Debug.Log(enemy.Count);
         }
     }
 
@@ -129,8 +130,8 @@ public class Tower : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            //Debug.Log("적 나감");
-            //Debug.Log(enemy.Count);
+            Debug.Log("적 나감");
+            Debug.Log(enemy.Count);
             target = null;      // range 밖으로 나가면 target 해제
         }
     }

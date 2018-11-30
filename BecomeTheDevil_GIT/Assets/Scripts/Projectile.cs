@@ -7,18 +7,36 @@ public class Projectile : MonoBehaviour
     // 타워 관련.
     private Enemy target;
     private Tower parent;   // 발사체를 가지고 있는 타워.
-    
+
+    // 사거리 관련.
+    private Vector3 unitPosition; // 총알이 발사될 때의 유닛 위치.
+    public float distance;  // 총알과 유닛 사이의 거리, 사거리에 사용.
+    public float attackRange;
+
+    public Statu statu;
 
     // Use this for initialization
     void Start()
     {
-
+        statu = parent.transform.parent.GetComponent<Statu>();
+        unitPosition = parent.transform.position;
+        attackRange = statu.attackRange;
     }
+    
+
 
     // Update is called once per frame
     void Update()
     {
         MoveToTarget();     // 적을 쫓아가는 함수.
+
+        distance = Vector3.Distance(unitPosition, transform.position);
+        Debug.Log(distance);
+        if (attackRange < distance)    // 사거리보다 길어지면.
+        {
+            //transform.localScale = new Vector3(1f, 1f, 1f); //크기 초기화.
+            BattleManager.Instance.Pool.ReleaseObject(gameObject);
+        }
     }
 
     public void Initialize(Tower parent)

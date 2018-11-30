@@ -27,6 +27,8 @@ public class EnemyAITest : MonoBehaviour
         nowRoom = temp.enemyPath[0];
         tempPosition = transform.position.x;
         myAnimator = transform.Find("Enemy").GetComponent<Animator>();
+        myAnimator.SetBool("EnemyRun", true);
+        myAnimator.SetBool("EnemyIdle", false);
         /*
         var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         agent = go.AddComponent<NavMeshAgent>();

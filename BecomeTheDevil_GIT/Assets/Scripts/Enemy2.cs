@@ -60,9 +60,9 @@ public class Enemy2 : MonoBehaviour {
             {
                 Attack();
                 myAnimator.SetTrigger("EnemyChop");
-                myAnimator.SetBool("EnemyIdle", true);
+                myAnimator.SetBool("EnemyIdle", false);
                 myAnimator.SetBool("EnemyHit", false);
-                myAnimator.SetBool("EnemyRun", false);
+                myAnimator.SetBool("EnemyRun", true);
                 canAttack = false;
                 if(unitTarget.transform.position.x - transform.position.x > 0)
                 {
