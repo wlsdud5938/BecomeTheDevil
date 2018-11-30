@@ -9,7 +9,7 @@ public class Statu : MonoBehaviour {
     public float attackRange = 10f;   //공격 사거리
     public float attackSpeed = 1f;   //공격 속도
     public Slider HPSlider;
-    public float maxHP = 100;            //최대 hp
+    public float maxHP = 1000000000000;            //최대 hp
     public  int versionType;          // tag==Enemy인 경우에만 사용. gameManager에서 instantiate할때 초기화
     public float currentHP;          // 현재 채력 
 

@@ -33,7 +33,7 @@ public class DoorChildTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        Debug.Log(other.tag);
+ 
 
         if (templates.doorTrigger == false && other.CompareTag("Player") || other.CompareTag("Enemy"))
         {

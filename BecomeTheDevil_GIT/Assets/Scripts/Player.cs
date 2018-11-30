@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
         }*/
         if (Input.GetKeyDown("space"))
         {
+            Debug.Log("fd");
+            GameManager.Instance.EquipStoneItem(100);
             isHuman = !isHuman;
             animator.SetTrigger("Change");
             animator.SetBool("isIdle", false);
@@ -76,6 +78,10 @@ public class Player : MonoBehaviour
             animator.SetBool("isMoving", true);
             animator.SetBool("isIdle", false);
 
+        }
+        if(Input.GetKeyDown(KeyCode.K)){
+            Debug.Log("fd");
+            GameManager.Instance.EquipStoneItem(100);
         }
 
         Move();

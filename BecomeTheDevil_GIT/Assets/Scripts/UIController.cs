@@ -26,8 +26,9 @@ public class UIController : MonoBehaviour {
     public Vector2 unitSpawnSpot = Vector2.zero;
     public Vector2 mouseTarget = Vector2.zero;
 
-    Camera camera; //메인카메라
-    GameManager gameManager; 
+   
+    GameManager gameManager;
+    Camera camera;
 
 
 
@@ -43,9 +44,8 @@ public class UIController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        cloneUnitButton = new Button[unitButtons.Length]; 
-        camera = Camera.main; //메인 카메라 캐싱, 마우스 좌표를 메인카메라 기준 좌표로 변환하기 위해
+  
+        cloneUnitButton = new Button[unitButtons.Length];
         //타워버튼 생성
         cloneTowerButton = Instantiate(towerButton, towerButton.transform.position, Quaternion.identity); 
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
@@ -60,17 +60,24 @@ public class UIController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 (카메라를 기준)
+        camera = Camera.main;
+        unitSpawnSpot = camera.ScreenToWorldPoint(Input.mousePosition); // 진짜 유닛이 생성될 좌표
+        mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition)-camera.transform.position; //유닛이 생성될 좌표 맵안인지 확인할 좌표
+
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
         {
-            unitSpawnSpot.x = (int)mouseTarget.x + 0.5f;
-            unitSpawnSpot.y = (int)mouseTarget.y - 0.5f;
+            unitSpawnSpot.x = (int)unitSpawnSpot.x + 0.5f;
+            unitSpawnSpot.y = (int)unitSpawnSpot.y - 0.5f;
+          
             //마우스에서 가장 가까운 셀 중앙 좌표
             Ray2D ray = new Ray2D(unitSpawnSpot, Vector2.zero);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            Collider2D[] hit = Physics2D.OverlapBoxAll(ray.origin,Vector2.one,0);
             //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
-
-            if (hit.collider == null&&IsInMap(unitSpawnSpot))
+            bool isBuild = true;
+            foreach(Collider2D i in hit){
+                if (!i.isTrigger) isBuild = false; //트리러가 아니면
+            }
+            if (isBuild&&IsInMap(mouseTarget))
             {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
 
                 hotSpot.x = canBuildUnitCursor[idxOfClickedUB].width / 2;
@@ -82,10 +89,11 @@ public class UIController : MonoBehaviour {
                 {
                     GenerateUnit(unitSpawnSpot);
                 }//유닛 생성
-
             }
+
             else
             {//유닛 생성 불가능 한 상태
+
                 hotSpot.x = cantBuildUnitCursor[idxOfClickedUB].width / 2;
                 hotSpot.y = cantBuildUnitCursor[idxOfClickedUB].height / 2;
                 Cursor.SetCursor(cantBuildUnitCursor[idxOfClickedUB], hotSpot, cursorMode);

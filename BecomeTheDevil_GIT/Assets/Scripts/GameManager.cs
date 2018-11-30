@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -11,7 +12,9 @@ public class GameManager : Singleton<GameManager>
     public GameObject entryRoom;
     public float[] maxHpOfEnemy; // 기본 에너미 hp
     public float levelBalanceConst = 1.1f; // 다음 웨이브에서 강해지는 기본 스탯 비율
-
+    public GameObject stoneItemImage; //돌 아이템
+    public GameObject iceItemImage; //얼음 아이템
+    public Slider itemSlider;
     public int idxOfWave = 0;  //웨이브 라운드 넘버
     public int currNumOfEnemyes=0; //현재 맵에 총 적 숫자 Tag로 찾을 경우 성능 저하
     public float enemySpawnTimer = 0.0f;
@@ -34,7 +37,6 @@ public class GameManager : Singleton<GameManager>
         // 적 다 잡고 유저한테 일정 시간 후에 적 스폰
         if(enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes==0)
         {
-            currNumOfEnemyes = numOfEnemyPerWave; //웨이브 생성 순간, 현재 적 숫자를 웨이브당 적 생성 숫자로 초기화
             enemySpawnTimer = 0.0f;
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
@@ -44,5 +46,28 @@ public class GameManager : Singleton<GameManager>
             idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }
     }
- 
+    public void EquipStoneItem(int valueOfSlider){
+        DequipItem();
+        stoneItemImage.SetActive(true); // 돌아이템 이미지 띄우고
+        itemSlider.value = valueOfSlider;
+
+    }
+    public void EquipIceItem(int valueOfSlider){
+        DequipItem();
+        iceItemImage.SetActive(true); //얼음 아이템 이미지 끄고
+        itemSlider.value = valueOfSlider;
+    }
+
+    public void DecreaseItemSlider(){
+        float value = itemSlider.value;
+        itemSlider.value = value--;
+    }
+    public void DequipItem(){
+        stoneItemImage.SetActive(false);
+        iceItemImage.SetActive(false);
+        itemSlider.value = 0;
+    }
+
+
+
 }

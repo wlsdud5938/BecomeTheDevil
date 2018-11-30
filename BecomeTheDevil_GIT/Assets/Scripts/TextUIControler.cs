@@ -20,11 +20,11 @@ public class TextUIControler : MonoBehaviour {
 
             string s = nextTime.ToString("0.0");
 
-            waveInfo.text =  "다음 웨이브 : "+(round+1).ToString()+"\n"+ "NEXT WAVE TIMER:\n" + s;
+            waveInfo.text =  " 다음 웨이브 : "+(round+1).ToString()+"\n"+ " NEXT WAVE TIMER:\n " + s;
         }
         else
         {
-            waveInfo.text = "현재 웨이브 : " + round.ToString()+"\n"+"NUM OF ENEMY :\n" + gameManager.currNumOfEnemyes.ToString();
+            waveInfo.text = " 현재 웨이브 : " + round.ToString()+"\n"+" NUM OF ENEMY :\n " + gameManager.currNumOfEnemyes.ToString();
         }
 	}
 }
