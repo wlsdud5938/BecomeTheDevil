@@ -220,7 +220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630744798538722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.45, y: 1.87, z: 0}
+  m_LocalPosition: {x: -3.41, y: 0.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4665495836145326}
@@ -500,11 +500,13 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 10
   attackSpeed: 1
+  attackCoolTime: 3
   HPSlider: {fileID: 114635061805640236}
   maxHP: 100
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4665495836145326}
+  isActive: 1
 --- !u!114 &114270882941443348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -705,8 +707,6 @@ MonoBehaviour:
   projectileType: EnemySword
   projectileSpeed: 10
   attackTimer: 0.1
-  attackCooldown: 1
-  attackSpeed: 3
   unitTarget: {fileID: 0}
 --- !u!114 &114899087067487722
 MonoBehaviour:

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 오브젝트 풀은 재사용하려는 오브젝트들을 담아 놓는 풀임. ex) 총알
 /// </summary>
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : Singleton<ObjectPool>
 {
     /// <summary>
     /// An array of prefabs used to create an object in the gameworld
@@ -18,8 +18,10 @@ public class ObjectPool : MonoBehaviour
     /// 풀 안에 있는 오브젝트들을 List 형태의 STL로 관리.
     /// List의 장점 : 중간에 있는 값들을 제거하거나 삽입할 때 수행 시간이 빠름.
     /// </summary>
+    [SerializeField]
     private List<GameObject> pooledObjects = new List<GameObject>();
-    
+    //public List<PooledObject> objectPool = new List<PooledObject>();
+
     /// <returns>A GameObject of specific type</returns>
     /// type과 같은 이름을 가진 GameObject를 반환해줌
     public GameObject GetObject(string type)        
