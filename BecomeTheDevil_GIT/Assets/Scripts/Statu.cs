@@ -37,7 +37,7 @@ public class Statu : MonoBehaviour {
             maxHP += gameManager.idxOfWave * (maxHP * gameManager.levelBalanceConst - maxHP); //최대 체력 levelbalance와 웨이브에 맞게 올려
             attackDamage += gameManager.idxOfWave * (attackDamage * gameManager.levelBalanceConst - attackDamage);
         }//에너미인 경우, 웨이브 라운드에 숫자에 따라 강해짐 최대체력이 달라짐
-
+        currentHP = maxHP;
 
 
         if (!isPlayer)
@@ -53,6 +53,7 @@ public class Statu : MonoBehaviour {
         {
             HPSlider = GameObject.FindGameObjectWithTag("PlayerSlider").GetComponent<Slider>();
             HPSlider.maxValue = maxHP;
+
             HPSlider.value = currentHP;
             isPlayer = false;
         }
