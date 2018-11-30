@@ -8,9 +8,10 @@ public class UIController : MonoBehaviour {
     //타워 버튼 클릭하면 유닛 버튼 생서
     public Button towerButton;   // 타워 버튼
     public Button[] unitButtons; // 유닛 버튼
-    public Image triangleImage; //타워버튼 위에 삼각형
+    public Image arrowImage; //타워버튼 위에 삼각형
     public GameObject[] units;  //생성되어야 하는 unit 프리팹 어레이
-    public float buttonInterval = 8f; // 버튼 간격
+    public float buttonInterval = 8f; // 유닛 버튼 간격
+    public float arrowInterval = 10f; // 애로우 사이의 간격
     public float xPosMax = 47, xPosMin = 33; //맵 최대 최소 x,y 좌표 (맵크기)
     public float yPosMax = -10, yPosMin = -19;
 
@@ -22,6 +23,7 @@ public class UIController : MonoBehaviour {
 
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+    public Vector2 unitSpawnSpot = Vector2.zero;
     public Vector2 mouseTarget = Vector2.zero;
 
     Camera camera; //메인카메라
@@ -49,9 +51,7 @@ public class UIController : MonoBehaviour {
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
         cloneTowerButton.transform.SetParent(gameObject.transform,false);
 
-        spawnPos.x = towerButton.transform.position.x + towerButton.transform.GetComponent<RectTransform>().rect.width / 2;
-        spawnPos.y = towerButton.transform.position.y + towerButton.transform.GetComponent<RectTransform>().rect.height+17;
-        //x,y 계산 법
+
 
 
         gameManager = GameManager. Instance; //게임 매니저 캐싱
@@ -63,13 +63,14 @@ public class UIController : MonoBehaviour {
         mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 (카메라를 기준)
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
         {
-            Debug.Log(mouseTarget);
-            Ray2D ray = new Ray2D(mouseTarget, Vector2.zero);
+            unitSpawnSpot.x = (int)mouseTarget.x + 0.5f;
+            unitSpawnSpot.y = (int)mouseTarget.y - 0.5f;
+            //마우스에서 가장 가까운 셀 중앙 좌표
+            Ray2D ray = new Ray2D(unitSpawnSpot, Vector2.zero);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
 
-            Debug.Log(hit.point.ToString());
-            if (hit.rigidbody == null && IsInMap(mouseTarget))
+            if (hit.collider == null&&IsInMap(unitSpawnSpot))
             {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
 
                 hotSpot.x = canBuildUnitCursor[idxOfClickedUB].width / 2;
@@ -79,8 +80,7 @@ public class UIController : MonoBehaviour {
 
                 if (Input.GetMouseButton(0))
                 {
-
-                    GenerateUnit(mouseTarget);
+                    GenerateUnit(unitSpawnSpot);
                 }//유닛 생성
 
             }
@@ -148,20 +148,24 @@ public class UIController : MonoBehaviour {
         //click이 되있는 상태이면  유닛 버튼 삭제
 
         isClickedTB = true; //상태 변화
+  
+        spawnPos.x = towerButton.transform.position.x + towerButton.transform.GetComponent<RectTransform>().rect.width / 2;
+        spawnPos.y = towerButton.transform.position.y + towerButton.transform.GetComponent<RectTransform>().rect.height + arrowInterval+arrowImage.GetComponent<RectTransform>().rect.height/2;
+        //x,y 계산 법 arrow 이미지 피봇은 정중앙점 
 
-        cloneTriangleImage = Instantiate(triangleImage, triangleImage.transform.position, Quaternion.identity);
+        cloneTriangleImage = Instantiate(arrowImage, spawnPos, Quaternion.identity);
         cloneTriangleImage.transform.SetParent(gameObject.transform, false);
 
         //Towerbutton 정보값 코드양 줄이려고 캐싱
-        float TBXpos = towerButton.transform.position.x, TBYpos = towerButton.transform.position.y;
-        float currButYpos = TBYpos + towerButton.transform.GetComponent<RectTransform>().rect.height+26;
+        spawnPos.x = towerButton.transform.position.x;
+        spawnPos.y += (arrowInterval + arrowImage.GetComponent<RectTransform>().rect.height / 2);
         //현재 생성되어야 하는 버튼의 ypos는 전 버튼의 y좌표 + height/2 + 버튼 간격
         //height/2 이여야 하는 이유는 position이 중점이기 때문에a
 
         for (int i = 0; i < unitButtons.Length; i++)
         {
-            cloneUnitButton[i] = Instantiate(unitButtons[i], new Vector3(TBXpos, currButYpos + buttonInterval, 0), Quaternion.identity);
-            currButYpos = cloneUnitButton[i].transform.position.y + unitButtons[i].transform.GetComponent<RectTransform>().rect.height;
+            cloneUnitButton[i] = Instantiate(unitButtons[i], spawnPos, Quaternion.identity);
+            spawnPos.y+= (unitButtons[i].transform.GetComponent<RectTransform>().rect.height+buttonInterval);
             int idx = i;
             cloneUnitButton[i].onClick.AddListener(() => ClickedUB(idx));  //idx에 맞는 유닛 생성
             cloneUnitButton[i].transform.SetParent(gameObject.transform,false);
