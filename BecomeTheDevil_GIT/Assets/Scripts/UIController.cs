@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour {
     public Vector2 mouseTarget = Vector2.zero;
 
 
-   
+    RoomTemplates temp;
     GameManager gameManager;
     Camera camera;
 
@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour {
         cloneTowerButton = Instantiate(towerButton, towerButton.transform.position, Quaternion.identity); 
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
         cloneTowerButton.transform.SetParent(gameObject.transform,false);
-
+        temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         gameManager = GameManager. Instance; //게임 매니저 캐싱
 
 
@@ -145,6 +145,8 @@ public class UIController : MonoBehaviour {
             isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
                                  //여기서 마우스 모양 제대로
         }
+        temp.currentMapnode.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units.Add(cloneUnit);
+
     }//유닛을 생성하는 함수
 
     void DestroyUnitButtons(){

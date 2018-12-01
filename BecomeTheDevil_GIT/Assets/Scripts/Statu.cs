@@ -10,7 +10,7 @@ public class Statu : MonoBehaviour {
     public float attackSpeed = 1f;   //공격 속도
     public float attackCoolTime = 1f;
     public Slider HPSlider;
-    public float maxHP = 1000000000000;            //최대 hp
+    public float maxHP = 100;            //최대 hp
     public  int versionType;          // tag==Enemy인 경우에만 사용. gameManager에서 instantiate할때 초기화
     public float currentHP;          // 현재 채력 
 
@@ -24,16 +24,17 @@ public class Statu : MonoBehaviour {
  
     bool isEnemy;             //tag가 적인지 확인
     GameManager gameManager; //코드량 줄이기위해 instance 캐싱
+    RoomTemplates temp;
 
     void Awake () 
     {
         gameManager = GameManager.Instance;
         isEnemy = CompareTag("Enemy");
         isPlayer = CompareTag("Player");
-
+        temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         if (isEnemy)
         {
-            gameManager.currNumOfEnemyes++;
+            //gameManager.currNumOfEnemyes++;
             maxHP = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
             maxHP += gameManager.idxOfWave * (maxHP * gameManager.levelBalanceConst - maxHP); //최대 체력 levelbalance와 웨이브에 맞게 올려
             attackDamage += gameManager.idxOfWave * (attackDamage * gameManager.levelBalanceConst - attackDamage);
@@ -69,6 +70,12 @@ public class Statu : MonoBehaviour {
             if (isEnemy)
             {
                 gameManager.currNumOfEnemyes--;
+                Destroy(gameObject.transform.parent);
+
+            }
+            if (CompareTag("Unit"))
+            {
+                gameObject.GetComponent<UnitRealRoom>().realRoom.GetComponent<RoomCode>().units.Remove(gameObject);
             }
             Destroy(gameObject);
         }

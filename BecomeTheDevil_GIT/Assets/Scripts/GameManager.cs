@@ -75,6 +75,7 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(1f);
         GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
         clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
+        currNumOfEnemyes++;
         yield return new WaitForSeconds(1f);
 
     }

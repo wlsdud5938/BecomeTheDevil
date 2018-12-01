@@ -18,7 +18,9 @@ public class EnemyAITest : MonoBehaviour
     public bool findPlayer = false;
     private Animator myAnimator;
     private float tempPosition;
-
+    float dis = 10000f;
+    public int idx = 0;
+    int j = 0;
     private void Start()
     {
         manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
@@ -50,14 +52,23 @@ public class EnemyAITest : MonoBehaviour
             gameObject.AddComponent<NavMeshAgent2D>();
 
         }
-        if(nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer)
+        if (nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units.Count > 0)
+        {
+            ClosedTarget();
+            dis = 10000;
+            idx = 0;
+            j = 0;
+            findPlayer = true;
+        }
+        else if(nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer)
         {
             GetComponent<NavMeshAgent2D>().destination = player.transform.position;
             findPlayer = true;
-        } 
-        if (!nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer && enemyPathDoor[0])
+
+        }
+        else if (!nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer && enemyPathDoor[0])
         {
-            w = new Vector2 (enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.x, enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.y);
+            w = new Vector2(enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.x, enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.y);
             GetComponent<NavMeshAgent2D>().destination = w;
             findPlayer = false;
             //Debug.Log(w.ToString());
@@ -72,7 +83,7 @@ public class EnemyAITest : MonoBehaviour
         {
             myAnimator.SetFloat("Dir", 0);
         }*/
-        if(transform.position.x - tempPosition > 0)
+        if (transform.position.x - tempPosition > 0)
         {
             myAnimator.SetFloat("Dir", 1);
         }
@@ -83,5 +94,26 @@ public class EnemyAITest : MonoBehaviour
         tempPosition = transform.position.x;
 
     }
+    void ClosedTarget()
+    {
+        if (nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units.Count <= 0)
+        {
+            return;
+        }
+        foreach (var i in nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units)
+        {
 
+            if (dis > Vector2.Distance(i.transform.position, transform.position))
+            {
+                idx = j;
+                dis = Vector2.Distance(i.transform.position, transform.position);
+            }
+            j++;
+        }
+        if (dis > Vector2.Distance(player.transform.position, transform.position) && nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer)
+            GetComponent<NavMeshAgent2D>().destination = player.transform.position;
+        else
+            GetComponent<NavMeshAgent2D>().destination = nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units[idx].transform.position;
+
+    }
 }
