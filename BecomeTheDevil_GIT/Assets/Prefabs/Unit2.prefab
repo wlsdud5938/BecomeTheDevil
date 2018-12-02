@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114010865988870082}
   - component: {fileID: 61615591992179626}
   - component: {fileID: 114044947740621868}
+  - component: {fileID: 114507475205445948}
   m_Layer: 8
   m_Name: Unit2
   m_TagString: Unit
@@ -741,6 +742,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17ab8f50a0b02449b9d15169eb3fe89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114507475205445948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063712395133444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a551362a5d8f41e44bec692d054d0fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realRoom: {fileID: 0}
 --- !u!114 &114610652372798428
 MonoBehaviour:
   m_ObjectHideFlags: 1

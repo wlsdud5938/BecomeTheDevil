@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-m_EditorVersion: 2018.2.13f1
-=======
-m_EditorVersion: 2018.2.17f1
->>>>>>> parent of 472b4dd... Inven
+m_EditorVersion: 2018.2.10f1

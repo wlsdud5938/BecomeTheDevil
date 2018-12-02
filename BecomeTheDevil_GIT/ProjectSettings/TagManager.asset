@@ -23,6 +23,7 @@ TagManager:
   - UnitHitCollider
   - PlayerSlider
   - PlayerRange
+  - Inventory
   layers:
   - Default
   - TransparentFX

@@ -32,9 +32,6 @@ public class Enemy : MonoBehaviour
 
     private bool isActive = true;  // 적이 살아있을 땐 true, 죽으면 false값을 가지는 변수입니다.
 
-    public GameObject[] dropItem;
-    int random;
-
     public bool IsActive
     {
         get
@@ -214,10 +211,6 @@ public class Enemy : MonoBehaviour
         //animators = {EnemyIdle, EnemyRun, EnemyChop, EnemyHit(미구현), EnemyDie(미구현)}
     }
 
-    public void DropItem()
-    {
-        random = Random.Range(0, dropItem.Length);
-        Instantiate(dropItem[random], transform.parent.transform.position, Quaternion.identity);
-    }
+
  
 }
