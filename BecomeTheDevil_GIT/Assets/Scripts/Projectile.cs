@@ -31,7 +31,6 @@ public class Projectile : MonoBehaviour
         MoveToTarget();     // 적을 쫓아가는 함수.
 
         distance = Vector3.Distance(unitPosition, transform.position);
-        Debug.Log(distance);
         if (attackRange < distance)    // 사거리보다 길어지면.
         {
             //transform.localScale = new Vector3(1f, 1f, 1f); //크기 초기화.

@@ -49,7 +49,7 @@ public class InvenSlot : MonoBehaviour {
     {
 
         ItemImg.sprite = sprite;       // 슬롯안에 들어있는 아이템의 이미지를 셋팅.
-
+        ItemImg.color = new Color(ItemImg.color.r, ItemImg.color.g, ItemImg.color.b, 255f);
         if (slot.Count > 1)
             cntItemText.GetComponent<Text>().text = slot.Count.ToString();
     }

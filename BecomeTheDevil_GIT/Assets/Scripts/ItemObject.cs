@@ -14,11 +14,11 @@ public class ItemObject : MonoBehaviour {
     private Sprite itemSprite;
 
     public Sprite ItemSpr() { return itemSprite; }
-
+    GameManager gamanager;
     // Use this for initialization
     void Awake () {
         iv = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-
+        gamanager = GameManager.Instance;
         itemSprite = transform.GetComponent<SpriteRenderer>().sprite;
     }
 	
@@ -31,6 +31,11 @@ public class ItemObject : MonoBehaviour {
     {
         if (iv.AddItemInSlot(this))
             gameObject.SetActive(false); // 필드의 아이템을 비활성화
+        if (Name.Equals("Coin"))
+        {
+            gamanager.coin += 50;
+            Debug.Log("돈먹음");
+        }
         else
             Debug.Log("아이템을 습득하지 못했습니다.");
     }
