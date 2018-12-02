@@ -629,6 +629,10 @@ MonoBehaviour:
   dropItem:
   - {fileID: 1270581369220184, guid: df4bda04ed9050444a107105b6d1d1f9, type: 2}
   - {fileID: 1133474940879640, guid: b60b89d1726b9f4488991f1389f76b9a, type: 2}
+  - {fileID: 1133474940879640, guid: a532850b0e9a3d647bfd2cbf82a9e708, type: 2}
+  - {fileID: 1133474940879640, guid: 197d4f7bbab681445b06dbc37df09c82, type: 2}
+  - {fileID: 1133474940879640, guid: 160ca45e5ce786a4b970db2a6b502a56, type: 2}
+  - {fileID: 1230722215633714, guid: b47c3cec960a12c4fa7e3ee9f68a5878, type: 2}
 --- !u!114 &114314524220878658
 MonoBehaviour:
   m_ObjectHideFlags: 1

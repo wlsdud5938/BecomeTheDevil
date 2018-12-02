@@ -82,7 +82,8 @@ public class Inventory : MonoBehaviour {
 
     public bool AddItemInSlot(ItemObject item)
     {
-
+        if (item.Name.Equals("Coin"))
+            return true;
         // 슬롯에 총 개수.
         int slotCount = AllSlot.Count;
 

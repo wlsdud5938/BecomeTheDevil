@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 61615591992179626}
   - component: {fileID: 114044947740621868}
   - component: {fileID: 114507475205445948}
+  - component: {fileID: 114925892070610746}
   m_Layer: 8
   m_Name: Unit2
   m_TagString: Unit
@@ -829,6 +830,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114925892070610746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063712395133444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa0f9ade6b847f4a9b8cdcf50d3226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
 --- !u!212 &212157632348023016
 SpriteRenderer:
   m_ObjectHideFlags: 1

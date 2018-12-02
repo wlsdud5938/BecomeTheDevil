@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     Statu statu; // 스탯 
     public float attTimer = 0.0f; //attTimer 0으로 초기화해줘야
     private bool isAtt = false;  //isAtt 공격할 수 있냐 true로 만드는 코드 없음. 왜 필요한거죠
-    
+
     //Ai 관련 선언//
     private float adv; //Ai 관련 enemy와 player사이의 distance입니다.
     private float dist; // AI관련 거리변수
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        
+
         //스프라이트 버전에 맞게 렌더링
     }
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
     {
         attTimer += Time.deltaTime;
         if (attTimer >= statu.attackSpeed)
-            isAtt = true; 
+            isAtt = true;
         //공격하고 난 다음 attTimer 0으로 isAtt false로 만들어주세요
 
         if (target != null)
@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
     }
 
     void getClosestEnemy() //Enemy와 해당 태그(지금은 플레이어만) 사이의 거리를 target으로 반환해줍니다.
-        //지금 이 함수는 플레이어와 자신의 거리를 인식해서 방향을 확인하는 용도로 쓰이고 있습니다.
+                           //지금 이 함수는 플레이어와 자신의 거리를 인식해서 방향을 확인하는 용도로 쓰이고 있습니다.
     {
         //비용이 큼 - 특정 태그의 오브젝트를 모두 찾음
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void AnimatorOfEnemy(float direction, string animators)
-    {     
+    {
         if (animators == "EnemyRun")
         {
             animation.SetFloat("Dir", direction); // 방향을 설정
@@ -189,7 +189,7 @@ public class Enemy : MonoBehaviour
         if (animators == "EnemyIdle")
         {
             animation.SetFloat("Dir", direction); // 방향을 설정
-            animation.SetBool("EnemyRun", false); 
+            animation.SetBool("EnemyRun", false);
             animation.SetBool("EnemyIdle", true); // Idle 활성화
             animation.SetBool("EnemyChop", false);
             animation.SetBool("EnemyHit", false);
@@ -198,7 +198,7 @@ public class Enemy : MonoBehaviour
         {
             animation.SetFloat("Dir", direction); // 방향을 설정
             animation.SetBool("EnemyRun", false);
-            animation.SetBool("EnemyIdle", false); 
+            animation.SetBool("EnemyIdle", false);
             animation.SetBool("EnemyChop", true); // Chop 활성화
             animation.SetBool("EnemyHit", false);
         }
@@ -216,8 +216,18 @@ public class Enemy : MonoBehaviour
 
     public void DropItem()
     {
-        random = Random.Range(0, dropItem.Length);
-        Instantiate(dropItem[random], transform.parent.transform.position, Quaternion.identity);
+        if (!GameManager.Instance.spawnKey && GameManager.Instance.playTime >= GameManager.Instance.potalTime)
+        {
+            random = Random.Range(0, dropItem.Length);
+            Instantiate(dropItem[random], transform.parent.transform.position, Quaternion.identity);
+            if(random == dropItem.Length)
+                GameManager.Instance.spawnKey = true;
+        }
+        else
+        {
+            random = Random.Range(0, dropItem.Length-1);
+            Instantiate(dropItem[random], transform.parent.transform.position, Quaternion.identity);
+        }
     }
- 
+
 }

@@ -57,7 +57,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject currentEnemy;
     GameObject bosss;
     bool isPathfind = false;
-
+    GameObject Boss;
     public int[,] nodeTable = new int[30,30];
 
     void Awake()
@@ -78,7 +78,8 @@ public class RoomTemplates : MonoBehaviour
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     else
                     {
-                        Instantiate(boss, rooms[rooms.Count-1].GetComponent<MapNode>().realMap.transform.position, Quaternion.identity);
+                        Boss = Instantiate(boss, rooms[rooms.Count-1].GetComponent<MapNode>().realMap.transform.position, Quaternion.identity);
+                        rooms[rooms.Count - 1].GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units.Add(Boss);
                         bosss = Instantiate(currentBoss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
 
 

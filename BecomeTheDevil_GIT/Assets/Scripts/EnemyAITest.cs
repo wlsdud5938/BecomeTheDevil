@@ -105,8 +105,16 @@ public class EnemyAITest : MonoBehaviour
 
             if (dis > Vector2.Distance(i.transform.position, transform.position))
             {
+                if(i.CompareTag("Boss"))
+                {
+                    dis = Vector2.Distance(i.transform.Find("CoreShadow").transform.position, transform.position);
+
+                }
+                else
+                    dis = Vector2.Distance(i.transform.position, transform.position);
+
                 idx = j;
-                dis = Vector2.Distance(i.transform.position, transform.position);
+                
             }
             j++;
         }

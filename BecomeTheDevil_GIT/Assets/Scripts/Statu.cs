@@ -70,8 +70,11 @@ public class Statu : MonoBehaviour {
             if (isEnemy)
             {
                 gameManager.currNumOfEnemyes--;
-                if(gameManager.currNumOfEnemyes <0)
+                if (gameManager.currNumOfEnemyes <= 0)
+                {
                     gameManager.currNumOfEnemyes = 0;
+                    gameManager.ClosePotal();
+                }
 
                 int random = Random.Range(0, 10);
                 if (random <= 2)

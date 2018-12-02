@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour {
 
-    public enum TYPE { Coin, Iron, Ice }
+    public enum TYPE { Coin, Iron, Ice, Key }
 
     public TYPE type;           // 아이템의 타입
     public string Name;         // 아이템 이름
@@ -34,8 +34,9 @@ public class ItemObject : MonoBehaviour {
         if (Name.Equals("Coin"))
         {
             gamanager.coin += 50;
-            Debug.Log("돈먹음");
         }
+        else if (Name.Equals("Key"))
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().haveKey = true;
         else
             Debug.Log("아이템을 습득하지 못했습니다.");
     }
