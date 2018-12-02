@@ -18,26 +18,27 @@ public class GameManager : Singleton<GameManager>
     public int idxOfWave = 0;  //웨이브 라운드 넘버
     public int currNumOfEnemyes=0; //현재 맵에 총 적 숫자 Tag로 찾을 경우 성능 저하
     public float enemySpawnTimer = 0.0f;
-   
+    RoomTemplates temp;
     Dictionary<int, Enemy> enemyInstanceMap = new Dictionary<int, Enemy>();
 
     // Use this for initialization
     void Awake()
     {
         Screen.SetResolution(1920, 1080,true);
-        
+        temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currNumOfEnemyes==0)
+        if(currNumOfEnemyes<=0)
             enemySpawnTimer += Time.deltaTime;
         //씬에 에너미 0일 때 enemySpawnTimer 증가 
         // 적 다 잡고 유저한테 일정 시간 후에 적 스폰
-        if(enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes==0)
+        if(temp.spawnedBoss == true && enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes<=0)
         {
             enemySpawnTimer = 0.0f;
+            currNumOfEnemyes = 0;
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
                 StartCoroutine( MakeClone());

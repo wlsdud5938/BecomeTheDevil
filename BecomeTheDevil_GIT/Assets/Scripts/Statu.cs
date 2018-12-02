@@ -70,8 +70,15 @@ public class Statu : MonoBehaviour {
             if (isEnemy)
             {
                 gameManager.currNumOfEnemyes--;
-                Destroy(gameObject.transform.parent);
+                if(gameManager.currNumOfEnemyes <0)
+                    gameManager.currNumOfEnemyes = 0;
 
+                int random = Random.Range(0, 10);
+                if (random <= 2)
+                {
+                    gameObject.GetComponent<Enemy>().DropItem();
+                }
+                transform.parent.GetComponent<EnemyAITest>().Destroy();
             }
             if (CompareTag("Unit"))
             {

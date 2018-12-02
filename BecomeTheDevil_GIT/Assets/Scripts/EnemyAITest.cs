@@ -116,4 +116,8 @@ public class EnemyAITest : MonoBehaviour
             GetComponent<NavMeshAgent2D>().destination = nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units[idx].transform.position;
 
     }
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }
