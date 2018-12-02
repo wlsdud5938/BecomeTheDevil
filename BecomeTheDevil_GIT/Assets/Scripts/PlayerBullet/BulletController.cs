@@ -92,7 +92,7 @@ public class BulletController : MonoBehaviour {
                 ShootBullet();      // 총알 발사.
             }
         }
-        else if(Input.GetMouseButtonDown(0) && canShoot && canAttack && !InvenVisible.isInvenOpen) 
+        else if(Input.GetMouseButtonDown(0) && canShoot && canAttack)
         {
             isClick = true;
             SpawnBullet();
