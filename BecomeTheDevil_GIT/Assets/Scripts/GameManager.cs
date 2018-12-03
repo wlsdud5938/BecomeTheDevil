@@ -55,7 +55,8 @@ public class GameManager : Singleton<GameManager>
                 SpawnPotal();
             enemySpawnTimer = 0.0f;
             currNumOfEnemyes = 0;
-            for (int i = 0; i < numOfEnemyPerWave; i++)
+            int i = 0;
+            for (i = 0; i < numOfEnemyPerWave; i++)
             {
                 spawnTime += enemySpawnTerm;
                 StartCoroutine(MakeClone(spawnTime));
@@ -63,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 
             
             
-            idxOfWave++; // 추후 신마다 초기화하는 기능 추가
+            if(i==numOfEnemyPerWave) idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }
     }
 

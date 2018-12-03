@@ -22,14 +22,15 @@ public class UIController : MonoBehaviour {
     public Texture2D[] cantBuildUnitCursor; //유닛 생성하려고 좌표 찍으려 할 때 불가능한 위치일 때 커서
 
     public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
-    public Vector2 unitSpawnSpot = Vector2.zero;
-    public Vector2 mouseTarget = Vector2.zero;
-
+    public Vector2 hotSpot = Vector2.zero; //마우스 hot spot
+    public Vector2 unitSpawnSpot = Vector2.zero; //유닛 생성지점
+    public Vector2 mouseTarget = Vector2.zero; //moust target
+   
 
     RoomTemplates temp;
     GameManager gameManager;
     Camera camera;
+
 
     BulletController playerBC; // 플레이어 불렛 컨트롤러
 
@@ -66,16 +67,17 @@ public class UIController : MonoBehaviour {
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
         {
             playerBC.canAttack = false;
-            unitSpawnSpot.x = (int)unitSpawnSpot.x + 0.5f;
-            unitSpawnSpot.y = (int)unitSpawnSpot.y - 0.5f;
-          
+            Debug.Log(unitSpawnSpot);
+            unitSpawnSpot.x = Mathf.Floor(unitSpawnSpot.x) + 0.5f;
+            unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y) + 0.5f;
+            Debug.Log(" " + unitSpawnSpot);
             //마우스에서 가장 가까운 셀 중앙 좌표
-            Ray2D ray = new Ray2D(unitSpawnSpot, Vector2.zero);
-            Collider2D[] hit = Physics2D.OverlapBoxAll(ray.origin,Vector2.one,0);
+            Collider2D[] hit = Physics2D.OverlapBoxAll(unitSpawnSpot,Vector2.one*0.5f,0);
             //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
             bool isBuild = true;
             foreach(Collider2D i in hit){
                 if (!i.isTrigger) isBuild = false; //트리러가 아니면
+               
             }
             if (isBuild&&IsInMap(mouseTarget))
             {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
@@ -203,3 +205,4 @@ public class UIController : MonoBehaviour {
 
 
 }
+
