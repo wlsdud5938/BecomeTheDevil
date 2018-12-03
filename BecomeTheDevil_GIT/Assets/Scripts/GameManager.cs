@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
     //유니티 창에서 조절해야 하는 값
-    public GameObject enemy; 
+    public GameObject[] enemys; 
     public float nextWaveTime =3f;  //현재 웨이브 다 잡고 다음 웨이브까지 시간 
     public int numOfEnemyPerWave; //웨이브당 생성되는 적 숫자
     public GameObject entryRoom;
@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject stoneItemImage; //돌 아이템
     public GameObject iceItemImage; //얼음 아이템
     public Slider itemSlider;
-    public int idxOfWave = 0;  //웨이브 라운드 넘버
+    public int idxOfWave = 1;  //웨이브 라운드 넘버
     public int currNumOfEnemyes=0; //현재 맵에 총 적 숫자 Tag로 찾을 경우 성능 저하
     public float enemySpawnTimer = 0.0f;
     RoomTemplates temp;
@@ -26,10 +26,14 @@ public class GameManager : Singleton<GameManager>
     public float potalTime = 500f;
     public GameObject clearPotal;   //클리어포탈
     int random;
+    public int random1;
     public bool spawnKey = false;
     // 적 스폰 시간
-    private float enemySpawnTerm = 2.0f;  //  스폰 term.
+    private float enemySpawnTerm = 1.0f;  //  스폰 term.
     private float spawnTime = 0f;       // 
+    int i = 0;
+    public int minVer = 0;
+    int selectVer = 0;
     // Use this for initialization
     void Awake()
     {
@@ -55,16 +59,20 @@ public class GameManager : Singleton<GameManager>
                 SpawnPotal();
             enemySpawnTimer = 0.0f;
             currNumOfEnemyes = 0;
-            int i = 0;
+            spawnTime = 0;
+
             for (i = 0; i < numOfEnemyPerWave; i++)
             {
-                spawnTime += enemySpawnTerm;
-                StartCoroutine(MakeClone(spawnTime));
-            }
 
-            
-            
-            if(i==numOfEnemyPerWave) idxOfWave++; // 추후 신마다 초기화하는 기능 추가
+                StartCoroutine(MakeClone(spawnTime));
+                spawnTime += enemySpawnTerm;
+
+            }
+            numOfEnemyPerWave += Random.Range(0, 4);
+
+            if (idxOfWave % 3 == 0)
+                minVer++;
+            idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }
     }
 
@@ -109,7 +117,14 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(time);
         //Debug.Log("적생성!");
-        GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
+        random1 = Random.Range(minVer, idxOfWave);
+        if (random1 <= 8)
+            selectVer = 0;
+        else if (random1 <= 16)
+            selectVer = 1;
+        else
+            selectVer = 2;
+        GameObject clone = Instantiate(enemys[selectVer], entryRoom.transform.position, Quaternion.identity);
         clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
         currNumOfEnemyes++;
     }

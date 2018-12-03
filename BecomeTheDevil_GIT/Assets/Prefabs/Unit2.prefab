@@ -603,7 +603,7 @@ MonoBehaviour:
   attackSpeed: 0
   attackCoolTime: 1
   HPSlider: {fileID: 114610652372798428}
-  maxHP: 100
+  maxHP: 500
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4016578308378674}

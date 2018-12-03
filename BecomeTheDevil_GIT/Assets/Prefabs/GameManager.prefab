@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114481623734568882}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,11 +51,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf8a3e88f431f0489c94d0e28e2e56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1602054973030844, guid: 8642c51ebf0e7b64f9c80e83318c415c, type: 2}
-  nextWaveTime: 10
-  numOfEnemyPerWave: 3
+  enemys:
+  - {fileID: 1414705647297722, guid: 3be1a33b1c9a98347b65436fdbe844f1, type: 2}
+  - {fileID: 1355050985360750, guid: 45812297fd5a72441b694397537d25a9, type: 2}
+  - {fileID: 1627409515442216, guid: 5dbecc19b7e90b24d88ab94da065de57, type: 2}
+  nextWaveTime: 60
+  numOfEnemyPerWave: 5
   entryRoom: {fileID: 0}
   maxHpOfEnemy:
   - 100
   - 70
   - 30
+  levelBalanceConst: 1.1
+  stoneItemImage: {fileID: 0}
+  iceItemImage: {fileID: 0}
+  itemSlider: {fileID: 0}
+  idxOfWave: 0
+  currNumOfEnemyes: 0
+  enemySpawnTimer: 0
+  coin: 0
+  coinText: {fileID: 0}
+  playTime: 0
+  potalTime: 4
+  clearPotal: {fileID: 0}
+  random1: 0
+  spawnKey: 0
+  minVer: 0

@@ -85,7 +85,7 @@ public class Enemy2 : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Unit" || other.tag == "Player")
+        if (other.tag == "Unit" || other.tag == "Player" || other.tag == "Boss")
         {
             unit.Enqueue(other.GetComponent<Statu>());
             //Debug.Log("유닛 들어옴");
@@ -95,7 +95,7 @@ public class Enemy2 : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Unit" || other.tag == "Player")
+        if (other.tag == "Unit" || other.tag == "Player" || other.tag == "Boss")
         {
             unitTarget = null;
             //Debug.Log("유닛 나감");
