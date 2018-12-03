@@ -90,4 +90,17 @@ public class Statu : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    public void IceDamage(float Icetime)
+    {
+        movoingSpeed /= 2;
+        // 일정시간 후 다시 돌림.
+        StartCoroutine(IceRecovery(Icetime));
+    }
+
+    IEnumerator IceRecovery(float time)
+    {
+        yield return new WaitForSeconds(time);
+        movoingSpeed *= 2;
+    }
 }

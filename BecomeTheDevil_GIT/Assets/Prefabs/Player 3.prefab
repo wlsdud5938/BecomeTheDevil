@@ -393,7 +393,6 @@ MonoBehaviour:
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4921146559434144}
-  isActive: 1
 --- !u!114 &114854126942839790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,6 +412,7 @@ MonoBehaviour:
     type: 2}
   fakeBulletPrefab: {fileID: 1084322577660816, guid: 9ca628611b9ce0f498e41813259feaaf,
     type: 2}
+  canAttack: 1
   isClick: 0
   mouseButtonUp: 0
   deletBulletTime: 3

@@ -75,6 +75,6 @@ MonoBehaviour:
   - {fileID: 1410225289326506, guid: 34f3f77600438ad4fbcf038dd110b8d1, type: 2}
   - {fileID: 1084322577660816, guid: 9ca628611b9ce0f498e41813259feaaf, type: 2}
   - {fileID: 1684421416880126, guid: a911df503c8c91048a9610b362aed351, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1684421416880126, guid: 9cf148a8dbf2a7144899bd968e7ab35e, type: 2}
+  - {fileID: 1459514061612612, guid: 16bf96a60fbe70b41b48a67c1fa975ab, type: 2}
   pooledObjects: []

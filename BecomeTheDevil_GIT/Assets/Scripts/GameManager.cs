@@ -27,6 +27,9 @@ public class GameManager : Singleton<GameManager>
     public GameObject clearPotal;   //클리어포탈
     int random;
     public bool spawnKey = false;
+    // 적 스폰 시간
+    private float enemySpawnTerm = 2.0f;  //  스폰 term.
+    private float spawnTime = 0f;       // 
     // Use this for initialization
     void Awake()
     {
@@ -54,8 +57,12 @@ public class GameManager : Singleton<GameManager>
             currNumOfEnemyes = 0;
             for (int i = 0; i < numOfEnemyPerWave; i++)
             {
-                StartCoroutine(MakeClone());
+                spawnTime += enemySpawnTerm;
+                StartCoroutine(MakeClone(spawnTime));
             }
+
+            
+            
             idxOfWave++; // 추후 신마다 초기화하는 기능 추가
         }
     }
@@ -97,14 +104,13 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    IEnumerator MakeClone()
+    IEnumerator MakeClone(float time)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(time);
+        //Debug.Log("적생성!");
         GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
         clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
         currNumOfEnemyes++;
-        yield return new WaitForSeconds(1f);
-
     }
 
 

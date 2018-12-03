@@ -66,13 +66,13 @@ public class BulletController : MonoBehaviour {
             clickTimer += Time.deltaTime; // 마우스를 누르고 있는 시간 증가
             
             // 총알 크기 증가. 데미지 증가
-            if(bulletPrefab.transform.localScale.x < 1.5) // 최대 1.5배까지 증가.
+            if(bulletPrefab.transform.localScale.x < 1.0) // 최대 1.0배까지 증가.
             {
                 stat.attackDamage += 0.2f;
                 bulletPrefab.transform.localScale += new Vector3(0.01f, 0.01f, 0);
             }
             
-            if (fakeBullet1.transform.localScale.x < 1.5) // 최대 1.5배까지 증가.
+            if (fakeBullet1.transform.localScale.x < 1.0) // 최대 1.0배까지 증가.
             {
                 fakeBullet1.transform.localScale += new Vector3(0.01f, 0.01f, 0);
                 fakeBullet2.transform.localScale += new Vector3(0.01f, 0.01f, 0);
@@ -198,8 +198,8 @@ public class BulletController : MonoBehaviour {
     IEnumerator InitialSize()
     {
         yield return new WaitForSeconds(2*bulletDelay+0.05f);
-        fakeBulletPrefab.transform.localScale = new Vector3(1f, 1f, 1f);
-        bulletPrefab.transform.localScale = new Vector3(1f, 1f, 1f);
+        fakeBulletPrefab.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+        bulletPrefab.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         stat.attackDamage = temp;
     }
 

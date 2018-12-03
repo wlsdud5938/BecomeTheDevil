@@ -30,6 +30,7 @@ public class PlayerBullet : MonoBehaviour {
         attackDamage = statu.attackDamage;
         attackRange = statu.attackRange;
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Debug.Log(mousePosition);
         // 총알이 생성될 때 플레이어 위치 저장.
         playerPosition = parent.transform.position;
         vector2Position.x = transform.position.x;
@@ -40,7 +41,7 @@ public class PlayerBullet : MonoBehaviour {
         // 총알 마우스 방향으로 rotate.
         Vector2 dir = mousePosition - vector2Position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        //transform.Find("Sprite").transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.Find("Sprite").transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.Find("Sprite").transform.Rotate(Vector3.forward, angle);
     }
 	
@@ -119,12 +120,18 @@ public class PlayerBullet : MonoBehaviour {
             
         if (col.tag == "EnemyHitCollider")
         {
+            
             col.transform.parent.GetComponent<Statu>().TakeDamage(attackDamage);
             //Destroy(this.gameObject);
             //transform.localScale = new Vector3(1f, 1f, 1f); // 적맞추면 크기 초기화.
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
-            Debug.Log("Player가 적을 맞춤");
-            
+            //Debug.Log("Player가 적을 맞춤");
+            // IceBullet일 경우 적을 느리게 함.
+            if (parent.projectileType == "PlayerIceBullet")
+            {
+                col.transform.parent.GetComponent<Statu>().IceDamage(3f);
+            }
+
             //bulletTime = 0;
         }
     }
