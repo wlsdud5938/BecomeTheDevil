@@ -58,7 +58,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -111,41 +111,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_InventoryBackground_ninePatch_1
+      name: UI_InventoryBackground_ninePatch_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 117
+        y: 0
         width: 220
-        height: 2
+        height: 220
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d9c6320f2e9add40a83ed2677b3e349
+      spriteID: dcfcb9404ed8ee449b04dd6d68fd5b02
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_InventoryBackground_ninePatch_2
+      name: UI_InventoryBackground_ninePatch_1
       rect:
         serializedVersion: 2
-        x: 110
+        x: 0
         y: 0
-        width: 4
+        width: 220
         height: 220
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 55, y: 55, z: 55, w: 55}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a4dab6294d9cca42b2987ea60a1e06d
+      spriteID: c7c04e1cabb9cf34eae1b3c633f5eb15
       vertices: []
       indices: 
       edges: []
