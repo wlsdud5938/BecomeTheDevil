@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movoingSpeed: 3
-  attackDamage: 7
+  attackDamage: 30
   attackRange: 10
   attackSpeed: 1
   attackCoolTime: 1

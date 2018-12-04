@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField]        // 유니티 에디터에서 보임.
-    private string projectileType;     // 유닛에 따라 발사체를 다르게.
+    //[SerializeField]        // 유니티 에디터에서 보임.
+    public string projectileType;     // 유닛에 따라 발사체를 다르게.
 
     /*[SerializeField]
     private Projectile projectilePrefab;           // 발사체 프리팹
