@@ -102,7 +102,6 @@ GameObject:
   - component: {fileID: 114785722339270536}
   - component: {fileID: 61281668705882488}
   - component: {fileID: 114854126942839790}
-  - component: {fileID: 114003953368957214}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -229,12 +228,12 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803883405323362}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
-  m_LinearDrag: 1000
+  m_Mass: 2
+  m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -310,18 +309,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114003953368957214
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1803883405323362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fa0f9ade6b847f4a9b8cdcf50d3226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114066320753641218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,16 +337,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ffb7eac28272d4ca9f444a0801f5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movoingSpeed: 4
-  attackDamage: 10
+  movoingSpeed: 3
+  attackDamage: 7
   attackRange: 10
   attackSpeed: 1
   attackCoolTime: 1
   HPSlider: {fileID: 0}
-  maxHP: 100000000
+  maxHP: 10000
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4921146559434144}
+  iceImage: {fileID: 0}
 --- !u!114 &114854126942839790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,14 +359,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba8cd90b5f35744a88f530251596791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileType: PlayerBullet
-  projectileType1: 
-  projectileType2: 
-  fakeBulletName: 
+  projectileType: PlayerIceBullet
+  fakeBulletName: fakebullet
   bulletPrefab: {fileID: 1684421416880126, guid: a911df503c8c91048a9610b362aed351,
     type: 2}
   fakeBulletPrefab: {fileID: 1084322577660816, guid: 9ca628611b9ce0f498e41813259feaaf,
     type: 2}
+  fakeIceBulletPrefab: {fileID: 1084322577660816, guid: 492edb615ece0f14e9bd12f1d2c4402f,
+    type: 2}
+  canAttack: 1
   isClick: 0
   mouseButtonUp: 0
   deletBulletTime: 3

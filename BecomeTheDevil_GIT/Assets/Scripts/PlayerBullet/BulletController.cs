@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
     public string projectileType;   // 오브젝트 풀에서 불러올 총알 이름.
-    public string projectileType1;
-    public string projectileType2;
+    //public string projectileType1;
+    //public string projectileType2;
     public string fakeBulletName;   // 오브젝트 풀에서 불러올 가짜 총알 이름.
     public GameObject bulletPrefab; //발사할 총알
     public GameObject fakeBulletPrefab; // 가짜 총알
+    public GameObject fakeIceBulletPrefab; // 가짜 얼음 총알
     public bool canAttack = true;  //이거 마우스 위치나 유닛 버튼 눌른 상황이면 공격 못하게 할 변수
     
     bool canShoot = true; //총알을 쏠 수 있는 상태 확인
@@ -39,7 +40,12 @@ public class BulletController : MonoBehaviour {
     private GameObject fakeBullet1;
     private GameObject fakeBullet2;
     private GameObject fakeBullet3;
-    
+    /*
+    private GameObject fakeIceBullet1;
+    private GameObject fakeIceBullet2;
+    private GameObject fakeIceBullet3;
+    */
+
     private GameObject bullet1;
     private GameObject bullet2;
     private GameObject bullet3;
@@ -206,12 +212,26 @@ public class BulletController : MonoBehaviour {
     //총알을 spawnBulletPoint에 생성한다.
     void SpawnBullet()
     {
-        fakeBullet1 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint1.transform.position, Quaternion.identity);
-        fakeBullet1.transform.parent = transform;
-        fakeBullet2 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint2.transform.position, Quaternion.identity);
-        fakeBullet2.transform.parent = transform;
-        fakeBullet3 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint3.transform.position, Quaternion.identity);
-        fakeBullet3.transform.parent = transform;
+        if (projectileType == "PlayerBullet")
+        {
+            fakeBullet1 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint1.transform.position, Quaternion.identity);
+            fakeBullet1.transform.parent = transform;
+            fakeBullet2 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint2.transform.position, Quaternion.identity);
+            fakeBullet2.transform.parent = transform;
+            fakeBullet3 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint3.transform.position, Quaternion.identity);
+            fakeBullet3.transform.parent = transform;
+        }
+
+        else if(projectileType == "PlayerIceBullet")
+        {
+            fakeBullet1 = Instantiate<GameObject>(fakeIceBulletPrefab, spawnBulletPoint1.transform.position, Quaternion.identity);
+            fakeBullet1.transform.parent = transform;
+            fakeBullet2 = Instantiate<GameObject>(fakeIceBulletPrefab, spawnBulletPoint2.transform.position, Quaternion.identity);
+            fakeBullet2.transform.parent = transform;
+            fakeBullet3 = Instantiate<GameObject>(fakeIceBulletPrefab, spawnBulletPoint3.transform.position, Quaternion.identity);
+            fakeBullet3.transform.parent = transform;
+        }
+        
 
         /*
         FakeBullet fake1 = BattleManager.instance.Pool.GetObject(fakeBulletName).GetComponent<FakeBullet>();

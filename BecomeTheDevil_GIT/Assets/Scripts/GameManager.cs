@@ -110,6 +110,8 @@ public class GameManager : Singleton<GameManager>
         DequipItem();
         iceItemImage.SetActive(true); //얼음 아이템 이미지 끄고
         itemSlider.value = valueOfSlider;
+        // 아이스아이템
+        //GetComponent<BulletController>().projectileType = "PlayerIceBullet";
     }
 
     public void DecreaseItemSlider()

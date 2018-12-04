@@ -768,6 +768,7 @@ MonoBehaviour:
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4277743260944890}
+  iceImage: {fileID: 0}
 --- !u!114 &114957070817781852
 MonoBehaviour:
   m_ObjectHideFlags: 1

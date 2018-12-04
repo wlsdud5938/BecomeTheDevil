@@ -26,6 +26,13 @@ public class Statu : MonoBehaviour {
     GameManager gameManager; //코드량 줄이기위해 instance 캐싱
     RoomTemplates temp;
 
+    // ice 관련 변수
+    private bool iced = false;
+    SpriteRenderer myspriteRenderer;
+    //public Sprite iceImage;
+    private float iceTime;
+    private float iceLastTime = 3f;
+
     void Awake () 
     {
         gameManager = GameManager.Instance;
@@ -40,6 +47,8 @@ public class Statu : MonoBehaviour {
             attackDamage += gameManager.idxOfWave * (attackDamage * gameManager.levelBalanceConst - attackDamage);
         }//에너미인 경우, 웨이브 라운드에 숫자에 따라 강해짐 최대체력이 달라짐
         currentHP = maxHP;
+
+        myspriteRenderer = GetComponent<SpriteRenderer>();
 
 
         if (!isPlayer)
@@ -59,6 +68,26 @@ public class Statu : MonoBehaviour {
             HPSlider.value = currentHP;
             isPlayer = false;
         }
+
+        if (iced)
+        {
+            //Debug.Log("파래져야함");
+            iceTime += Time.deltaTime;
+            //Debug.Log(iceTime);
+            if (iceLastTime <= iceTime)  // 일정시간 후 다시 돌림.
+            {
+                //myspriteRenderer.color = new Color(255f, 255f, 255f, 255f);
+                //Debug.Log("다시돌아와야함");
+                transform.parent.GetComponent<NavMeshAgent2D>().speed *= 2;
+                iceTime = 0;
+                iced = false;
+            }
+            myspriteRenderer.color = new Color(0f, 0f, 255f, 255f);
+        }
+        if (!iced){
+            myspriteRenderer.color = new Color(255f, 255f, 255f, 255f);
+        }
+        
     }
 
 
@@ -94,9 +123,17 @@ public class Statu : MonoBehaviour {
 
     public void IceDamage(float Icetime)
     {
-        movoingSpeed /= 2;
-        // 일정시간 후 다시 돌림.
-        StartCoroutine(IceRecovery(Icetime));
+        if (!iced)
+        {
+            //movoingSpeed /= 2;
+            transform.parent.GetComponent<NavMeshAgent2D>().speed /= 2;
+            //iceImage.color = new Color(0, 10, 255);
+            //StartCoroutine(IceRecovery(Icetime));
+
+        }
+        iceTime = 0f;
+        iced = true;
+
     }
 
     IEnumerator IceRecovery(float time)

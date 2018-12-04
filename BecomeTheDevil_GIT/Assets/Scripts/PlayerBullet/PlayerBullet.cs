@@ -129,6 +129,7 @@ public class PlayerBullet : MonoBehaviour {
             // IceBullet일 경우 적을 느리게 함.
             if (parent.projectileType == "PlayerIceBullet")
             {
+                //Debug.Log("아이스 공격!");
                 col.transform.parent.GetComponent<Statu>().IceDamage(3f);
             }
 
