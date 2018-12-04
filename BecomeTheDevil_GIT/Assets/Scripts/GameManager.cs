@@ -35,7 +35,10 @@ public class GameManager : Singleton<GameManager>
     public int minVer = 0;
     int selectVer = 0;
     int itemSliderValue = 0;
-
+    float waveTime = 0;
+    public GameObject waveStart;
+    public GameObject waveClear;
+    public float onWave = 10;
     // 아이템 관련
     public bool isIce = false;
     // Use this for initialization
@@ -49,12 +52,16 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         //itemSlider.value = itemSliderValue;
+        onWave += Time.deltaTime;
         coinText.text = coin.ToString();
+        if(onWave>=5)
+            waveClear.transform.GetChild(0).gameObject.SetActive(false);
         if (temp.spawnedBoss)
             playTime += Time.deltaTime;
         if (currNumOfEnemyes <= 0)
         {
             enemySpawnTimer += Time.deltaTime;
+
 
         }
         //씬에 에너미 0일 때 enemySpawnTimer 증가 
@@ -70,7 +77,7 @@ public class GameManager : Singleton<GameManager>
             for (i = 0; i < numOfEnemyPerWave; i++)
             {
 
-                StartCoroutine(MakeClone(spawnTime));
+                StartCoroutine(MakeClone(spawnTime, i));
                 spawnTime += enemySpawnTerm;
 
             }
@@ -140,10 +147,14 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    IEnumerator MakeClone(float time)
+    IEnumerator MakeClone(float time, int i)
     {
         yield return new WaitForSeconds(time);
         //Debug.Log("적생성!");
+        if(i == 0)
+            waveStart.transform.GetChild(0).gameObject.SetActive(true);
+        else if(i >3)
+            waveStart.transform.GetChild(0).gameObject.SetActive(false);
         random1 = Random.Range(minVer, idxOfWave);
         if (random1 <= 8)
             selectVer = 0;

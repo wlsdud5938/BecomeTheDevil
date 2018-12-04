@@ -109,17 +109,19 @@ public class Statu : MonoBehaviour {
         {
             if (isEnemy)
             {
-                gameManager.currNumOfEnemyes--;
-                if (gameManager.currNumOfEnemyes <= 0)
-                {
-                    gameManager.currNumOfEnemyes = 0;
-                    
-                }
+
 
                 int random = Random.Range(0, 10);
                 if (random <= 3)
                 {
                     gameObject.GetComponent<Enemy>().DropItem();
+                }
+                gameManager.currNumOfEnemyes--;
+                if (gameManager.currNumOfEnemyes <= 0)
+                {
+                    gameManager.currNumOfEnemyes = 0;
+                    gameManager.onWave = 0;
+                    gameManager.waveClear.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 transform.parent.GetComponent<EnemyAITest>().Destroy();
             }
