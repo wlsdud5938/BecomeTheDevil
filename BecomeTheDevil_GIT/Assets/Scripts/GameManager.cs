@@ -34,6 +34,7 @@ public class GameManager : Singleton<GameManager>
     int i = 0;
     public int minVer = 0;
     int selectVer = 0;
+    int itemSliderValue = 0;
     // Use this for initialization
     void Awake()
     {
@@ -44,6 +45,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        itemSlider.value = itemSliderValue;
         coinText.text = coin.ToString();
         if (temp.spawnedBoss)
             playTime += Time.deltaTime;
@@ -106,13 +108,13 @@ public class GameManager : Singleton<GameManager>
     public void DecreaseItemSlider()
     {
         float value = itemSlider.value;
-        itemSlider.value = value--;
+        itemSliderValue--;
     }
     public void DequipItem()
     {
         stoneItemImage.SetActive(false);
         iceItemImage.SetActive(false);
-        itemSlider.value = 0;
+        itemSliderValue = 0;
     }
 
 

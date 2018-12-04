@@ -126,21 +126,20 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public List<int> CountItem(List<int> list)
+    public void CountItem(ref int[] list)
     {
         InvenSlot tmp;
-
-        list.Clear();
 
         // list[0] = iron 수, list[1] = ice 수
 
         for (int i = 0; i < slotCountX * slotCountY; i++)
         {
+
             tmp = AllSlot[i].GetComponent<InvenSlot>();
+            if (tmp.slot.Count == 0) continue;
             if (tmp.slot.Peek().Name.Equals("Iron")) list[0] += tmp.slot.Count;
             else if (tmp.slot.Peek().Name.Equals("Ice")) list[1] += tmp.slot.Count;
         }
-        return list;
     }
 
     public void UseItemInSlot(ItemObject item)

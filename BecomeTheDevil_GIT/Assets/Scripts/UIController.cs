@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class UIController : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class UIController : MonoBehaviour {
     public float arrowInterval = 10f; // 애로우 사이의 간격
     public float xPosMax = 47, xPosMin = 33; //맵 최대 최소 x,y 좌표 (맵크기)
     public float yPosMax = -10, yPosMin = -19;
+    public ItemObject[] itemObjects;
 
     //마우스 바꿔야함
     public Texture2D inMapCursor;  //맵 안에서 커서
@@ -40,8 +42,9 @@ public class UIController : MonoBehaviour {
     Button[] cloneUnitButton; //생성한 유닛 버튼 그 자체
     Button cloneTowerButton; //생성한 타워 버튼 
     Image cloneTriangleImage; //생성한 트라이앵글 이미지
-
+   
     Vector2 spawnPos = Vector2.zero;
+    Inventory inventory; //이벤토리 가지고옴
 
 
     // Use this for initialization
@@ -53,13 +56,13 @@ public class UIController : MonoBehaviour {
         cloneTowerButton.onClick.AddListener(()=>GenerateUnitButtons()); //click 이벤트 연결
         cloneTowerButton.transform.SetParent(gameObject.transform,false);
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         gameManager = GameManager. Instance; //게임 매니저 캐싱
-
-
     }
     // Update is called once per frame
     void Update()
     {
+
         camera = Camera.main;
         unitSpawnSpot = camera.ScreenToWorldPoint(Input.mousePosition); // 진짜 유닛이 생성될 좌표
         mouseTarget = camera.ScreenToWorldPoint(Input.mousePosition)-camera.transform.position; //유닛이 생성될 좌표 맵안인지 확인할 좌표
@@ -91,13 +94,14 @@ public class UIController : MonoBehaviour {
                 {
                     GenerateUnit(unitSpawnSpot);
                 }//유닛 생성
+
                 if (Input.GetMouseButton(1))
                 {
                     isClickedUB = false; //clickedUB 상태 false로 바꿈
                     DestroyUnitButtons(); //유닛을 생성한 후에는 유닛 버튼 삭제
                     isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
                                       
-                }//유저가 유닛생성취
+                }//유저가 유닛생성취소
             }
 
             else
@@ -139,6 +143,24 @@ public class UIController : MonoBehaviour {
 
     void GenerateUnit(Vector3 target){
         target.z = 0; //z를 0으로 만들어야함, screenToWorld가 z를 -10으로 만듬
+        if(idxOfClickedUB!=0){
+            int[] itemCountArray = new int[2]{0,0};
+            inventory.CountItem(ref itemCountArray);
+            if (itemCountArray[idxOfClickedUB-1] <= 0)
+            {
+                EditorUtility.DisplayDialog("해당 유닛을 생성할 아이템이 없습니다", "", "Ok");
+                isClickedUB = false; //clickedUB 상태 false로 바꿈
+                DestroyUnitButtons(); //유닛을 생성한 후에는 유닛 버튼 삭제
+                isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
+                                     //여기서 마우스 모양 제대로
+                return; 
+            } //해당 아이템 없어서 빠꾸
+            else
+            {
+                inventory.UseItemInSlot(itemObjects[idxOfClickedUB - 1]);
+
+            }
+        }
         GameObject cloneUnit = Instantiate(units[idxOfClickedUB], target, Quaternion.identity);
         if (cloneUnit != null)
         {

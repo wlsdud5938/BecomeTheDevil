@@ -46,7 +46,6 @@ public class InvenSlot : MonoBehaviour
         counter++;
         if (counter == 1)
         {
-            Debug.Log("d");
             if(slot.Count!=0)
             {
                 ItemObject tmp = slot.Peek();
@@ -60,7 +59,7 @@ public class InvenSlot : MonoBehaviour
                     gameManager.EquipIceItem(100);
                     UseItem(tmp);
                 }
-                else Debug.Log("hi");
+               
 
 
             }

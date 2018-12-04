@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllSlot: []
   InvenRect: {fileID: 224545092196695584}
-  OriginSlot: {fileID: 1070243871785856, guid: f721a4a73fc2c824694f9a9416e2534c, type: 2}
+  OriginSlot: {fileID: 1497567696973002, guid: 1e1631b10ae1a4374af98d5ae1ae6ae1, type: 2}
   SlotParent: {fileID: 1612886332461934}
   slotSize: 130
   slotGapX: 24

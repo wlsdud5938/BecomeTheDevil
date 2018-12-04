@@ -699,6 +699,9 @@ MonoBehaviour:
   xPosMin: -11
   yPosMax: 7
   yPosMin: -7
+  itemObjects:
+  - {fileID: 114562567543512856, guid: b60b89d1726b9f4488991f1389f76b9a, type: 2}
+  - {fileID: 114710935721410372, guid: df4bda04ed9050444a107105b6d1d1f9, type: 2}
   inMapCursor: {fileID: 2800000, guid: 965493737d8e24b50903d2e1f242cc2e, type: 3}
   outMapCursor: {fileID: 2800000, guid: 905f0897acdb44e858729e5cbb21eae1, type: 3}
   canBuildUnitCursor:
