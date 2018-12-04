@@ -8,7 +8,7 @@ public class Potal : MonoBehaviour
     private Player player;
     RoomTemplates temp;
     float timer = 0.0f;
-
+    bool find = false;
     // Use this for initialization
     void Start()
     {
@@ -18,8 +18,11 @@ public class Potal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(temp.spawnedBoss)
+        if (temp.spawnedBoss && !find)
+        {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            find = true;
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {

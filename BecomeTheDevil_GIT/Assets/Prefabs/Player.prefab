@@ -423,6 +423,7 @@ MonoBehaviour:
   fakeBulletPrefab: {fileID: 0}
   countItem: 0
   haveKey: 0
+  isHuman: 1
 --- !u!114 &114409294670269334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,7 +454,7 @@ MonoBehaviour:
   attackSpeed: 1
   attackCoolTime: 1
   HPSlider: {fileID: 0}
-  maxHP: 10000
+  maxHP: 300
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4921146559434144}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Statu : MonoBehaviour {
@@ -66,7 +67,7 @@ public class Statu : MonoBehaviour {
             HPSlider.maxValue = maxHP;
 
             HPSlider.value = currentHP;
-            isPlayer = false;
+
         }
 
         if (iced)
@@ -112,6 +113,10 @@ public class Statu : MonoBehaviour {
                     gameObject.GetComponent<Enemy>().DropItem();
                 }
                 transform.parent.GetComponent<EnemyAITest>().Destroy();
+            }
+            if (CompareTag("Player"))
+            {
+                SceneManager.LoadScene("Defeat");
             }
             if (CompareTag("Unit"))
             {

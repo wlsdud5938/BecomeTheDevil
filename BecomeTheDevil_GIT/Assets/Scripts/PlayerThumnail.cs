@@ -10,20 +10,27 @@ public class PlayerThumnail : MonoBehaviour {
 
     Image thumnail;
     bool isHuman = true;
-
+    bool find = false;
+    Player player;
+    RoomTemplates temp;
     // Use this for initialization
     void Start () {
-
+        temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         thumnail = GetComponent<Image>();
         thumnail.sprite = thumnail_sprites[1];
     }
 	
 	// Update is called once per frame
     void Update (){
+        if(temp.spawnedBoss == true && !find)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            find = true;
+        }
         if (Input.GetKeyDown("space"))
         {
 
-            isHuman = !isHuman;
+            isHuman = player.isHuman;
             int idx = isHuman ? 1 : 0;
             thumnail.sprite = thumnail_sprites[idx];
         }
