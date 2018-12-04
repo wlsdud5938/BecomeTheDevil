@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager>
 
         itemSlider.value -= 20;
         Debug.Log(itemSlider.value);
-        if (itemSlider.value < 0)
+        if (itemSlider.value <= 0)
         {
             DequipItem();
         }
