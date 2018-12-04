@@ -3,27 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMoveSound : MonoBehaviour {
-    public AudioSource audio1;
-    public AudioClip audio;
+    public AudioSource[] audios;
+    private AudioClip audio1;
+    private AudioClip audio2;
     private Animator animator;
 
-	// Use this for initialization
-	void Start () {
-        audio1 = GetComponent<AudioSource>();
+    // Use this for initialization
+    void Start()
+    {
         animator = GetComponent<Animator>();
-        audio1.Play();
+        audios[0].Play();
     }
 
     // Update is called once per frame
 
-    void Update () {
-		if (animator.GetBool("isMoving") == true)
+    void Update()
+    {
+        if (animator.GetBool("isMoving") == true)
         {
-            audio1.mute = false;           
+            audios[0].mute = false;
         }
         if (animator.GetBool("isMoving") == false)
         {
-            audio1.mute = true;
+            audios[0].mute = true;
         }
-	}
+        if (Input.GetKeyDown("space"))
+        {
+            audios[1].Play();
+        }
+    }
 }
