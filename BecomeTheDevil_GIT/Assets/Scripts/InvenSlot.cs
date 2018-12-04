@@ -82,6 +82,7 @@ public class InvenSlot : MonoBehaviour
     {
         slot.Pop();
         UpdateInfo(item.ItemSpr());
+        counter = 0;
     }
 
     // 슬롯에 대한 각종 정보 업데이트.
@@ -91,7 +92,9 @@ public class InvenSlot : MonoBehaviour
         if (slot.Count == 0)
         {
             ItemImg.sprite = DefaultImg;
-
+            slot.Clear();
+            isSlotEmpty = true;
+            cntItemText.GetComponent<Text>().text = "";
             return;
         }
 
@@ -100,6 +103,7 @@ public class InvenSlot : MonoBehaviour
 
         if (slot.Count > 1)
             cntItemText.GetComponent<Text>().text = slot.Count.ToString();
+        else cntItemText.GetComponent<Text>().text = "";
     }
 
 
