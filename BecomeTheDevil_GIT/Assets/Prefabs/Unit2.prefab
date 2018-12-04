@@ -197,12 +197,12 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063712395133444}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 100000
+  m_LinearDrag: 100000
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -299,7 +299,6 @@ MonoBehaviour:
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4016578308378674}
-  iceImage: {fileID: 0}
 --- !u!114 &114029176035818094
 MonoBehaviour:
   m_ObjectHideFlags: 1
