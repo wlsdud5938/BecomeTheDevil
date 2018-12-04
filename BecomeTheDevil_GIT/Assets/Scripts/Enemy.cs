@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     public float AiRange = 1.0f; // AI의 Player, Tower를 찾는 거리입니다. 이 안에선 Player와 Tower를 우선 공격합니다. 그 외에선 core를 찾습니다.
     public float AiTime = 1.0f; // Ai가 반복적으로 path를 찾는 시간입니다.
     public float distanceOfTile = 1.0f; // DOT 애니메이터를 좌,우 -> 상 하로 전환시킬 최소한의 거리입니다. 
+   
+
 
     //Start에 선언할 컴포넌트 관련 선언//
     private Transform target; // 쫓아갈 대상
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigidbodys; // test
     private SpriteRenderer spriteRenderer;
+
+   
 
     //Animator 관련 선언 //
     private float dir; //Animator에서, Int0 = Front / 0.3 = Back / 0.6 = Left / 1 = Right 
@@ -110,6 +114,7 @@ public class Enemy : MonoBehaviour
             }
             else if (statu.attackRange > adv) // Range 안의 적을 공격합니다.
             {
+                audio.PlayOneShot(attackSound);
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 좌측을 공격하도록 고정.

@@ -6,10 +6,12 @@ public class InvenVisible : MonoBehaviour {
 
     public static bool isInvenOpen = false;   //아이템창이 열려 있으면 true, 아니면 false
     public GameObject inven;    //아이템창
-
+    public AudioClip closeInventorySound;
+    public AudioClip openInventorySound;
+    public AudioSource audio;
     // Use this for initialization
     void Start () {
-		
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -18,10 +20,12 @@ public class InvenVisible : MonoBehaviour {
         {
             if (!isInvenOpen)
             {
+                audio.PlayOneShot(openInventorySound);
                 OpenInven();
             }
             else
             {
+                audio.PlayOneShot(closeInventorySound);
                 CloseInven();
             }
         }

@@ -6,6 +6,7 @@ public class RenderSorter : MonoBehaviour
 {
     public float offset;
     Renderer myRenderer;
+    Transform middle;
     float height;
     float baseOrder = 5000;
 
@@ -15,12 +16,13 @@ public class RenderSorter : MonoBehaviour
     {
         myRenderer = gameObject.GetComponent<Renderer>();
         height = GetComponent<SpriteRenderer>().bounds.size.y;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        myRenderer.sortingOrder = (int)(-(transform.position.y * 1000));
+        myRenderer.sortingOrder = 10000-(int)(transform.position.y);
     }
 }
 

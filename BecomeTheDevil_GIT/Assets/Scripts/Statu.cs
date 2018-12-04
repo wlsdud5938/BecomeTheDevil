@@ -15,6 +15,7 @@ public class Statu : MonoBehaviour {
     public  int versionType;          // tag==Enemy인 경우에만 사용. gameManager에서 instantiate할때 초기화
     public float currentHP;          // 현재 채력 
 
+
     // 애니메이션의 pivot이 bottom center로 잡혀있어서 오브젝트의 변경된 중심점.
     //public Vector3 offset = new Vector3(0, 0.5f, 0);
     //public Vector3 changeTransform;     
@@ -116,6 +117,7 @@ public class Statu : MonoBehaviour {
             }
             if (CompareTag("Player"))
             {
+    
                 SceneManager.LoadScene("Defeat");
             }
             if (CompareTag("Unit"))

@@ -88,7 +88,7 @@ GameObject:
   m_Layer: 10
   m_Name: MiddlePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -124,7 +124,7 @@ GameObject:
   m_Layer: 10
   m_Name: CenterEnemy1
   m_TagString: Enemy
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -176,8 +176,7 @@ GameObject:
   - component: {fileID: 114301724350753826}
   - component: {fileID: 114891729706096278}
   - component: {fileID: 114592142142057710}
-  - component: {fileID: 114799930433238092}
-  - component: {fileID: 82996141266387016}
+  - component: {fileID: 82725222881279282}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -499,7 +498,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3783176, y: 1.1827155}
   m_EdgeRadius: 0
---- !u!82 &82996141266387016
+--- !u!82 &82725222881279282
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,11 +507,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 403967540863efb428b1c5ba3a039668, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -697,6 +696,7 @@ MonoBehaviour:
   AiRange: 5000
   AiTime: 0.1
   distanceOfTile: 1
+  attackSound: {fileID: 8300000, guid: 89b56951880be0d4395f5830b829a8e2, type: 3}
   dropItem:
   - {fileID: 1270581369220184, guid: df4bda04ed9050444a107105b6d1d1f9, type: 2}
   - {fileID: 1133474940879640, guid: b60b89d1726b9f4488991f1389f76b9a, type: 2}
@@ -796,19 +796,6 @@ MonoBehaviour:
   projectileSpeed: 10
   attackTimer: 0.1
   unitTarget: {fileID: 0}
---- !u!114 &114799930433238092
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1897112339300944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b48beaca742054483559194da4f709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio1: {fileID: 82996141266387016}
-  audio: {fileID: 8300000, guid: 403967540863efb428b1c5ba3a039668, type: 3}
 --- !u!114 &114880840588033124
 MonoBehaviour:
   m_ObjectHideFlags: 1

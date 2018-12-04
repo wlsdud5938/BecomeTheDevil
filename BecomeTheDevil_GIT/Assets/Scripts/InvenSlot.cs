@@ -11,7 +11,7 @@ public class InvenSlot : MonoBehaviour
     public Text cntItemText;       // 아이템에 개수
     public int cntfontSize = 30;
     public Sprite DefaultImg; // 기본 이미지
-
+    public AudioClip equipItemSound;
     private Image ItemImg;
     private bool isSlotEmpty = true;     // 현재 슬롯이 비어있으면 true
 
@@ -23,7 +23,7 @@ public class InvenSlot : MonoBehaviour
     float clickTimer = 0.5f; //더블 클릭 한번 클릭됐을때 시간
     int counter = 0; //두번
     GameManager gameManager;
-
+    AudioSource audio;
     // Use this for initialization
     void Awake()
     {
@@ -34,6 +34,7 @@ public class InvenSlot : MonoBehaviour
         var button = transform.GetComponent<Button>();
         button.onClick.AddListener(buttonListner);
         gameManager = GameManager.Instance;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,17 +52,17 @@ public class InvenSlot : MonoBehaviour
                 ItemObject tmp = slot.Peek();
                 if (tmp.Name.Equals("Iron"))
                 {
+                    audio.PlayOneShot(equipItemSound);
                     gameManager.EquipStoneItem(100);
                     UseItem(tmp);
                 }
                 else if (tmp.Name.Equals("Ice"))
                 {
+                    audio.PlayOneShot(equipItemSound);
                     gameManager.EquipIceItem(100);
                     UseItem(tmp);
                 }
-               
-
-
+     
             }
 
         }

@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour {
     public float xPosMax = 47, xPosMin = 33; //맵 최대 최소 x,y 좌표 (맵크기)
     public float yPosMax = -10, yPosMin = -19;
     public ItemObject[] itemObjects;
+    public AudioClip[] generateUnitSounds;
+    private AudioSource audio;
 
     //마우스 바꿔야함
     public Texture2D inMapCursor;  //맵 안에서 커서
@@ -58,6 +60,7 @@ public class UIController : MonoBehaviour {
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         gameManager = GameManager. Instance; //게임 매니저 캐싱
+        audio = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -72,7 +75,7 @@ public class UIController : MonoBehaviour {
             playerBC.canAttack = false;
 
             unitSpawnSpot.x = Mathf.Floor(unitSpawnSpot.x) + 0.5f;
-            unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y); // 발쪽에 trasform 잡혔을때 여기가 셀 중앙인듯
+            unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y) + 0.5f; // 발쪽에 trasform 잡혔을때 여기가 셀 중앙인듯
 
             //마우스에서 가장 가까운 셀 중앙 좌표
             Collider2D[] hit = Physics2D.OverlapBoxAll(unitSpawnSpot,Vector2.one*0.5f,0);
@@ -82,6 +85,7 @@ public class UIController : MonoBehaviour {
                 if (!i.isTrigger) isBuild = false; //트리러가 아니면
                
             }
+            unitSpawnSpot.y -= 0.5f;
             if (isBuild&&IsInMap(mouseTarget))
             {//충돌 되는게 없고 마우스 좌표가 맵 안일 때, 유닛 만들 수 있을 때 
 
@@ -162,6 +166,7 @@ public class UIController : MonoBehaviour {
             }
         }
         GameObject cloneUnit = Instantiate(units[idxOfClickedUB], target, Quaternion.identity);
+        audio.PlayOneShot(generateUnitSounds[idxOfClickedUB]);
         if (cloneUnit != null)
         {
             isClickedUB = false; //clickedUB 상태 false로 바꿈
