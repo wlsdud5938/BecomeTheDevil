@@ -766,7 +766,6 @@ MonoBehaviour:
   versionType: 0
   currentHP: 0
   middlePoint: {fileID: 4618874025813204}
-  iceImage: {fileID: 0}
 --- !u!114 &114873050402678558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -875,8 +874,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1303767067
-  m_SortingLayer: 5
+  m_SortingLayerID: -46067193
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0fb67c216b9eccc468ff683869a91698, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

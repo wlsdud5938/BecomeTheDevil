@@ -20,7 +20,7 @@ public class RenderSorter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myRenderer.sortingOrder = (int)(-(transform.position.y + height / 2) * 1000);
+        myRenderer.sortingOrder = (int)(-(transform.position.y * 1000));
     }
 }
 

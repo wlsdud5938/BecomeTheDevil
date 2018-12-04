@@ -72,7 +72,7 @@ public class UIController : MonoBehaviour {
             playerBC.canAttack = false;
 
             unitSpawnSpot.x = Mathf.Floor(unitSpawnSpot.x) + 0.5f;
-            unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y) + 0.5f;
+            unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y); // 발쪽에 trasform 잡혔을때 여기가 셀 중앙인듯
 
             //마우스에서 가장 가까운 셀 중앙 좌표
             Collider2D[] hit = Physics2D.OverlapBoxAll(unitSpawnSpot,Vector2.one*0.5f,0);
