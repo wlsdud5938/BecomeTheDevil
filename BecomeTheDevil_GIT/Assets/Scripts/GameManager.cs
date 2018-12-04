@@ -74,7 +74,7 @@ public class GameManager : Singleton<GameManager>
                 spawnTime += enemySpawnTerm;
 
             }
-            numOfEnemyPerWave += Random.Range(0, 4);
+            numOfEnemyPerWave += Random.Range(0, 2);
 
             if (idxOfWave % 3 == 0)
                 minVer++;
