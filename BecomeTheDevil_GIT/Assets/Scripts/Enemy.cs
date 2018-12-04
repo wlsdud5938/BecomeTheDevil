@@ -221,7 +221,7 @@ public class Enemy : MonoBehaviour
 
     public void DropItem()
     {
-        if (!GameManager.Instance.spawnKey && GameManager.Instance.playTime >= GameManager.Instance.potalTime)
+        if (!GameManager.Instance.spawnKey && GameManager.Instance.idxOfWave >= GameManager.Instance.potalTime)
         {
             random = Random.Range(0, dropItem.Length);
             Instantiate(dropItem[random], transform.parent.transform.position, Quaternion.identity);
