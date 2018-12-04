@@ -78,7 +78,7 @@ public class InvenSlot : MonoBehaviour
         UpdateInfo(item.ItemSpr());
     }
 
-    void UseItem(ItemObject item)
+    public void UseItem(ItemObject item)
     {
         slot.Pop();
         UpdateInfo(item.ItemSpr());

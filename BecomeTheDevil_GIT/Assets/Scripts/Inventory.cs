@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : MonoBehaviour
+{
 
     public List<GameObject> AllSlot; //슬롯을 관리해줄 리스트
     public RectTransform InvenRect;
@@ -24,7 +25,8 @@ public class Inventory : MonoBehaviour {
 
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
 
         // 인벤토리 이미지의 가로, 세로 사이즈 셋팅.
         InvenWidth = (slotCountX * slotSize) + (slotCountX * slotGapX) + slotGapX;
@@ -74,9 +76,10 @@ public class Inventory : MonoBehaviour {
         Invoke("Init", 0.1f);
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
     }
 
@@ -123,4 +126,45 @@ public class Inventory : MonoBehaviour {
 
     }
 
+    public List<int> CountItem(List<int> list)
+    {
+        InvenSlot tmp;
+
+        list.Clear();
+
+        // list[0] = iron 수, list[1] = ice 수
+
+        for (int i = 0; i < slotCountX * slotCountY; i++)
+        {
+            tmp = AllSlot[i].GetComponent<InvenSlot>();
+            if (tmp.slot.Peek().Name.Equals("Iron")) list[0] += tmp.slot.Count;
+            else if (tmp.slot.Peek().Name.Equals("Ice")) list[1] += tmp.slot.Count;
+        }
+        return list;
+    }
+
+    public void UseItemInSlot(ItemObject item)
+    {
+        int slotCount = AllSlot.Count;
+
+        // 사용하기 위한 아이템이 슬롯에 존재하는지 검사.
+        for (int i = 0; i < slotCount; i++)
+        {
+            // 그 슬롯의 스크립트를 가져온다.
+            InvenSlot slot = AllSlot[i].GetComponent<InvenSlot>();
+
+            // 슬롯이 비어있으면 통과.
+            if (slot.IsSlotEmpty())
+                continue;
+
+            //슬롯에 원하는 아이템이 있을 경우 아이템을 넣는다.
+            if (slot.ItemReturn().type == item.type)
+            {
+                // 슬롯에 아이템을 넣는다.
+                slot.UseItem(item);
+                return;
+            }
+
+        }
+    }
 }
