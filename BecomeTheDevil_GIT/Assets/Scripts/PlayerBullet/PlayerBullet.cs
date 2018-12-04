@@ -43,6 +43,7 @@ public class PlayerBullet : MonoBehaviour {
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.Find("Sprite").transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.Find("Sprite").transform.Rotate(Vector3.forward, angle);
+        GetComponent<AudioSource>().Play();
     }
 	
 	// Update is called once per frame

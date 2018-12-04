@@ -97,6 +97,14 @@ public class Statu : MonoBehaviour {
     {
         currentHP -= damage;
         HPSlider.value = currentHP;
+        if (CompareTag("Unit"))
+        {
+            if (gameObject.name == "Unit2")
+            {
+                Debug.Log("유닛2 맞음");
+                GetComponent<AudioSource>().Play();
+            }
+        }
         if (currentHP <= 0)
         {
             if (isEnemy)
