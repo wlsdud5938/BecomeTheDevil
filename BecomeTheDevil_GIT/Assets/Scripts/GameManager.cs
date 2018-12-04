@@ -35,6 +35,9 @@ public class GameManager : Singleton<GameManager>
     public int minVer = 0;
     int selectVer = 0;
     int itemSliderValue = 0;
+
+    // 아이템 관련
+    public bool isIce = false;
     // Use this for initialization
     void Awake()
     {
@@ -45,7 +48,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        itemSlider.value = itemSliderValue;
+        //itemSlider.value = itemSliderValue;
         coinText.text = coin.ToString();
         if (temp.spawnedBoss)
             playTime += Time.deltaTime;
@@ -71,7 +74,7 @@ public class GameManager : Singleton<GameManager>
                 spawnTime += enemySpawnTerm;
 
             }
-            numOfEnemyPerWave += Random.Range(0, 4);
+            numOfEnemyPerWave += Random.Range(0, 2);
 
             if (idxOfWave % 3 == 0)
                 minVer++;
@@ -98,32 +101,40 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    public void EquipStoneItem(int valueOfSlider)
+    public void EquipStoneItem(float valueOfSlider)
     {
         DequipItem();
         stoneItemImage.SetActive(true); // 돌아이템 이미지 띄우고
         itemSlider.value = valueOfSlider;
 
     }
-    public void EquipIceItem(int valueOfSlider)
+    public void EquipIceItem(float valueOfSlider)
     {
         DequipItem();
         iceItemImage.SetActive(true); //얼음 아이템 이미지 끄고
         itemSlider.value = valueOfSlider;
         // 아이스아이템
         //GetComponent<BulletController>().projectileType = "PlayerIceBullet";
+        isIce = true;
     }
 
-    public void DecreaseItemSlider()
+    public void DecreaseItemSlider()    // 내구도 깎는 함수.
     {
         float value = itemSlider.value;
         itemSliderValue--;
 
+        itemSlider.value -= 20;
+        Debug.Log(itemSlider.value);
+        if (itemSlider.value <= 0)
+        {
+            DequipItem();
+        }
     }
     public void DequipItem()
     {
         stoneItemImage.SetActive(false);
         iceItemImage.SetActive(false);
+        isIce = false;
         itemSliderValue = 0;
     }
 

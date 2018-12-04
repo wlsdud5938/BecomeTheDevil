@@ -50,7 +50,6 @@ public class BulletController : MonoBehaviour {
     private GameObject bullet2;
     private GameObject bullet3;
     
-
         
     // Use this for initialization
     void Start () {
@@ -100,8 +99,13 @@ public class BulletController : MonoBehaviour {
         }
         else if(Input.GetMouseButtonDown(0) && canShoot && canAttack && !InvenVisible.isInvenOpen) 
         {
+            if (GameManager.Instance.isIce)
+            {
+                GameManager.Instance.DecreaseItemSlider();
+            }
             isClick = true;
             SpawnBullet();
+            
         }
 
         
@@ -212,6 +216,14 @@ public class BulletController : MonoBehaviour {
     //총알을 spawnBulletPoint에 생성한다.
     void SpawnBullet()
     {
+        if (GameManager.Instance.isIce) // ice 아이템을 장착하면 총알을 바꿔줌.
+        {
+            projectileType = "PlayerIceBullet";
+        }
+        if (!GameManager.Instance.isIce)
+        {
+            projectileType = "PlayerBullet";
+        }
         if (projectileType == "PlayerBullet")
         {
             fakeBullet1 = Instantiate<GameObject>(fakeBulletPrefab, spawnBulletPoint1.transform.position, Quaternion.identity);

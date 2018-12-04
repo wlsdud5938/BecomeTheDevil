@@ -52,14 +52,22 @@ public class InvenSlot : MonoBehaviour
                 ItemObject tmp = slot.Peek();
                 if (tmp.Name.Equals("Iron"))
                 {
+<<<<<<< HEAD
                     audio.PlayOneShot(equipItemSound);
                     gameManager.EquipStoneItem(100);
+=======
+                    gameManager.EquipStoneItem(100f);
+>>>>>>> b94279a1969701b69f1154cb4975a7755b46214f
                     UseItem(tmp);
                 }
                 else if (tmp.Name.Equals("Ice"))
                 {
+<<<<<<< HEAD
                     audio.PlayOneShot(equipItemSound);
                     gameManager.EquipIceItem(100);
+=======
+                    gameManager.EquipIceItem(100f);
+>>>>>>> b94279a1969701b69f1154cb4975a7755b46214f
                     UseItem(tmp);
                 }
      

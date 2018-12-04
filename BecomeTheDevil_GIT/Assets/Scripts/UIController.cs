@@ -150,7 +150,7 @@ public class UIController : MonoBehaviour {
         if(idxOfClickedUB!=0){
             int[] itemCountArray = new int[2]{0,0};
             inventory.CountItem(ref itemCountArray);
-            if (itemCountArray[idxOfClickedUB-1] <= 0)
+            if ((itemCountArray[idxOfClickedUB - 1] <= 0 || gameManager.coin < 50))
             {
                 noItem.transform.GetChild(0).gameObject.GetComponent<NoItem>().OnText();
                 isClickedUB = false; //clickedUB 상태 false로 바꿈
@@ -165,6 +165,16 @@ public class UIController : MonoBehaviour {
 
             }
         }
+        if (idxOfClickedUB == 0 && gameManager.coin < 50)
+        {
+            noItem.transform.GetChild(0).gameObject.GetComponent<NoItem>().OnText();
+            isClickedUB = false; //clickedUB 상태 false로 바꿈
+            DestroyUnitButtons(); //유닛을 생성한 후에는 유닛 버튼 삭제
+            isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
+                                 //여기서 마우스 모양 제대로
+            return;
+        }
+        gameManager.coin -= 50;
         GameObject cloneUnit = Instantiate(units[idxOfClickedUB], target, Quaternion.identity);
         audio.PlayOneShot(generateUnitSounds[idxOfClickedUB]);
         if (cloneUnit != null)

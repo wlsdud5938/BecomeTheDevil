@@ -89,7 +89,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4094702833615698}
-  - component: {fileID: 114247361478099770}
   - component: {fileID: 212886586648716346}
   m_Layer: 0
   m_Name: Core
@@ -150,6 +149,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1949585897469088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4587888641545782}
+  m_Layer: 8
+  m_Name: MiddlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4094702833615698
 Transform:
   m_ObjectHideFlags: 1
@@ -157,12 +171,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1583048076085972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.42, y: -2.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4463841188461048}
   - {fileID: 224687199224018202}
   - {fileID: 4716025544070296}
+  - {fileID: 4587888641545782}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,6 +193,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4094702833615698}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4587888641545782
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949585897469088}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4094702833615698}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4716025544070296
 Transform:
@@ -206,7 +234,7 @@ Rigidbody2D:
   m_Mass: 1000000
   m_LinearDrag: 1000000
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -285,28 +313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
---- !u!114 &114247361478099770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1583048076085972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ffb7eac28272d4ca9f444a0801f5bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movoingSpeed: 1
-  attackDamage: 10
-  attackRange: 10
-  attackSpeed: 1
-  attackCoolTime: 1
-  HPSlider: {fileID: 114637079144561894}
-  maxHP: 1000
-  versionType: 0
-  currentHP: 0
-  middlePoint: {fileID: 0}
-  iceImage: {fileID: 0}
 --- !u!114 &114290158251383822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,8 +333,7 @@ MonoBehaviour:
   maxHP: 1000
   versionType: 0
   currentHP: 0
-  middlePoint: {fileID: 0}
-  iceImage: {fileID: 0}
+  middlePoint: {fileID: 4587888641545782}
 --- !u!114 &114505968607421920
 MonoBehaviour:
   m_ObjectHideFlags: 1

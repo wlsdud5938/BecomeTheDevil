@@ -132,7 +132,6 @@ public class PlayerBullet : MonoBehaviour {
                 //Debug.Log("아이스 공격!");
                 col.transform.parent.GetComponent<Statu>().IceDamage(3f);
             }
-
             //bulletTime = 0;
         }
     }

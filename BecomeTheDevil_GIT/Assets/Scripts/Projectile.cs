@@ -79,6 +79,12 @@ public class Projectile : MonoBehaviour
                 Statu target = other.transform.parent.GetComponent<Statu>();
                 target.TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
                 BattleManager.Instance.Pool.ReleaseObject(gameObject);
+
+                if (parent.projectileType == "UnitIceBullet")
+                {
+                    //Debug.Log("아이스 공격!");
+                    other.transform.parent.GetComponent<Statu>().IceDamage(3f);
+                }
             }
         }
     }
