@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InvenSlot : MonoBehaviour {
+public class InvenSlot : MonoBehaviour
+{
 
+   
     public Stack<ItemObject> slot;
     public Text cntItemText;       // 아이템에 개수
     public int cntfontSize = 30;
@@ -18,21 +20,46 @@ public class InvenSlot : MonoBehaviour {
     public void SetSlots(bool isSlot) { this.isSlotEmpty = isSlot; }
 
 
+    float clickTimer = 0.5f; //더블 클릭 한번 클릭됐을때 시간
+    int counter = 0; //두번
+    GameManager gameManager;
+
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         // 스택 메모리 할당.
         slot = new Stack<ItemObject>();
-
         cntItemText.fontSize = cntfontSize;    //폰트 사이즈 지정
-
         ItemImg = transform.GetChild(0).GetComponent<Image>();
+        var button = transform.GetComponent<Button>();
+        button.onClick.AddListener(buttonListner);
+        gameManager = GameManager.Instance;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    public void buttonListner()
+    {
+        counter++;
+        if (counter == 1)
+        {
+            Debug.Log("d");
+            if(slot.Count!=0)
+            {
+                ItemObject tmp = slot.Peek();
+                if (tmp.Name.Equals("Iron")) gameManager.EquipStoneItem(100);
+                else if (tmp.Name.Equals("Ice")) gameManager.EquipIceItem(100);
+                else Debug.Log("hi");
+
+
+            }
+
+        }
+    }
+   
     public void AddItem(ItemObject item)
     {
         // 스택에 아이템 추가.
@@ -53,5 +80,6 @@ public class InvenSlot : MonoBehaviour {
         if (slot.Count > 1)
             cntItemText.GetComponent<Text>().text = slot.Count.ToString();
     }
+
 
 }

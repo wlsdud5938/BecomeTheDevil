@@ -30,11 +30,14 @@ public class GameManager : Singleton<GameManager>
     // 적 스폰 시간
     private float enemySpawnTerm = 2.0f;  //  스폰 term.
     private float spawnTime = 0f;       // 
+    public bool isBreakTime = true;
+    public bool isInstaniateEnemyTime = false;
     // Use this for initialization
     void Awake()
     {
         Screen.SetResolution(1920, 1080,true);
         temp = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        DequipItem();
     }
 
     // Update is called once per frame
@@ -51,6 +54,7 @@ public class GameManager : Singleton<GameManager>
         // 적 다 잡고 유저한테 일정 시간 후에 적 스폰
         if(temp.spawnedBoss == true && enemySpawnTimer >= nextWaveTime&&currNumOfEnemyes<=0)
         {
+          
             if (playTime >= potalTime)
                 SpawnPotal();
             enemySpawnTimer = 0.0f;
@@ -61,10 +65,9 @@ public class GameManager : Singleton<GameManager>
                 spawnTime += enemySpawnTerm;
                 StartCoroutine(MakeClone(spawnTime));
             }
-
-            
-            
-            if(i==numOfEnemyPerWave) idxOfWave++; // 추후 신마다 초기화하는 기능 추가
+            if(i==numOfEnemyPerWave){
+                idxOfWave++; // 추후 신마다 초기화하는 기능 추가
+            } 
         }
     }
 
@@ -108,7 +111,6 @@ public class GameManager : Singleton<GameManager>
     IEnumerator MakeClone(float time)
     {
         yield return new WaitForSeconds(time);
-        //Debug.Log("적생성!");
         GameObject clone = Instantiate(enemy, entryRoom.transform.position, Quaternion.identity);
         clone.transform.Find("Enemy").GetComponent<Statu>().versionType = Random.Range(0, 3); //생성한 오브젝트에 script를 가져와 변수에 접근해서 0~2 랜덤하게 초기화.
         currNumOfEnemyes++;
