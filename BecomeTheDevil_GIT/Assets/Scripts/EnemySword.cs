@@ -52,15 +52,22 @@ public class EnemySword : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어 또는 유닛과 충돌하면
-        if (other.tag == "PlayerHitCollider" || other.tag == "UnitHitCollider")
+        if (other.tag == "PlayerHitCollider" || other.tag == "UnitHitCollider" || other.tag == "Boss")
         {
             if (unitTarget != null && parent.isActiveAndEnabled)
             {
-            
-                // 타겟에게 데미지를 주고 발사체를 없앰.
-                other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
-                
+                if (other.tag == "Boss")
+                {
+                    other.transform.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+
+                }
+                else
+                {
+                    // 타겟에게 데미지를 주고 발사체를 없앰.
+                    other.transform.parent.GetComponent<Statu>().TakeDamage(parent.transform.parent.GetComponent<Statu>().attackDamage);
+                }
             }
+
             BattleManager.Instance.Pool.ReleaseObject(gameObject);
         }
         
