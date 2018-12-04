@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
             }
             else if (statu.attackRange > adv) // Range 안의 적을 공격합니다.
             {
-                audio.PlayOneShot(attackSound);
+         
                 if (targetPos.x <= myPos.x) //플레이어가 Enemy(자신)보다 좌측이면,
                 {
                     if (myPos.y >= (targetPos.y - distanceOfTile) && myPos.y <= (targetPos.y + distanceOfTile)) //DOT를 기점으로 일정 구간내에서는 좌측을 공격하도록 고정.
