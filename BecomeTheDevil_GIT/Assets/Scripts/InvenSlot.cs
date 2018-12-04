@@ -50,8 +50,16 @@ public class InvenSlot : MonoBehaviour
             if(slot.Count!=0)
             {
                 ItemObject tmp = slot.Peek();
-                if (tmp.Name.Equals("Iron")) gameManager.EquipStoneItem(100);
-                else if (tmp.Name.Equals("Ice")) gameManager.EquipIceItem(100);
+                if (tmp.Name.Equals("Iron"))
+                {
+                    gameManager.EquipStoneItem(100);
+                    UseItem(tmp);
+                }
+                else if (tmp.Name.Equals("Ice"))
+                {
+                    gameManager.EquipIceItem(100);
+                    UseItem(tmp);
+                }
                 else Debug.Log("hi");
 
 
@@ -70,13 +78,26 @@ public class InvenSlot : MonoBehaviour
         UpdateInfo(item.ItemSpr());
     }
 
+    void UseItem(ItemObject item)
+    {
+        slot.Pop();
+        UpdateInfo(item.ItemSpr());
+    }
 
     // 슬롯에 대한 각종 정보 업데이트.
     public void UpdateInfo(Sprite sprite)
     {
 
+        if (slot.Count == 0)
+        {
+            ItemImg.sprite = DefaultImg;
+
+            return;
+        }
+
         ItemImg.sprite = sprite;       // 슬롯안에 들어있는 아이템의 이미지를 셋팅.
         ItemImg.color = new Color(ItemImg.color.r, ItemImg.color.g, ItemImg.color.b, 255f);
+
         if (slot.Count > 1)
             cntItemText.GetComponent<Text>().text = slot.Count.ToString();
     }
