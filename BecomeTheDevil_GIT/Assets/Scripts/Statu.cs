@@ -35,7 +35,7 @@ public class Statu : MonoBehaviour {
         if (isEnemy)
         {
             //gameManager.currNumOfEnemyes++;
-            maxHP = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
+            //maxHP = gameManager.maxHpOfEnemy[versionType]; //버전에 맞는 hp 초기화
             maxHP += gameManager.idxOfWave * (maxHP * gameManager.levelBalanceConst - maxHP); //최대 체력 levelbalance와 웨이브에 맞게 올려
             attackDamage += gameManager.idxOfWave * (attackDamage * gameManager.levelBalanceConst - attackDamage);
         }//에너미인 경우, 웨이브 라운드에 숫자에 따라 강해짐 최대체력이 달라짐
@@ -60,6 +60,7 @@ public class Statu : MonoBehaviour {
             isPlayer = false;
         }
     }
+
 
     public void TakeDamage(float damage)
     {
