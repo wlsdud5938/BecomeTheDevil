@@ -112,7 +112,7 @@ public class Statu : MonoBehaviour {
 
 
                 int random = Random.Range(0, 10);
-                if (random <= 3)
+                if (random <= 6)
                 {
                     gameObject.GetComponent<Enemy>().DropItem();
                 }
