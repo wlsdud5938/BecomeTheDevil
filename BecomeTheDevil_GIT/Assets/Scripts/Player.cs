@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 
     int horizontal = 0;
     int vertical = 0;
+    float coolTime = 5;
 
-
-    bool isHuman=true;
+    public bool isHuman=true;
     Statu statu; // 스탯 
     int cur_hor=0, cur_ver=0; // 총쏠 방향 결정하기 위함
     enum Direction {FRONT,RIGHT,BACK,LEFT,FRONTLEFT,FRONTRIGHT,BACKRIGHT,BACKLEFT};
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         horizontal = (int)Input.GetAxisRaw("Horizontal"); 
         vertical = (int)Input.GetAxisRaw("Vertical");
 
-
+        coolTime += Time.deltaTime;
         /*
         if (Input.GetKeyDown(KeyCode.F)&&attTimer>statu.attackSpeed)
         {
@@ -65,14 +65,25 @@ public class Player : MonoBehaviour
             
 
         }*/
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && coolTime >= 5)
         {
-          
+            coolTime = 0; 
             isHuman = !isHuman;
             animator.SetTrigger("Change");
             animator.SetBool("isIdle", false);
             animator.SetBool("isHuman", isHuman);
+            if (!isHuman)
+            {
+                GetComponent<Statu>().maxHP *= 3;
+                GetComponent<Statu>().currentHP *= 3;
+            }
+            else if(isHuman)
+            {
+                GetComponent<Statu>().maxHP /= 3;
+                GetComponent<Statu>().currentHP /= 3;
+            }
         }
+
         if (horizontal != 0 || vertical != 0)
         {
             cur_hor = horizontal;
