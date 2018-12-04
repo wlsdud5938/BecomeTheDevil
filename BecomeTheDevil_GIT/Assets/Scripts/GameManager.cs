@@ -52,12 +52,13 @@ public class GameManager : Singleton<GameManager>
         if (currNumOfEnemyes <= 0)
         {
             enemySpawnTimer += Time.deltaTime;
+
         }
         //씬에 에너미 0일 때 enemySpawnTimer 증가 
         // 적 다 잡고 유저한테 일정 시간 후에 적 스폰
         if (temp.spawnedBoss == true && enemySpawnTimer >= nextWaveTime && currNumOfEnemyes <= 0)
         {
-            if (playTime >= potalTime)
+            if (idxOfWave >= potalTime)
                 SpawnPotal();
             enemySpawnTimer = 0.0f;
             currNumOfEnemyes = 0;
@@ -80,7 +81,9 @@ public class GameManager : Singleton<GameManager>
 
     public void SpawnPotal()
     {
-        clearPotal.SetActive(true);
+        clearPotal.transform.GetChild(0).gameObject.SetActive(true);
+        clearPotal.transform.GetChild(1).gameObject.SetActive(true);
+        clearPotal.GetComponent<BoxCollider2D>().enabled = true;
         random = Random.Range(1, temp.rooms.Count - 1);
         clearPotal.transform.position = temp.rooms[random].GetComponent<MapNode>().realMap.transform.position;
 
@@ -88,7 +91,11 @@ public class GameManager : Singleton<GameManager>
 
     public void ClosePotal()
     {
-        clearPotal.SetActive(false);
+        clearPotal.GetComponent<BoxCollider2D>().enabled = false;
+
+        clearPotal.transform.GetChild(0).gameObject.SetActive(false);
+        clearPotal.transform.GetChild(1).gameObject.SetActive(false);
+
     }
 
     public void EquipStoneItem(int valueOfSlider)
@@ -109,6 +116,7 @@ public class GameManager : Singleton<GameManager>
     {
         float value = itemSlider.value;
         itemSliderValue--;
+
     }
     public void DequipItem()
     {

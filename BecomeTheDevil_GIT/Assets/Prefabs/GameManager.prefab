@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 1414705647297722, guid: 3be1a33b1c9a98347b65436fdbe844f1, type: 2}
   - {fileID: 1355050985360750, guid: 45812297fd5a72441b694397537d25a9, type: 2}
   - {fileID: 1627409515442216, guid: 5dbecc19b7e90b24d88ab94da065de57, type: 2}
-  nextWaveTime: 60
+  nextWaveTime: 5
   numOfEnemyPerWave: 5
   entryRoom: {fileID: 0}
   maxHpOfEnemy:
@@ -72,7 +72,7 @@ MonoBehaviour:
   coin: 0
   coinText: {fileID: 0}
   playTime: 0
-  potalTime: 4
+  potalTime: 1
   clearPotal: {fileID: 0}
   random1: 0
   spawnKey: 0

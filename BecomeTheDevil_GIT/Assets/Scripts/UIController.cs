@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour {
     public Vector2 hotSpot = Vector2.zero; //마우스 hot spot
     public Vector2 unitSpawnSpot = Vector2.zero; //유닛 생성지점
     public Vector2 mouseTarget = Vector2.zero; //moust target
-   
+    public GameObject noItem;
 
     RoomTemplates temp;
     GameManager gameManager;
@@ -70,10 +70,10 @@ public class UIController : MonoBehaviour {
         if (isClickedUB)//유저가 유닛을 생성하기위해 유닛 버튼을 클릭한 상황
         {
             playerBC.canAttack = false;
-            Debug.Log(unitSpawnSpot);
+
             unitSpawnSpot.x = Mathf.Floor(unitSpawnSpot.x) + 0.5f;
             unitSpawnSpot.y = Mathf.Floor(unitSpawnSpot.y) + 0.5f;
-            Debug.Log(" " + unitSpawnSpot);
+
             //마우스에서 가장 가까운 셀 중앙 좌표
             Collider2D[] hit = Physics2D.OverlapBoxAll(unitSpawnSpot,Vector2.one*0.5f,0);
             //충돌되는 콜라이더 있는지 (객체가 있는 좌표인지) 확인하기 위해 현재 좌표에 z축으로 레이 쏨
@@ -148,7 +148,7 @@ public class UIController : MonoBehaviour {
             inventory.CountItem(ref itemCountArray);
             if (itemCountArray[idxOfClickedUB-1] <= 0)
             {
-                EditorUtility.DisplayDialog("해당 유닛을 생성할 아이템이 없습니다", "", "Ok");
+                noItem.transform.GetChild(0).gameObject.GetComponent<NoItem>().OnText();
                 isClickedUB = false; //clickedUB 상태 false로 바꿈
                 DestroyUnitButtons(); //유닛을 생성한 후에는 유닛 버튼 삭제
                 isClickedTB = false; //유닛 버튼을 삭제한 후에는 towerButton이 다시 눌릴 수 있도록 false
