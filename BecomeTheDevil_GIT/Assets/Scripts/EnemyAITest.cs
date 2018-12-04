@@ -16,6 +16,7 @@ public class EnemyAITest : MonoBehaviour
     public Vector2 w;
     public GameObject player;
     public bool findPlayer = false;
+    public Vector2 target;
     private Animator myAnimator;
     private float tempPosition;
     float dis = 10000f;
@@ -63,6 +64,7 @@ public class EnemyAITest : MonoBehaviour
         else if(nowRoom.GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer)
         {
             GetComponent<NavMeshAgent2D>().destination = player.transform.position;
+            target = player.transform.position;
             findPlayer = true;
 
         }
@@ -70,6 +72,7 @@ public class EnemyAITest : MonoBehaviour
         {
             w = new Vector2(enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.x, enemyPathDoor[0].GetComponent<BoxCollider2D>().bounds.center.y);
             GetComponent<NavMeshAgent2D>().destination = w;
+            target = w;
             findPlayer = false;
             //Debug.Log(w.ToString());
         }

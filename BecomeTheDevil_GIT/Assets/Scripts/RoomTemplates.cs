@@ -79,13 +79,14 @@ public class RoomTemplates : MonoBehaviour
                     else
                     {
                         Boss = Instantiate(boss, rooms[rooms.Count-1].GetComponent<MapNode>().realMap.transform.Find("CoreSpawn").transform.position, Quaternion.identity);
+                        currentMapnode = rooms[rooms.Count - 1];
                         rooms[rooms.Count - 1].GetComponent<MapNode>().realMap.GetComponent<RoomCode>().units.Add(Boss);
                         bosss = Instantiate(currentBoss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
 
 
-                        playerPosition.Set(currentMapnode.GetComponent<MapNode>().realMap.transform.position.x, currentMapnode.GetComponent<MapNode>().realMap.transform.position.y, currentMapnode.GetComponent<MapNode>().realMap.transform.position.z);
+                        playerPosition.Set(Boss.transform.position.x, Boss.transform.position.y, Boss.transform.position.z);
                         nowPlayer = Instantiate(player, playerPosition, Quaternion.identity);
-
+                        rooms[rooms.Count - 1].GetComponent<MapNode>().realMap.GetComponent<RoomCode>().inPlayer = true;
                         spawnedBoss = true;
                     }
                 }

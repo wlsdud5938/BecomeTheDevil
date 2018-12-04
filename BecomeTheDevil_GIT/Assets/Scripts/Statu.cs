@@ -114,7 +114,7 @@ public class Statu : MonoBehaviour {
                 }
                 transform.parent.GetComponent<EnemyAITest>().Destroy();
             }
-            if (CompareTag("Player"))
+            if (CompareTag("Player") || CompareTag("Boss"))
             {
                 SceneManager.LoadScene("Defeat");
             }
